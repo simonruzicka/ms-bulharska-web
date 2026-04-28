@@ -1,0 +1,19 @@
+# Netlify konfigurace — cache pravidla
+
+# HTML — vždy ověř zda je aktuální (ale stáhni jen pokud se změnil)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Obrázky — cachuj 1 rok (mění se jen při novém deployi)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonty — cachuj 1 rok
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

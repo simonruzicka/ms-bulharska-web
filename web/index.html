@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mateřská škola Brno, Bulharská 62, příspěvková organizace — Místo pro objevování a porozumění</title>
+<!-- display=optional: prohlížeč použije font jen pokud je v cache, jinak fallback — žádný FOUT -->
+<style>
+
+  /* ── INLINE FONTY — načítají se okamžitě bez sítě ── */
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('fonts/Fraunces-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  :root {
+    --cream: #FBF3E4;
+    --cream-hero: #F5EDD8;
+    --warm-white: #FFFDF8;
+    --pink: #F5B8C2;
+    --pink-deep: #EFA2B0;
+    --pink-soft: #FAD8DE;
+    --yellow: #F5C842;
+    --yellow-soft: #FDE58E;
+    --teal: #7DD0C4;
+    --teal-soft: #B8E5DD;
+    --teal-deep: #5FBAAC;
+    --green: #9BCE7A;
+    --green-soft: #D4EBC1;
+    --green-deep: #6FA84D;
+    --blue: #7AB8E0;
+    --blue-soft: #C5E0F0;
+    --blue-deep: #5B9BD0;
+    --brown: #7A4E2D;
+    --brown-warm: #8B5A34;
+    --brown-light: #C49A70;
+    --text-dark: #4A2E1A;
+    --text-mid: #7A5A42;
+    --shadow-card: 0 8px 28px rgba(122, 78, 45, 0.12);
+    --shadow-hover: 0 18px 44px rgba(122, 78, 45, 0.22);
+    --radius: 28px;
+    --radius-lg: 40px;
+    --hero-image: url('images/hero.webp');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  /* Prevence FOUT — tělo se zobrazí až po načtení fontů (max 500ms) */
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    overflow-x: clip;
+    max-width: 100%;
+    line-height: 1.6;
+  }
+  
+  /* Žádný element nesmí být širší než viewport */
+  img, svg, video, table { max-width: 100%; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--warm-white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 40px;
+  }
+
+  /* Decorative divider between nav and hero — small paws and hearts
+     scattered across a thin dotted line in the school's palette.            */
+  .nav-divider {
+    width: 100%;
+    height: 44px;
+    pointer-events: none;
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(122, 78, 45, 0.08);
+    position: relative;
+  }
+  /* Thin dotted line across the full width behind the icons */
+  .nav-divider::before {
+    content: '';
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 50%;
+    height: 0;
+    border-top: 2px dotted rgba(122, 78, 45, 0.15);
+  }
+  .nav-divider-icons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: var(--warm-white);
+    padding: 0 18px;
+  }
+  .nav-divider-icons svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    animation: dividerBob 4s ease-in-out infinite;
+  }
+  .nav-divider-icons svg:nth-child(1) { color: var(--yellow); animation-delay: 0s; }
+  .nav-divider-icons svg:nth-child(2) { color: var(--green-deep); animation-delay: 0.5s; width: 14px; height: 14px; }
+  .nav-divider-icons svg:nth-child(3) { color: var(--brown-warm); animation-delay: 1s; width: 22px; height: 22px; }
+  .nav-divider-icons svg:nth-child(4) { color: var(--blue-deep); animation-delay: 1.5s; width: 14px; height: 14px; }
+  .nav-divider-icons svg:nth-child(5) { color: var(--yellow); animation-delay: 2s; }
+  @keyframes dividerBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 76px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links li {
+    display: flex;
+    align-items: center;
+  }
+  .nav-links li + li::before {
+    content: '|';
+    color: var(--brown-light);
+    margin: 0 8px;
+    font-weight: 300;
+    opacity: 0.5;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--brown);
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 50px;
+    transition: all 0.25s ease;
+  }
+  .nav-links a:hover {
+    background: var(--pink-soft);
+    color: var(--brown-warm);
+  }
+
+  /* ── HERO — full-width banner ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    background: var(--warm-white);
+    overflow: hidden;
+  }
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    /* Default (wide screens): full image visible with its natural aspect ratio. */
+    aspect-ratio: 2048 / 872;
+    min-height: 380px;
+    animation: heroFloat 6s ease-in-out infinite;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6% 5% 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .hero-content-inner {
+    max-width: 46%;
+    padding-top: 4%;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .btn-enroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--teal);
+    color: var(--warm-white);
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 22px rgba(125, 208, 196, 0.35);
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .btn-enroll:hover {
+    transform: translateY(-3px);
+    background: var(--teal-deep);
+    box-shadow: 0 14px 32px rgba(95, 186, 172, 0.45);
+  }
+  .btn-enroll .star-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--warm-white);
+    color: var(--teal-deep);
+    border-radius: 50%;
+    font-size: 0.8rem;
+  }
+
+  /* decorative stars in hero background area (top-left where empty space is) */
+  .hero-star {
+    position: absolute;
+    color: var(--pink);
+    opacity: 0.55;
+    font-size: 1.2rem;
+    animation: twinkle 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hs1 { top: 20%; left: 4%; color: var(--teal-deep); }
+  .hs2 { top: 52%; left: 12%; color: var(--yellow); animation-delay: 0.8s; }
+  .hs3 { top: 34%; left: 40%; animation-delay: 1.4s; }
+  @keyframes twinkle { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:0.25;transform:scale(0.75)} }
+
+  /* ── SECTIONS SHARED ── */
+  section.content-section { padding: 80px 40px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 52px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── CLASSES ── */
+  .classes-section { background: var(--warm-white); }
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .class-card {
+    border-radius: var(--radius-lg);
+    padding: 36px 24px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+    position: relative;
+    box-shadow: var(--shadow-card);
+  }
+  .class-card:hover {
+    transform: translateY(-12px) rotate(-1deg);
+    box-shadow: var(--shadow-hover);
+  }
+  .class-card:nth-child(2):hover { transform: translateY(-12px) rotate(1deg); }
+
+  .card-jezecci { background: var(--yellow-soft); }
+  .card-jezecci .card-label { color: #9A6B0F; }
+
+  .card-veverky { background: var(--green-soft); }
+  .card-veverky .card-label { color: var(--green-deep); }
+
+  .card-medvidci { background: var(--teal-soft); }
+  .card-medvidci .card-label { color: #2F8478; }
+
+  .card-zahrada { background: var(--pink-soft); }
+  .card-zahrada .card-label { color: #B8526A; }
+  .class-card.card-zahrada { padding: 16px 24px 18px; grid-column: 1 / -1; }
+  .class-card.card-zahrada .card-animal-wrap { height: 90px; margin-bottom: 10px; }
+  .class-card.card-zahrada .card-label { font-size: 1.2rem; }
+
+  .card-animal-wrap {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  }
+  .card-animal-wrap img {
+    max-height: 180px;
+    max-width: 80%;
+    object-fit: contain;
+    /* no drop-shadow filter — that was what caused the "black square" artifact
+       on some renderers when an image has soft / feathered alpha edges */
+  }
+  .class-card:hover .card-animal-wrap {
+    transform: scale(1.08) translateY(-6px);
+  }
+  .card-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── SOCIAL MEDIA CTA SECTION ── */
+  .social-section {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .social-section::before,
+  .social-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .social-section::before {
+    width: 280px; height: 280px;
+    background: var(--pink-soft);
+    top: -80px; left: -80px;
+  }
+  .social-section::after {
+    width: 220px; height: 220px;
+    background: var(--teal-soft);
+    bottom: -60px; right: -60px;
+  }
+  .social-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .social-lead {
+    max-width: 640px;
+    margin: -24px auto 48px;
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .social-lead strong {
+    color: var(--brown);
+    font-weight: 800;
+  }
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 32px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .social-card.facebook {
+    background: linear-gradient(135deg, #E3EFFF 0%, #CFE1FA 100%);
+  }
+  .social-card.instagram {
+    background: linear-gradient(135deg, #FDE2D9 0%, #F5C4D8 50%, #E5C8EC 100%);
+  }
+  .social-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+  }
+  .social-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  }
+  .social-card:hover .social-icon {
+    transform: rotate(-6deg) scale(1.08);
+  }
+  .social-card.facebook .social-icon {
+    background: #1877F2;
+    color: white;
+  }
+  .social-card.instagram .social-icon {
+    background: linear-gradient(135deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%);
+    color: white;
+  }
+  .social-icon svg {
+    width: 44px;
+    height: 44px;
+  }
+  .social-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .social-card-handle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+  }
+  .social-card-desc {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .social-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 253, 248, 0.85);
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown);
+    transition: background 0.25s ease, gap 0.25s ease;
+  }
+  .social-card:hover .social-card-cta {
+    background: var(--warm-white);
+    gap: 14px;
+  }
+
+  /* Decorative floating hearts in social section */
+  .social-heart {
+    position: absolute;
+    color: var(--pink-deep);
+    opacity: 0.35;
+    animation: heartFloat 5s ease-in-out infinite;
+    pointer-events: none;
+    font-size: 1.4rem;
+  }
+  .sh1 { top: 18%; left: 8%; animation-delay: 0s; }
+  .sh2 { top: 12%; right: 10%; animation-delay: 1s; font-size: 1rem; }
+  .sh3 { bottom: 22%; left: 12%; animation-delay: 2s; font-size: 1.1rem; }
+  .sh4 { bottom: 16%; right: 8%; animation-delay: 0.5s; }
+  @keyframes heartFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); opacity: 0.35; }
+    50% { transform: translateY(-16px) rotate(8deg); opacity: 0.55; }
+  }
+
+  /* ── PRO RODIČE — Info Section ── */
+  .parents-section {
+    background: var(--warm-white);
+    position: relative;
+  }
+  .parents-intro {
+    max-width: 820px;
+    margin: 0 auto 56px;
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+  .parents-intro strong { color: var(--brown); }
+
+  /* Info cards grid (provoz, cena, kontakt) */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto 64px;
+  }
+  .info-card {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-card);
+  }
+  .info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+  .info-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 1.8rem;
+  }
+  .info-card:nth-child(1) .info-card-icon { background: var(--yellow-soft); }
+  .info-card:nth-child(2) .info-card-icon { background: var(--pink-soft); }
+  .info-card:nth-child(3) .info-card-icon { background: var(--teal-soft); }
+  .info-card-label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 8px;
+  }
+  .info-card-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  .info-card-note {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* Teachers / teams per class */
+  .subsection-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    text-align: center;
+    margin: 60px 0 36px;
+    letter-spacing: -0.01em;
+  }
+  .teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+  }
+  .teacher-card {
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease;
+  }
+  .teacher-card:hover { transform: translateY(-4px); }
+  .teacher-card.t-jezecci { background: var(--yellow-soft); }
+  .teacher-card.t-veverky { background: var(--green-soft); }
+  .teacher-card.t-medvidci { background: var(--teal-soft); }
+  .teacher-class-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .teacher-card.t-jezecci .teacher-class-name { color: #9A6B0F; }
+  .teacher-card.t-veverky .teacher-class-name { color: var(--green-deep); }
+  .teacher-card.t-medvidci .teacher-class-name { color: #2F8478; }
+  .teacher-role {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+  .teacher-names {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .teacher-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: rgba(255, 253, 248, 0.6);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brown);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .teacher-phone:hover { background: var(--warm-white); }
+
+  /* Daily schedule timeline */
+  .schedule-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 100px 18px 1fr;
+    gap: 0 20px;
+    align-items: start;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .schedule-time {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--brown);
+    text-align: right;
+    padding-top: 16px;
+    white-space: nowrap;
+  }
+  /* Středový sloupec — obsahuje kolečko a svislou linii */
+  .schedule-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .schedule-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--warm-white);
+    border: 3px solid var(--teal);
+    margin-top: 16px;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  /* Linie pod kolečkem — roste na výšku obsahu */
+  .schedule-dot-col::after {
+    content: '';
+    flex: 1;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--yellow-soft), var(--pink-soft));
+    border-radius: 3px;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+  /* Poslední položka nemá linii dolů */
+  .schedule-item:last-child .schedule-dot-col::after {
+    display: none;
+  }
+  .schedule-item:nth-child(3n+1) .schedule-dot { border-color: var(--yellow); }
+  .schedule-item:nth-child(3n+2) .schedule-dot { border-color: var(--pink-deep); }
+  .schedule-item:nth-child(3n+3) .schedule-dot { border-color: var(--teal); }
+  /* Barva linie odpovídá kolečku */
+  .schedule-item:nth-child(3n+1) .schedule-dot-col::after { background: var(--yellow-soft); }
+  .schedule-item:nth-child(3n+2) .schedule-dot-col::after { background: var(--pink-soft); }
+  .schedule-item:nth-child(3n+3) .schedule-dot-col::after { background: var(--teal-soft); }
+  .schedule-content {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.55;
+  }
+
+  /* Documents / resources */
+  .resources-wrapper {
+    max-width: 900px;
+    margin: 40px auto 0;
+  }
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .resource-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: var(--cream);
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+  }
+  .resource-link:hover {
+    background: var(--warm-white);
+    border-color: var(--teal);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-card);
+  }
+  .resource-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--teal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .resource-text {
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  .resource-arrow {
+    margin-left: auto;
+    color: var(--brown-light);
+    font-size: 1.2rem;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .resource-link:hover .resource-arrow {
+    color: var(--teal-deep);
+    transform: translateX(3px);
+  }
+
+  /* School leaving info box */
+  .info-box {
+    max-width: 900px;
+    margin: 32px auto 0;
+    background: linear-gradient(135deg, var(--pink-soft) 0%, var(--yellow-soft) 100%);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    box-shadow: var(--shadow-card);
+  }
+  .info-box-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--brown);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .info-box p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .info-box p:last-child { margin-bottom: 0; }
+  .info-box a {
+    color: var(--teal-deep);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--teal-soft);
+    transition: border-color 0.2s;
+  }
+  .info-box a:hover { border-color: var(--teal-deep); }
+
+  /* ── DOCUMENTS SECTION ── */
+  .documents-section {
+    background: var(--cream);
+    position: relative;
+  }
+  .documents-group {
+    max-width: 1000px;
+    margin: 0 auto 48px;
+  }
+  .documents-group:last-child { margin-bottom: 0; }
+  .documents-group-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    color: var(--brown);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+  }
+  .documents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .doc-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--warm-white);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    font-size: 0.92rem;
+  }
+  .doc-link:hover {
+    border-color: var(--yellow);
+    transform: translateX(3px);
+    box-shadow: var(--shadow-card);
+  }
+  .doc-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--yellow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .doc-text {
+    font-weight: 600;
+    line-height: 1.35;
+    flex: 1;
+  }
+  .doc-arrow {
+    color: var(--brown-light);
+    font-size: 1.05rem;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .doc-link:hover .doc-arrow {
+    color: var(--brown);
+    transform: translateX(3px);
+  }
+
+  /* ── DINING SECTION ── */
+  .dining-section {
+    background: var(--warm-white);
+    position: relative;
+  }
+  .dining-intro {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    text-align: center;
+    font-size: 1.02rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .dining-intro strong { color: var(--brown); }
+  .dining-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .dining-contact-chip {
+    background: var(--cream);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    font-weight: 600;
+  }
+  .dining-contact-chip a {
+    color: var(--brown);
+    text-decoration: none;
+    border-bottom: 2px solid var(--teal-soft);
+  }
+  .dining-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  .dining-card {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+  }
+  .dining-card-age {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .dining-card-total {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--teal-deep);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .dining-card-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    border-top: 1px dashed rgba(122, 78, 45, 0.2);
+    padding-top: 14px;
+  }
+  .dining-card-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .dining-card-breakdown-row span:last-child {
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .dining-tuition-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--pink-soft);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+  }
+  .dining-tuition-box h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .dining-tuition-box p {
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  .dining-tuition-box p:last-child { margin-bottom: 0; }
+  .dining-tuition-box strong { color: var(--brown); }
+  .dining-tuition-box a {
+    color: var(--brown);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(122, 78, 45, 0.25);
+  }
+  .dining-tuition-box a:hover { border-color: var(--brown); }
+
+  /* ── CONTACT SECTION ── */
+  .contact-section {
+    background: var(--cream);
+    position: relative;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 48px;
+  }
+  .contact-card {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    padding: 30px 32px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+  }
+  .contact-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  .contact-card.ci-address .contact-card-icon { background: var(--teal-soft); }
+  .contact-card.ci-phone .contact-card-icon { background: var(--yellow-soft); }
+  .contact-card.ci-info .contact-card-icon { background: var(--blue-soft); }
+  .contact-card.ci-founder .contact-card-icon { background: var(--pink-soft); }
+  .contact-card.ci-gdpr .contact-card-icon { background: var(--green-soft); }
+  .contact-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--brown);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .contact-card-content {
+    font-size: 0.94rem;
+    color: var(--text-dark);
+    line-height: 1.65;
+  }
+  .contact-card-content a {
+    color: var(--brown);
+    text-decoration: none;
+    border-bottom: 2px solid var(--teal-soft);
+    font-weight: 700;
+    transition: border-color 0.2s;
+  }
+  .contact-card-content a:hover { border-color: var(--teal-deep); }
+  .contact-card-content .contact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .contact-card-content .contact-row strong {
+    min-width: 0;
+    color: var(--text-mid);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Staff directory */
+  .staff-directory {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .staff-directory-wrapper {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .staff-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .staff-table thead {
+    background: var(--cream);
+  }
+  .staff-table th {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--brown);
+    text-align: left;
+    padding: 16px 22px;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .staff-table td {
+    padding: 14px 22px;
+    font-size: 0.93rem;
+    color: var(--text-dark);
+    vertical-align: top;
+  }
+  .staff-table tr:last-child td { padding-bottom: 18px; }
+  .staff-table td.staff-name { font-weight: 700; color: var(--brown); }
+  .staff-table td.staff-role { color: var(--text-mid); }
+  .staff-table a {
+    color: var(--teal-deep);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .staff-table a:hover { border-bottom-color: var(--teal-deep); }
+  .staff-note {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  /* ── LIGHTBOX ── */
+  .class-card { cursor: pointer; }
+  .class-card:hover { box-shadow: var(--shadow-hover); }
+
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 15, 5, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .lightbox-overlay.open { display: flex; }
+
+  .lightbox-box {
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    max-width: 860px;
+    width: calc(100% - 40px);
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 92vh;
+  }
+  .lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px 14px;
+    border-bottom: 1px solid rgba(122,78,45,0.1);
+    flex-shrink: 0;
+  }
+  .lightbox-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    color: var(--brown);
+    font-weight: 500;
+  }
+  .lightbox-close {
+    background: var(--cream);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .lightbox-close:hover { background: var(--pink-soft); }
+
+  .lightbox-img-wrap {
+    position: relative;
+    background: var(--cream);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .lightbox-img-wrap img {
+    display: block;
+    width: 100%;
+    max-height: 55vh;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* Zahrada — zobrazit v původním poměru, menší */
+  .lightbox-img-wrap.lb-contain img {
+    width: auto;
+    max-width: 88%;
+    max-height: 52vh;
+    object-fit: contain;
+    margin: 12px auto;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .lightbox-nav:hover { background: white; transform: translateY(-50%) scale(1.08); }
+  .lightbox-nav.prev { left: 14px; }
+  .lightbox-nav.next { right: 14px; }
+
+  .lightbox-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 0 12px;
+    flex-shrink: 0;
+  }
+  .lightbox-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--brown-light);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    opacity: 0.5;
+  }
+  .lightbox-dot.active { background: var(--brown); opacity: 1; transform: scale(1.25); }
+
+  .lightbox-caption {
+    padding: 10px 24px 20px;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    text-align: center;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  section { overflow-x: clip; }
+  .social-section { overflow: hidden; }
+
+  /* ── AKTUALITY ── */
+  .aktuality-section {
+    background: var(--warm-white);
+    position: relative;
+  }
+  .aktuality-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .aktualita-card {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-card);
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0 28px;
+    align-items: start;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border-left: 4px solid var(--pink);
+  }
+  .aktualita-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(4px);
+  }
+  .aktualita-datum {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    color: var(--brown);
+    font-weight: 600;
+    padding-top: 4px;
+    text-align: right;
+    border-right: 1px solid rgba(122,78,45,0.15);
+    padding-right: 28px;
+    white-space: nowrap;
+  }
+  .aktualita-content {}
+  .aktualita-nadpis {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--brown);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .aktualita-text {
+    font-size: 0.94rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+  .aktuality-prazdne {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-mid);
+    font-style: italic;
+    background: var(--cream);
+    border-radius: var(--radius);
+  }
+  .aktuality-loading {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-mid);
+  }
+  .aktuality-loading::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--pink-soft);
+    border-top-color: var(--pink-deep);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 600px) {
+    .aktualita-card {
+      grid-template-columns: 1fr;
+      gap: 8px 0;
+      border-left-width: 4px;
+    }
+    .aktualita-datum {
+      text-align: left;
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid rgba(122,78,45,0.15);
+      padding-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .aktualita-datum strong { font-size: 1.2rem; }
+  }
+
+
+  footer {
+    background: var(--pink);
+    padding: 60px 40px 30px;
+    position: relative;
+  }
+  .footer-wave {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+    padding-top: 30px;
+  }
+  .footer-inner.footer-inner-simple {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+  .footer-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--warm-white);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .footer-contact-line {
+    font-size: 0.9rem;
+    color: var(--warm-white);
+    margin-bottom: 8px;
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+  .footer-contact-line strong {
+    font-weight: 800;
+    margin-right: 8px;
+  }
+  .footer-logo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-logo {
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    color: var(--warm-white);
+    padding: 20px 0;
+  }
+  .footer-logo .logo-title {
+    font-size: 1.8rem;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+    position: relative;
+    display: inline-block;
+  }
+  .footer-logo .logo-title::before,
+  .footer-logo .logo-title::after {
+    content: '✦';
+    color: var(--yellow);
+    font-size: 0.9rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .footer-logo .logo-title::before { left: -24px; }
+  .footer-logo .logo-title::after { right: -24px; }
+  .footer-logo .logo-animals {
+    font-size: 2.6rem;
+    margin: 4px 0;
+  }
+  .footer-logo .logo-subtitle {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    font-family: 'Nunito', sans-serif;
+    color: var(--warm-white);
+    text-transform: uppercase;
+  }
+  .footer-map {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #E8EFD8;
+    box-shadow: 0 8px 20px rgba(122, 78, 45, 0.2);
+  }
+  .footer-map svg { width: 100%; height: 100%; display: block; }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 32px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.06em;
+  }
+
+  /* Responsive */
+  /* ═══ TABLET (≤ 960 px) ═══
+     Keep overlay layout. The image keeps its natural height and overflows
+     horizontally so tree+animals stay pinned right while the cream area
+     on the left grows to fit the text.                                        */
+  @media (max-width: 960px) {
+    .nav-inner { height: auto; padding: 12px 0; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 0; width: 100%; }
+    .nav-links li { flex-shrink: 1; }
+    .nav-links a { font-size: 0.82rem; padding: 8px 10px; }
+    .nav-links li + li::before { margin: 0 4px; }
+    .nav-divider { top: auto; position: relative; height: 38px; }
+    .nav-divider-icons { gap: 16px; padding: 0 12px; }
+    .nav-divider-icons svg { width: 16px; height: 16px; }
+    .nav-divider-icons svg:nth-child(2),
+    .nav-divider-icons svg:nth-child(4) { width: 12px; height: 12px; }
+    .nav-divider-icons svg:nth-child(3) { width: 20px; height: 20px; }
+
+    .hero-banner {
+      aspect-ratio: auto;
+      height: 62vw;
+      min-height: 440px;
+      max-height: 560px;
+      background-size: auto 100%;
+      background-position: right center;
+    }
+    .hero-content { padding: 7% 5% 0 6%; }
+    .hero-content-inner { max-width: 58%; padding-top: 2%; }
+
+    .classes-grid { grid-template-columns: 1fr; gap: 24px; max-width: 360px; }
+    .social-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .footer-inner.footer-inner-simple { grid-template-columns: 1fr 1fr; gap: 28px; text-align: center; }
+    .footer-inner.footer-inner-simple .footer-logo-col { grid-column: 1 / -1; }
+    /* Parents section responsive */
+    .info-cards { grid-template-columns: 1fr; max-width: 420px; }
+    .teachers-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .documents-grid { grid-template-columns: 1fr; }
+    .dining-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .dining-tuition-box { padding: 28px 22px; }
+    .contact-grid { grid-template-columns: 1fr; width: 100%; max-width: 100%; }
+    .contact-card { width: 100%; box-sizing: border-box; min-width: 0; }
+    .contact-card-content { word-break: break-word; }
+    .staff-table, .staff-table thead, .staff-table tbody, .staff-table tr, .staff-table th, .staff-table td { display: block; }
+    .staff-table thead { display: none; }
+    .staff-table tr {
+      padding: 14px 22px;
+    }
+    .staff-table td {
+      border: none;
+      padding: 4px 0;
+    }
+    .staff-table td.staff-name { margin-bottom: 2px; }
+    .staff-table td.staff-role { font-size: 0.85rem; margin-bottom: 6px; }
+    .schedule-item { grid-template-columns: auto 18px 1fr; gap: 0 8px; }
+    .schedule-time { font-size: 0.78rem; white-space: nowrap; padding-top: 14px; }
+    .schedule-content { font-size: 0.88rem; padding: 10px 14px; }
+    .info-box { padding: 28px 24px; }
+  }
+
+  /* ═══ PHONE (≤ 720 px) ═══
+     Same layout as desktop — text on the LEFT, animals on the RIGHT,
+     side-by-side. Image keeps full height but overflows to the right so
+     animals are pinned right while the cream area on the left grows to fit
+     the title text.                                                          */
+  @media (max-width: 720px) {
+    .hero {
+      background: var(--warm-white);
+    }
+    .hero-banner {
+      aspect-ratio: 4 / 5;
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      /* Layered: image on top, cream+white gradient below it.
+         Cream fills the upper-left (where the text sits), transitioning to
+         white at the bottom/right — so no cream strip shows under the wavy
+         grass or on the right. */
+      background-image: var(--hero-image),
+        linear-gradient(to bottom,
+          var(--cream-hero) 0%,
+          var(--cream-hero) 55%,
+          var(--warm-white) 90%);
+      background-size: auto 100%, 100% 100%;
+      background-position: 75% bottom, center center;
+      background-repeat: no-repeat, no-repeat;
+      padding: 0;
+      display: block;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      max-width: 100%;
+      padding: 10% 4% 0 5%;
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .hero-content-inner {
+      max-width: 48%;
+      padding-top: 0;
+    }
+    .hero-title {
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-subtitle {
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      margin-bottom: 0;
+    }
+
+    section.content-section { padding: 60px 20px; }
+    nav { padding: 0 8px; width: 100%; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 2px; }
+    .nav-links li + li::before { display: none; }
+    .nav-links a { font-size: 0.68rem; padding: 5px 7px; letter-spacing: 0.04em; }
+    .nav-links li + li::before { margin: 0; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .footer-logo-col { order: -1; }
+    footer { padding: 50px 20px 30px; }
+    /* Zajistit že nic nepřetéká přes šířku displeje */
+    .section-inner { padding-left: 20px; padding-right: 20px; }
+    .contact-grid { width: 100%; }
+    .dining-grid { width: 100%; }
+    .documents-grid { width: 100%; }
+    .aktuality-grid { width: 100%; }
+    .aktualita-card { width: 100%; overflow: hidden; }
+  }
+
+  /* ═══ VERY NARROW (≤ 440 px) ═══
+     Banner gets a bit taller so the 3-line title has more vertical room
+     while still sitting next to the animals on the left cream area.         */
+  @media (max-width: 440px) {
+    .hero-banner {
+      aspect-ratio: 1 / 1.25;
+      background-size: auto 100%;
+      background-position: 75% bottom;
+    }
+    .hero-content { padding: 9% 4% 0 5%; }
+    .hero-content-inner { max-width: 50%; }
+    .hero-title { font-size: clamp(1.3rem, 5.6vw, 1.7rem); }
+    .hero-subtitle { font-size: 0.7rem; letter-spacing: 0.14em; }
+    .nav-links a { font-size: 0.62rem; padding: 4px 6px; letter-spacing: 0.02em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-banner, .hero-banner::after { animation: none; }
+    .hero-star { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div style="overflow-x: clip; width: 100%; position: relative;">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#aktivity">Naše třída</a></li>
+      <li><a href="#akce">Akce</a></li>
+      <li><a href="#aktuality-rodice">Aktuality</a></li>
+      <li><a href="#rodice">Pro rodiče</a></li>
+      <li><a href="#dokumenty">Dokumenty</a></li>
+      <li><a href="#stravovani">Stravování</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Decorative divider: scattered paws and hearts along a thin dotted line -->
+<div class="nav-divider" aria-hidden="true">
+  <div class="nav-divider-icons">
+    <!-- heart -->
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21s-7-4.5-9.5-9C.7 8.5 2.5 4 6.5 4c2 0 3.7 1.1 4.5 2.8C11.8 5.1 13.5 4 15.5 4c4 0 5.8 4.5 4 8-2.5 4.5-9.5 9-9.5 9z"/>
+    </svg>
+    <!-- small heart -->
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21s-7-4.5-9.5-9C.7 8.5 2.5 4 6.5 4c2 0 3.7 1.1 4.5 2.8C11.8 5.1 13.5 4 15.5 4c4 0 5.8 4.5 4 8-2.5 4.5-9.5 9-9.5 9z"/>
+    </svg>
+    <!-- paw print (center, larger) -->
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="6" cy="9" rx="2" ry="2.6"/>
+      <ellipse cx="10" cy="5.5" rx="1.8" ry="2.4"/>
+      <ellipse cx="14" cy="5.5" rx="1.8" ry="2.4"/>
+      <ellipse cx="18" cy="9" rx="2" ry="2.6"/>
+      <path d="M12 11c-3 0-5.5 2.2-5.5 5 0 2 1.8 3.5 3.5 3.5 1 0 1.5-0.5 2-0.5s1 0.5 2 0.5c1.7 0 3.5-1.5 3.5-3.5 0-2.8-2.5-5-5.5-5z"/>
+    </svg>
+    <!-- small heart -->
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21s-7-4.5-9.5-9C.7 8.5 2.5 4 6.5 4c2 0 3.7 1.1 4.5 2.8C11.8 5.1 13.5 4 15.5 4c4 0 5.8 4.5 4 8-2.5 4.5-9.5 9-9.5 9z"/>
+    </svg>
+    <!-- heart -->
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21s-7-4.5-9.5-9C.7 8.5 2.5 4 6.5 4c2 0 3.7 1.1 4.5 2.8C11.8 5.1 13.5 4 15.5 4c4 0 5.8 4.5 4 8-2.5 4.5-9.5 9-9.5 9z"/>
+    </svg>
+  </div>
+</div>
+
+<!-- HERO — full-width banner image with overlaid text -->
+<section class="hero">
+  <div class="hero-banner" role="img" aria-label="Medvěd, ježek a veverka čtou knihu pod stromem s knihovnou">
+    <div class="hero-content">
+      <div class="hero-content-inner">
+        <span class="hero-star hs1">✦</span>
+        <span class="hero-star hs2">✧</span>
+        <span class="hero-star hs3">✦</span>
+
+        <h1 class="hero-title">
+          Místo pro<br>
+          objevování<br>
+          a porozumění
+        </h1>
+        <div class="hero-subtitle">Mateřská škola Brno<br>Bulharská 62, p. o.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES SECTION -->
+<section class="content-section classes-section" id="aktivity">
+  <div class="section-inner">
+    <h2 class="section-title">Naše třídy</h2>
+    <div class="classes-grid">
+      <div class="class-card card-jezecci">
+        <div class="card-animal-wrap">
+          <img src="images/icon_1.webp" alt="Ježeček s batohem">
+        </div>
+        <div class="card-label">Ježečci</div>
+      </div>
+      <div class="class-card card-veverky">
+        <div class="card-animal-wrap">
+          <img src="images/icon_2.webp" alt="Veverka s paletou">
+        </div>
+        <div class="card-label">Veverky</div>
+      </div>
+      <div class="class-card card-medvidci">
+        <div class="card-animal-wrap">
+          <img src="images/icon_3.webp" alt="Medvídek s dalekohledem">
+        </div>
+        <div class="card-label">Medvídci</div>
+      </div>
+      <div class="class-card card-zahrada">
+        <div class="card-animal-wrap">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <circle cx="100" cy="100" r="90" fill="var(--green-soft)"/>
+            <!-- Slunce -->
+            <circle cx="140" cy="55" r="18" fill="#F5C842"/>
+            <line x1="140" y1="30" x2="140" y2="20" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <line x1="140" y1="80" x2="140" y2="90" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <line x1="115" y1="55" x2="105" y2="55" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <line x1="165" y1="55" x2="175" y2="55" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <line x1="122" y1="37" x2="115" y2="30" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <line x1="158" y1="73" x2="165" y2="80" stroke="#F5C842" stroke-width="3" stroke-linecap="round"/>
+            <!-- Strom -->
+            <rect x="88" y="115" width="12" height="40" fill="#8B5A34" rx="3"/>
+            <ellipse cx="94" cy="105" rx="28" ry="32" fill="#6FA84D"/>
+            <ellipse cx="80" cy="115" rx="18" ry="20" fill="#9BCE7A"/>
+            <ellipse cx="108" cy="115" rx="18" ry="20" fill="#9BCE7A"/>
+            <!-- Tráva -->
+            <ellipse cx="100" cy="158" rx="70" ry="18" fill="#9BCE7A"/>
+            <line x1="55" y1="150" x2="52" y2="135" stroke="#6FA84D" stroke-width="3" stroke-linecap="round"/>
+            <line x1="62" y1="148" x2="65" y2="133" stroke="#6FA84D" stroke-width="3" stroke-linecap="round"/>
+            <line x1="135" y1="150" x2="138" y2="135" stroke="#6FA84D" stroke-width="3" stroke-linecap="round"/>
+            <line x1="145" y1="148" x2="142" y2="133" stroke="#6FA84D" stroke-width="3" stroke-linecap="round"/>
+            <!-- Květ -->
+            <circle cx="55" cy="130" r="5" fill="#F5B8C2"/>
+            <circle cx="55" cy="120" r="5" fill="#F5B8C2"/>
+            <circle cx="65" cy="125" r="5" fill="#F5B8C2"/>
+            <circle cx="45" cy="125" r="5" fill="#F5B8C2"/>
+            <circle cx="55" cy="125" r="6" fill="#F5C842"/>
+          </svg>
+        </div>
+        <div class="card-label">Naše zahrada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA / SLEDUJTE NAS -->
+<section class="content-section social-section" id="akce">
+  <span class="social-heart sh1">♥</span>
+  <span class="social-heart sh2">♥</span>
+  <span class="social-heart sh3">♥</span>
+  <span class="social-heart sh4">♥</span>
+
+  <div class="section-inner social-inner">
+    <h2 class="section-title">Podívejte se, jak to u nás chodí!</h2>
+    <p class="social-lead">
+      Sledujte naše <strong>sociální sítě</strong> a nakoukněte, co u nás v Bulharské prožíváme každý den —
+      akce, výlety, výtvarné dílničky i obyčejné radostné chvíle ze života školky.
+    </p>
+
+    <div class="social-grid">
+      <a href="https://www.facebook.com/profile.php?id=61565265640943" target="_blank" rel="noopener" class="social-card facebook">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <div class="social-card-title">Facebook</div>
+        <div class="social-card-handle">@msbulharska</div>
+        <p class="social-card-desc">
+          Fotky z akcí, aktuální informace pro rodiče a ohlédnutí za tím nejhezčím ze školky.
+        </p>
+        <span class="social-card-cta">Navštívit stránku →</span>
+      </a>
+
+      <a href="https://www.instagram.com/msbulharska/" target="_blank" rel="noopener" class="social-card instagram">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div class="social-card-title">Instagram</div>
+        <div class="social-card-handle">@msbulharska</div>
+        <p class="social-card-desc">
+          Krátké momentky a příběhy ze života dětí — každý den plný objevování a radosti.
+        </p>
+        <span class="social-card-cta">Sledovat nás →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AKTUALITY -->
+<section class="content-section aktuality-section" id="aktuality-rodice">
+  <div class="section-inner">
+    <h2 class="section-title">Aktuality</h2>
+    <p class="parents-intro">
+      Novinky, důležité informace a zprávy ze života školky pro rodiče.
+    </p>
+    <div class="aktuality-grid" id="aktuality-container">
+      <!-- Fallback příspěvky — zobrazí se pokud není připojeno Google Sheets API -->
+      <div class="aktualita-card">
+        <div class="aktualita-datum">
+          <strong>27</strong>
+          dubna 2025
+        </div>
+        <div class="aktualita-content">
+          <div class="aktualita-nadpis">Vítejte v sekci Aktualit</div>
+          <div class="aktualita-text">
+            Tato sekce bude brzy propojena s Google Sheets, kde bude ředitelka
+            přidávat příspěvky přímo. Sledujte nás také na Facebooku a Instagramu.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRO RODIČE -->
+<section class="content-section parents-section" id="rodice">
+  <div class="section-inner">
+    <h2 class="section-title">Pro rodiče</h2>
+    <p class="parents-intro">
+      Mateřská škola se nachází na ulici Bulharská v lokalitě rodinných domů nedaleko centra <strong>Králova Pole</strong>.
+      Samostatná budova je situována uprostřed rozlehlé zahrady, která je vybavena zahradním nábytkem pro hry a pohybové aktivity dětí.
+      Kapacita mateřské školy je <strong>72 dětí</strong>, které jsou rozděleny do tří věkově smíšených tříd — Veverky, Ježečci a Medvídci.
+    </p>
+
+    <!-- Key info cards -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-icon">🕐</div>
+        <div class="info-card-label">Provozní doba</div>
+        <div class="info-card-value">PO–PÁ<br>6:30 – 16:30</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">💳</div>
+        <div class="info-card-label">Školné 2025/2026</div>
+        <div class="info-card-value">1 000 Kč / měsíc</div>
+        <div class="info-card-note">Úhrada do 15. dne v měsíci.<br>Převodem nebo inkasem.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📞</div>
+        <div class="info-card-label">Telefon ředitelky</div>
+        <div class="info-card-value"><a href="tel:739373717" style="color:inherit;text-decoration:none;">739 373 717</a></div>
+      </div>
+    </div>
+
+    <!-- Teachers -->
+    <h3 class="subsection-title">O vaše děti se starají</h3>
+    <div class="teachers-grid">
+      <div class="teacher-card t-jezecci">
+        <div class="teacher-class-name">Ježečci</div>
+        <div class="teacher-role">Učitelky</div>
+        <div class="teacher-names" data-cms="jezecci_ucitelky_html">Jaroslava Jonášová<br>Vladimíra Křivánková</div>
+        <div class="teacher-role">Asistentka</div>
+        <div class="teacher-names" data-cms="jezecci_asistentka">Kateřina Králová</div>
+        <a href="tel:776630728" class="teacher-phone">📞 776 630 728</a>
+      </div>
+      <div class="teacher-card t-veverky">
+        <div class="teacher-class-name">Veverky</div>
+        <div class="teacher-role">Učitelky</div>
+        <div class="teacher-names" data-cms="veverky_ucitelky_html">Kateřina Širůčková<br>Pavla Kukletová</div>
+        <a href="tel:776630705" class="teacher-phone">📞 776 630 705</a>
+      </div>
+      <div class="teacher-card t-medvidci">
+        <div class="teacher-class-name">Medvíďata</div>
+        <div class="teacher-role">Učitelky</div>
+        <div class="teacher-names">Eva Šmerdová<br>Aneta Kaňovská</div>
+        <div class="teacher-role">Asistentka</div>
+        <div class="teacher-names">Daniela Štěpánková</div>
+        <a href="tel:776630746" class="teacher-phone">📞 776 630 746</a>
+      </div>
+    </div>
+
+    <!-- Daily schedule -->
+    <h3 class="subsection-title">Režim dne</h3>
+    <p class="parents-intro" style="margin-bottom: 40px;">
+      Předškolní vzdělávání probíhá podle stanoveného školního vzdělávacího (rámcového) programu v základním denním režimu.
+    </p>
+    <div class="schedule-wrapper">
+      <div class="schedule-item">
+        <div class="schedule-time">6:30 – 8:30</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Příchod dětí do mateřské školy, předávání pedagogickým pracovnicím, volné spontánní zájmové aktivity.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">8:30 – 9:00</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Osobní hygiena, dopolední svačina.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">9:00 – 9:55</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Výchovné činnosti směřující k plnění výchovných cílů, různorodé aktivity pro děti.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">9:55 – 12:00</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Osobní hygiena, příprava na pobyt venku, pobyt dětí venku (příp. náhradní činnost).</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:00 – 12:30</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Oběd.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:30 – 13:00</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Odchod dětí po obědě.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:30 – 14:30</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Osobní hygiena, spánek a odpočinek dětí, individuální práce s dětmi s nižší potřebou spánku.</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:30 – 16:30</div>
+        <div class="schedule-dot-col"><div class="schedule-dot"></div></div>
+        <div class="schedule-content">Osobní hygiena, odpolední svačina, volné činnosti, hry a pohybové aktivity. V případě pěkného počasí hry na zahradě, odchod dětí domů.</div>
+      </div>
+    </div>
+
+    <!-- Useful info at entry -->
+    <h3 class="subsection-title">Užitečné informace při nástupu do MŠ</h3>
+    <div class="resources-wrapper">
+      <div class="resources-grid">
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679008Adapta%C4%8Dn%C3%AD%20program-converted.pdf" class="resource-link" target="_blank" rel="noopener">
+          <div class="resource-icon">📋</div>
+          <div class="resource-text">Adaptační program</div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679333Co%20by%20m%C4%9Blo%20d%C3%ADt%C4%9B%20um%C4%9Bt-converted.pdf" class="resource-link" target="_blank" rel="noopener">
+          <div class="resource-icon">✨</div>
+          <div class="resource-text">Co by mělo dítě umět</div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679329Co%20pot%C5%99ebuje%20va%C5%A1e%20d%C3%ADt%C4%9B%20do%20%C5%A1kolky.pdf" class="resource-link" target="_blank" rel="noopener">
+          <div class="resource-icon">🎒</div>
+          <div class="resource-text">Co potřebuje vaše dítě do školky</div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679324Desatero%20pro%20rodi%C4%8De%20p%C5%99ed%20n%C3%A1stupem%20d%C3%ADt%C4%9Bte%20do%20%C5%A1koly.pdf" class="resource-link" target="_blank" rel="noopener">
+          <div class="resource-icon">📖</div>
+          <div class="resource-text">Desatero před nástupem do školy</div>
+          <span class="resource-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- School leaving info -->
+    <h3 class="subsection-title">Odchod do školy a odklad docházky</h3>
+    <div class="info-box">
+      <div class="info-box-title">📚 Odklad školní docházky (OŠD)</div>
+      <p>
+        Rodiče předškolních dětí, kteří se rozhodnou pro <strong>odklad školní docházky</strong> nebo o něm uvažují,
+        musí mateřskou školu žádat o tento odklad <strong>během prvního pololetí</strong>.
+        Pokud neoznámí tuto skutečnost ředitelce MŠ a nepodají písemnou žádost, na jejich místa se přijímají nové děti.
+      </p>
+      <p>
+        Pokud se rozhodnete pro OŠD, objednejte se v <strong>PPP</strong> (Pedagogicko-psychologické poradně) a kopii lékařské zprávy odevzdejte v MŠ.
+        Také jste povinni jít k zápisu do ZŠ a oznámit, že žádáte o odklad. Od ředitele ZŠ obdržíte <em>Rozhodnutí o OŠD</em> a jeho kopii také odevzdáte v MŠ.
+      </p>
+      <p style="margin-top: 20px;">
+        <a href="https://docs.google.com/spreadsheets/d/1b_a_J9BPUJohZ37hT4y3jAbaIWTehMCIv9j-shWt1L8/edit?pli=1#gid=658556985" target="_blank" rel="noopener">
+          📊 SRPŠ + Kultura — tabulky Google →
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS SECTION -->
+<section class="content-section documents-section" id="dokumenty">
+  <div class="section-inner">
+    <h2 class="section-title">Dokumenty</h2>
+    <p class="parents-intro">
+      Všechny oficiální dokumenty školy, formuláře pro rodiče ke stažení a související zákony naleznete níže.
+      Kliknutím se otevřou v novém okně.
+    </p>
+
+    <!-- Main school documents -->
+    <div class="documents-group">
+      <h3 class="documents-group-title">Hlavní dokumenty školy</h3>
+      <div class="documents-grid">
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1756703407%C5%A1koln%C3%AD%20%C5%99%C3%A1d%20-2025.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📜</div>
+          <div class="doc-text">Školní řád</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1759739331%C5%A0VP%20doupraven%C3%A1%20verze%20(1).pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📘</div>
+          <div class="doc-text">Školní vzdělávací program</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1774273684MS%20Bulharska_ROZPIS_rozpoctu%20na%20rok%202026.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">💰</div>
+          <div class="doc-text">Rozpis rozpočtu na rok 2026</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1729667624MS%20Bulharska-st%C5%99edn%C4%9Bdob%C3%BD%20v%C3%BDhled%20hospodareni%202026-2027.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📊</div>
+          <div class="doc-text">Střednědobý výhled hospodaření 2026/2027</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1759908978MS%20Bulharska%2062%20-%20N%C3%A1vrh%20st%C5%99edn%C4%9Bdob%C3%A9ho%20v%C3%BDhledu%20rozpo%C4%8Dtu%202026.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📈</div>
+          <div class="doc-text">Střednědobý výhled rozpočtu 2027/2028</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/16279748501603188783Stanoven%C3%AD%20%C3%BAplaty%20za%20p%C5%99ed%C5%A1koln%C3%AD%20vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD.doc" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">💳</div>
+          <div class="doc-text">Stanovení úplaty za předškolní vzdělávání</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603120664Povinn%C4%9B%20zve%C5%99ej%C5%88ovan%C3%A9%20informace.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">ℹ️</div>
+          <div class="doc-text">Povinně zveřejňované informace</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603188773SM%C4%9ARNICE%20%C5%98EDITELE%20%C5%A0KOLY%20o%20svobodn%C3%A9m%20p%C5%99%C3%ADstupu%20k%20informac%C3%ADm.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📋</div>
+          <div class="doc-text">Směrnice o svobodném přístupu k informacím</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603189210Z%C3%A1sady%20ochrany%20osobn%C3%ADmi%20%C3%BAdaj%C5%AF%20%C5%BE%C3%A1k%C5%AF,%20zam%C4%9Bstnanc%C5%AF%20%C5%A1koly%20a%20dal%C5%A1%C3%ADch%20osob.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🔒</div>
+          <div class="doc-text">Zásady ochrany osobních údajů</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1745321723WEB_M%C5%A0%20Bulharsk%C3%A1%20Brno.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🎓</div>
+          <div class="doc-text">Šablony II — OP JAK</div>
+          <span class="doc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Forms for parents -->
+    <div class="documents-group">
+      <h3 class="documents-group-title">Formuláře ke stažení</h3>
+      <div class="documents-grid">
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628675800Jednorazov%C3%A9-zmocn%C4%9Bn%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">✍️</div>
+          <div class="doc-text">Jednorázové zmocnění</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628675957Pov%C4%9B%C5%99en%C3%AD-k-vyzved%C3%A1v%C3%A1n%C3%AD-d%C4%9Bt%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🤝</div>
+          <div class="doc-text">Pověření k vyzvedávání dětí</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676495Dohoda%20o%20ukon%C4%8Den%C3%AD%20%C5%A0D.doc" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📝</div>
+          <div class="doc-text">Dohoda o ukončení školní docházky</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676478%C5%BD%C3%A1dost-o-osvobozen%C3%AD-od-%C3%BAplaty-za-p%C5%99ed%C5%A1koln%C3%AD-vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">💸</div>
+          <div class="doc-text">Žádost o osvobození od úplaty</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628677194%C5%BD%C3%A1dost-o-uvoln%C4%9Bn%C3%AD-z-p%C5%99ed%C5%A1koln%C3%ADho-vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🗓️</div>
+          <div class="doc-text">Žádost o uvolnění z předškolního vzdělávání</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676186%C5%BD%C3%A1dost-o-odklad-%C5%A0D-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📚</div>
+          <div class="doc-text">Žádost o odklad školní docházky</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676269P%C5%99ihl%C3%A1%C5%A1ka_ke_stravov%C3%A1n%C3%AD_M%C5%A0_Bulharsk%C3%A1.docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🍽️</div>
+          <div class="doc-text">Přihláška ke stravování</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676636P%C5%99ihl%C3%A1%C5%A1ka-na-prazdninov%C3%BD-provoz-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">☀️</div>
+          <div class="doc-text">Přihláška na prázdninový provoz</div>
+          <span class="doc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Laws and regulations -->
+    <div class="documents-group">
+      <h3 class="documents-group-title">Zákony a vyhlášky k předškolnímu vzdělávání</h3>
+      <div class="documents-grid">
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190564Vyhl%C3%A1%C5%A1ka%20410_2005%20sb..docx" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">⚖️</div>
+          <div class="doc-text">Hygienické požadavky (Vyhláška 410/2005)</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190634Vyhl%C3%A1%C5%A1ka%20o%20p%C5%99ed%C5%A1koln%C3%ADm%20vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🏫</div>
+          <div class="doc-text">Vyhláška o předškolním vzdělávání</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190650vyhlaska%20107_2005%20Sb.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">🥗</div>
+          <div class="doc-text">Vyhláška o školním stravování</div>
+          <span class="doc-arrow">→</span>
+        </a>
+        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190709skolskyzakon-k13.10.2020.pdf" class="doc-link" target="_blank" rel="noopener">
+          <div class="doc-icon">📖</div>
+          <div class="doc-text">Školský zákon</div>
+          <span class="doc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DINING SECTION -->
+<section class="content-section dining-section" id="stravovani">
+  <div class="section-inner">
+    <h2 class="section-title">Stravování</h2>
+    <p class="dining-intro">
+      Stravování v mateřské škole poskytuje <strong>Základní škola Herčíkova</strong>.
+      Přihlašování a odhlašování probíhá online přes <strong>strava.cz</strong>.
+      Veškeré alergie prosím řešte přímo se ZŠ Herčíkova.
+    </p>
+
+    <!-- Dining contact chips -->
+    <div class="dining-contact-row">
+      <div class="dining-contact-chip">
+        📞 <a href="tel:541212754"><span data-cms="stravovani_kontakt_tel">541 212 754</span></a>
+      </div>
+      <div class="dining-contact-chip">
+        ✉️ <a href="mailto:hoxha@zshercikova.cz"><span data-cms="stravovani_kontakt_email">hoxha@zshercikova.cz</span></a>
+      </div>
+      <div class="dining-contact-chip">
+        🌐 <a href="https://www.strava.cz" target="_blank" rel="noopener">www.strava.cz</a>
+      </div>
+    </div>
+
+    <!-- Price cards -->
+    <h3 class="subsection-title">Cena stravného</h3>
+    <div class="dining-grid">
+      <div class="dining-card">
+        <div class="dining-card-age">Děti 3 – 6 let</div>
+        <div class="dining-card-total"><span data-cms="stravne_3_6_cena">50 Kč / den</span></div>
+        <div class="dining-card-breakdown">
+          <div class="dining-card-breakdown-row"><span>Přesnídávka</span><span><span data-cms="stravne_3_6_prisnidavka">8 Kč</span></span></div>
+          <div class="dining-card-breakdown-row"><span>Oběd</span><span><span data-cms="stravne_3_6_obed">33 Kč</span></span></div>
+          <div class="dining-card-breakdown-row"><span>Svačina</span><span><span data-cms="stravne_3_6_svacina"><span data-cms="stravne_7_prisnidavka">9 Kč</span></span></span></div>
+        </div>
+      </div>
+      <div class="dining-card">
+        <div class="dining-card-age">Děti 7 let</div>
+        <div class="dining-card-total"><span data-cms="stravne_7_cena">55 Kč / den</span></div>
+        <div class="dining-card-breakdown">
+          <div class="dining-card-breakdown-row"><span>Přesnídávka</span><span>9 Kč</span></div>
+          <div class="dining-card-breakdown-row"><span>Oběd</span><span><span data-cms="stravne_7_obed">36 Kč</span></span></div>
+          <div class="dining-card-breakdown-row"><span>Svačina</span><span><span data-cms="stravne_7_svacina">10 Kč</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tuition payment info -->
+    <div class="dining-tuition-box">
+      <h4>💳 Platba školného</h4>
+      <p>
+        Cena školného na rok <strong>2025/2026</strong>: <strong><span data-cms="skolne_castka">1 000 Kč / měsíc</span></strong>.
+        Předškolní děti školné neplatí. Úhrada probíhá <strong><span data-cms="skolne_splatnost">do 15. dne v měsíci</span></strong>.
+      </p>
+      <p>
+        <strong>Možnosti úhrady:</strong><br>
+        1. Jednorázovým příkazem — s variabilním symbolem a částkou, které budou k dispozici vždy na začátku měsíce v <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTOSJ-bmS2G9yuXmLEzGB0Crtx50MzUcEVM2VLxGzSqzNJXrXgr8Aud31S-aQSRu0jlsO78d7y2z-yJ/pubhtml" target="_blank" rel="noopener">tabulce plateb</a>.<br>
+        2. Inkasem školného — zřídit ve své bance svolení s inkasem ve prospěch účtu školy, limit alespoň 1 000 Kč. Tuto skutečnost pak nahlaste paní ekonomce.
+      </p>
+      <p>
+        <strong>Číslo účtu školy:</strong> <span data-cms="cislo_uctu">120032621/0100</span>
+      </p>
+      <p style="margin-top: 18px;">
+        <strong>Ke stažení:</strong>
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/23/17567021641724956910Provozn%C3%AD%20%C5%99%C3%A1d%20%C5%A0J%20(1).doc" target="_blank" rel="noopener">Provozní řád ŠJ</a>
+        ·
+        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/23/17567021641724956927VNIT%C5%98N%C3%8D_%C5%98%C3%81D%20%C5%A0J.docx" target="_blank" rel="noopener">Vnitřní řád ŠJ</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="content-section contact-section" id="kontakt">
+  <div class="section-inner">
+    <h2 class="section-title">Kontakt</h2>
+    <p class="parents-intro">
+      Neváhejte se na nás obrátit s jakýmkoliv dotazem. Rádi vám odpovíme.
+      Pro otázky ohledně stravování kontaktujte ZŠ Herčíkova (viz sekce Stravování).
+    </p>
+
+    <!-- Info cards grid -->
+    <div class="contact-grid">
+      <div class="contact-card ci-address">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-title">Adresa</div>
+        <div class="contact-card-content">
+          <strong style="display:block; margin-bottom:6px; color:var(--brown);">Mateřská škola Brno, Bulharská 62,<br>příspěvková organizace</strong>
+          Bulharská 2818/62<br>
+          612 00 Brno — Královo Pole
+          <div style="margin-top:14px;">
+            <a href="https://maps.google.com/?q=Bulharská+2818/62,+Brno" target="_blank" rel="noopener">Zobrazit na mapě →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card ci-phone">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-title">Telefon &amp; e-mail</div>
+        <div class="contact-card-content">
+          <div class="contact-row"><strong>Hlavní:</strong> <a href="tel:739373717"><span data-cms="kontakt_telefon">739 373 717</span></a></div>
+          <div class="contact-row" style="margin-top:10px;"><strong>E-mail:</strong> <a href="mailto:msbulharska@gmail.com"><span data-cms="kontakt_email">msbulharska@gmail.com</span></a></div>
+          <div style="margin-top:14px; font-size:0.86rem; color:var(--text-mid);">
+            <strong style="color:var(--brown);">Provozní doba:</strong> <span data-cms="provozni_doba">PO–PÁ&nbsp;6:30 – 16:30</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card ci-info">
+        <div class="contact-card-icon">🏫</div>
+        <div class="contact-card-title">Informace o mateřské škole</div>
+        <div class="contact-card-content">
+          <div class="contact-row"><strong>IČ:</strong> 64328244</div>
+          <div class="contact-row"><strong>Dat. schránka:</strong> kp56f3s</div>
+          <div class="contact-row"><strong>Právní forma:</strong> <span style="font-weight:600;">příspěvková organizace</span></div>
+          <div class="contact-row"><strong>Kapacita:</strong> <span style="font-weight:600;" data-cms="skola_kapacita">72 dětí / 3 třídy</span></div>
+        </div>
+      </div>
+
+      <div class="contact-card ci-founder">
+        <div class="contact-card-icon">🏛️</div>
+        <div class="contact-card-title">Zřizovatel</div>
+        <div class="contact-card-content">
+          <strong style="display:block; margin-bottom:6px; color:var(--brown);">Statutární město Brno,<br>městská část Brno-Královo Pole</strong>
+          Palackého třída 1365<br>
+          612 00 Brno
+        </div>
+      </div>
+    </div>
+
+    <!-- GDPR card (full width) -->
+    <div class="contact-grid" style="grid-template-columns: 1fr; max-width: 1100px;">
+      <div class="contact-card ci-gdpr">
+        <div class="contact-card-icon">🔒</div>
+        <div class="contact-card-title">Pověřenec pro ochranu osobních údajů (GDPR)</div>
+        <div class="contact-card-content">
+          <strong style="color:var(--brown);">PMA advisors s.r.o.</strong>, IČ: 06666761, se sídlem Králova 298/4, 616 00 Brno<br>
+          <strong style="color:var(--brown); margin-top:8px; display:inline-block;">Kontaktní osoba:</strong>
+          Mgr. Ivana Šilhánková &nbsp;·&nbsp;
+          <a href="mailto:poverenec@pmadvisory.cz">poverenec@pmadvisory.cz</a> &nbsp;·&nbsp;
+          <a href="tel:+420770606082">+420 770 606 082</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Staff directory -->
+    <h3 class="subsection-title" style="margin-top:56px;">Adresář</h3>
+    <div class="staff-directory">
+      <div class="staff-directory-wrapper">
+        <table class="staff-table">
+          <thead>
+            <tr>
+              <th>Jméno / třída</th>
+              <th>Funkce</th>
+              <th>Telefon</th>
+              <th>E-mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="staff-name" data-cms="reditelka_jmeno">Bc. Pavla Kukletová</td>
+              <td class="staff-role">Ředitelka</td>
+              <td><a href="tel:+420739373717">739 373 717</a></td>
+              <td><a href="mailto:msbulharska@gmail.com">msbulharska@gmail.com</a></td>
+            </tr>
+            <tr>
+              <td class="staff-name">Vladimíra Křivánková</td>
+              <td class="staff-role">Zástupkyně ředitelky</td>
+              <td><a href="tel:+420776630728">776 630 728</a></td>
+            </tr>
+            <tr>
+              <td class="staff-name">Jaroslava Jonášová</td>
+              <td class="staff-role">Nabídky — divadla, projekty, zboží</td>
+              <td><a href="tel:+420776630728">776 630 728</a></td>
+            </tr>
+            <tr>
+              <td class="staff-name">🐿️ Veverky</td>
+              <td class="staff-role">Třída</td>
+              <td><a href="tel:+420776630705">776 630 705</a></td>
+            </tr>
+            <tr>
+              <td class="staff-name">🦔 Ježečci</td>
+              <td class="staff-role">Třída</td>
+              <td><a href="tel:+420776630728">776 630 728</a></td>
+            </tr>
+            <tr>
+              <td class="staff-name">🐻 Medvíďata</td>
+              <td class="staff-role">Třída</td>
+              <td><a href="tel:+420776630746">776 630 746</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="staff-note">Telefonní čísla tříd neslouží k odhlášení dítěte či objednání stravy — to řešte přes strava.cz.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg class="footer-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;">
+    <path d="M0,30 C240,60 480,0 720,20 C960,40 1200,10 1440,30 L1440,0 L0,0 Z" fill="var(--cream)"/>
+  </svg>
+
+  <div class="footer-inner footer-inner-simple">
+    <div class="footer-logo-col">
+      <div class="footer-logo">
+        <div class="logo-title">MŠ Bulharská 62</div>
+        <div class="logo-animals">🐻🦔🐿️</div>
+        <div class="logo-subtitle">příspěvková organizace</div>
+      </div>
+    </div>
+
+    <div class="footer-quick">
+      <div class="footer-title">Rychlý kontakt</div>
+      <div class="footer-contact-line"><strong>tel:</strong> <a href="tel:739373717" style="color:inherit; text-decoration:none;">739 373 717</a></div>
+      <div class="footer-contact-line"><strong>e-mail:</strong> <a href="mailto:msbulharska@gmail.com" style="color:inherit; text-decoration:none;">msbulharska@gmail.com</a></div>
+      <div class="footer-contact-line" style="margin-top:8px; font-size:0.82rem; opacity:0.85;">Bulharská 2818/62, 612 00 Brno — Královo Pole</div>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-title">Odkazy</div>
+      <div class="footer-contact-line"><a href="#rodice" style="color:inherit; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">Pro rodiče</a></div>
+      <div class="footer-contact-line"><a href="#dokumenty" style="color:inherit; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">Dokumenty</a></div>
+      <div class="footer-contact-line"><a href="#stravovani" style="color:inherit; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">Stravování</a></div>
+      <div class="footer-contact-line"><a href="#kontakt" style="color:inherit; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3);">Kontakt</a></div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © <span data-cms="paticka_rok">2025</span> Mateřská škola Brno, Bulharská 62, příspěvková organizace — Místo plné radosti, objevování a porozumění
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── FONT LOADING — prevence FOUT ─────────────────────────────────────────
+  if (document.fonts) {
+    document.fonts.ready.then(() => {
+      document.body.classList.add('fonts-loaded');
+    });
+  } else {
+    document.body.classList.add('fonts-loaded');
+  }
+
+  // ── AKTUALITY — Google Sheets loader ──────────────────────────────────────
+  // Sem vložte URL vašeho Google Apps Script po jeho nasazení:
+  const AKTUALITY_API_URL = 'https://script.google.com/macros/s/AKfycbzagSh8UcLFICLPbRyQPx0tLg1Cble4wZQbOGrIg7CGKeCSqC51IFUf2II4fShCXNzTmw/exec';
+
+  // Google Apps Script vrací redirect — musíme použít redirect: 'follow'
+  async function apiFetch(typ) {
+    const res = await fetch(AKTUALITY_API_URL + '?typ=' + typ, {
+      redirect: 'follow',
+      method: 'GET',
+    });
+    return res.json();
+  }
+
+  // ── NASTAVENÍ — dosadí hodnoty ze Sheets do stránky ──────────────────────
+  async function nactiNastaveni() {
+    try {
+      const data = await apiFetch('nastaveni');
+      if (!data || typeof data !== 'object') return;
+
+      document.querySelectorAll('[data-cms]').forEach(el => {
+        const klic = el.getAttribute('data-cms');
+        if (data[klic] !== undefined && data[klic] !== '') {
+          if (klic.endsWith('_html')) {
+            el.innerHTML = String(data[klic]).replace(/,\s*/g, '<br>');
+          } else {
+            el.textContent = data[klic];
+          }
+        }
+      });
+
+      if (data['medvidci_ucitelky']) {
+        const el = document.querySelector('[data-cms="medvidci_ucitelky_html"]');
+        if (el) el.innerHTML = data['medvidci_ucitelky'].replace(/,\s*/g, '<br>');
+      }
+
+    } catch (err) {
+      console.warn('Nastavení se nepodařilo načíst:', err);
+    }
+  }
+
+  nactiNastaveni();
+
+  function formatDatum(datumStr) {
+    if (!datumStr) return { cely: '—' };
+    let den, mesic, rok;
+    if (typeof datumStr === 'string' && datumStr.includes('T')) {
+      // ISO formát ze Sheets: "2026-04-27T22:00:00.000Z" — ignoruj timezone
+      const parts = datumStr.split('T')[0].split('-');
+      rok = parseInt(parts[0]); mesic = parseInt(parts[1]); den = parseInt(parts[2]);
+    } else if (typeof datumStr === 'string' && datumStr.includes('.')) {
+      const parts = datumStr.split('.');
+      den = parseInt(parts[0]); mesic = parseInt(parts[1]); rok = parseInt(parts[2]);
+    } else if (typeof datumStr === 'string' && datumStr.includes('-')) {
+      const parts = datumStr.split('-');
+      rok = parseInt(parts[0]); mesic = parseInt(parts[1]); den = parseInt(parts[2]);
+    } else {
+      const d = new Date(datumStr);
+      if (isNaN(d.getTime())) return { cely: String(datumStr) };
+      den = d.getDate(); mesic = d.getMonth() + 1; rok = d.getFullYear();
+    }
+    return { cely: String(den).padStart(2,'0') + '.' + String(mesic).padStart(2,'0') + '.' + rok };
+  }
+
+  function renderAktuality(posts) {
+    const container = document.getElementById('aktuality-container');
+    if (!container) return;
+
+    if (!posts || posts.length === 0) {
+      container.innerHTML = '<div class="aktuality-prazdne">Momentálně žádné aktuality.</div>';
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const d = formatDatum(post.datum);
+      return `
+        <div class="aktualita-card">
+          <div class="aktualita-datum">
+            ${d.cely}
+          </div>
+          <div class="aktualita-content">
+            <div class="aktualita-nadpis">${post.nadpis || ''}</div>
+            <div class="aktualita-text">${(post.text || '').replace(/\n/g, '<br>')}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  async function nactiAktuality() {
+    if (!AKTUALITY_API_URL) return;
+
+    const container = document.getElementById('aktuality-container');
+    if (container) {
+      container.innerHTML = '<div class="aktuality-loading">Načítám aktuality</div>';
+    }
+
+    try {
+      const data = await apiFetch('aktuality');
+      renderAktuality(data);
+    } catch (err) {
+      if (container) {
+        container.innerHTML = '<div class="aktuality-prazdne">Aktuality se nepodařilo načíst. Zkuste obnovit stránku.</div>';
+      }
+    }
+  }
+
+  nactiAktuality();
+  // ─────────────────────────────────────────────────────────────────────────
+</script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotogalerie třídy">
+  <div class="lightbox-box">
+    <div class="lightbox-header">
+      <div class="lightbox-title" id="lb-title">Naše třída</div>
+      <button class="lightbox-close" id="lb-close" aria-label="Zavřít">✕</button>
+    </div>
+    <div class="lightbox-img-wrap">
+      <img id="lb-img" src="" alt="" />
+      <button class="lightbox-nav prev" id="lb-prev" aria-label="Předchozí">‹</button>
+      <button class="lightbox-nav next" id="lb-next" aria-label="Další">›</button>
+    </div>
+    <div class="lightbox-dots" id="lb-dots"></div>
+    <div class="lightbox-caption" id="lb-caption"></div>
+  </div>
+</div>
+
+<script>
+
+const GALLERY_PHOTOS = {
+  "j1": { src: "images/j1.webp", caption: "Herna třídy Ježečci" },
+  "j2": { src: "images/j2.webp", caption: "Herna třídy Ježečci" },
+  "j3": { src: "images/j3.webp", caption: "Třída Ježečci" },
+  "v1": { src: "images/v1.webp", caption: "Herna třídy Veverky" },
+  "v2": { src: "images/v2.webp", caption: "Třída Veverky" },
+  "v3": { src: "images/v3.webp", caption: "Třída Veverky" },
+  "m1": { src: "images/m1.webp", caption: "Herna třídy Medvíďata" },
+  "m2": { src: "images/m2.webp", caption: "Třída Medvíďata" },
+  "m3": { src: "images/m3.webp", caption: "Třída Medvíďata" },
+  "z1": { src: "images/z1.webp", caption: "Prolézačky a pískoviště" },
+  "z2": { src: "images/z2.webp", caption: "Zahrada s budovou školky" },
+  "z3": { src: "images/z3.webp", caption: "Klidová část zahrady" },
+  "z4": { src: "images/z4.webp", caption: "Venkovní prostor s koly" },
+  "z5": { src: "images/z5.webp", caption: "Vláček a hřiště" },
+  
+  
+};
+
+
+const GALLERIES = {
+  jezecci:  { title: "Ježečci — naše třída", keys: ["j1","j2","j3"] },
+  veverky:  { title: "Veverky — naše třída", keys: ["v1","v2","v3"] },
+  medvidci: { title: "Medvíďata — naše třída", keys: ["m1","m2","m3"] },
+  zahrada:  { title: "Naše zahrada", keys: ["z1","z2","z3","z4","z5"] },
+};
+
+let currentKeys = [];
+let currentIdx = 0;
+
+function openLightbox(galleryId) {
+  const g = GALLERIES[galleryId];
+  if (!g) return;
+  currentKeys = g.keys;
+  currentIdx = 0;
+  document.getElementById('lb-title').textContent = g.title;
+  // Zahrada — obrázky v původním poměru
+  const imgWrap = document.getElementById('lightbox').querySelector('.lightbox-img-wrap');
+  if (galleryId === 'zahrada') {
+    imgWrap.classList.add('lb-contain');
+  } else {
+    imgWrap.classList.remove('lb-contain');
+  }
+  buildDots();
+  showPhoto(0);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function showPhoto(idx) {
+  if (idx < 0) idx = currentKeys.length - 1;
+  if (idx >= currentKeys.length) idx = 0;
+  currentIdx = idx;
+  const key = currentKeys[idx];
+  const photo = GALLERY_PHOTOS[key];
+  const img = document.getElementById('lb-img');
+  img.src = photo.src;
+  img.alt = photo.caption;
+  document.getElementById('lb-caption').textContent = (idx + 1) + ' / ' + currentKeys.length;
+  document.querySelectorAll('.lightbox-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+
+function buildDots() {
+  const wrap = document.getElementById('lb-dots');
+  wrap.innerHTML = '';
+  currentKeys.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
+    btn.setAttribute('aria-label', 'Fotka ' + (i+1));
+    btn.addEventListener('click', () => showPhoto(i));
+    wrap.appendChild(btn);
+  });
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => showPhoto(currentIdx - 1));
+document.getElementById('lb-next').addEventListener('click', () => showPhoto(currentIdx + 1));
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') showPhoto(currentIdx - 1);
+  if (e.key === 'ArrowRight') showPhoto(currentIdx + 1);
+});
+
+// Wire up class cards
+document.querySelectorAll('.card-jezecci').forEach(c => c.addEventListener('click', () => openLightbox('jezecci')));
+document.querySelectorAll('.card-veverky').forEach(c => c.addEventListener('click', () => openLightbox('veverky')));
+document.querySelectorAll('.card-medvidci').forEach(c => c.addEventListener('click', () => openLightbox('medvidci')));
+document.querySelectorAll('.card-zahrada').forEach(c => c.addEventListener('click', () => openLightbox('zahrada')));
+</script>
+
+</div>
+</body>
+</html>
