@@ -3,6 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Předem navázané spojení na Google Apps Script — ušetří DNS+TLS při načítání aktualit -->
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
+<script>
+/* Aktuality a nastavení se tahají z Google Tabulek přes Apps Script.
+   Požadavky startují už tady v <head>, aby běžely souběžně s načítáním
+   zbytku stránky — ne až po jejím doparsování; ušetří to zhruba tolik,
+   kolik trvá stažení fontů a obrázků.
+   Nic se neukládá do prohlížeče — žádné cookies ani localStorage. */
+(function () {
+  const URL_API  = 'https://script.google.com/macros/s/AKfycbxAyWIjkivxLFSFR5xnfkc6EgaVvYzflX4tKZabo5kHEUyxJtSFJ221gcTIvvc-4SC2bg/exec';
+  const TIMEOUTY = [6000, 10000];   // 1. a 2. pokus (ms)
+
+  // Bez timeoutu umí Apps Script viset až do vzdání se prohlížeče — proto
+  // AbortController a jeden automatický opakovaný pokus.
+  async function stahni(typ) {
+    let posledniChyba;
+    for (let i = 0; i < TIMEOUTY.length; i++) {
+      const ctrl  = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), TIMEOUTY[i]);
+      try {
+        const res = await fetch(URL_API + '?typ=' + typ, {
+          method: 'GET',
+          redirect: 'follow',
+          signal: ctrl.signal,
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+      } catch (err) {
+        posledniChyba = err;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    throw posledniChyba;
+  }
+
+  window.MSB_CMS = {
+    stahni: stahni,
+    nastaveni: stahni('nastaveni'),
+    aktuality: stahni('aktuality'),
+  };
+  // ať prohlížeč nehlásí neošetřené odmítnutí dřív, než si výsledek vyzvedne
+  // vykreslovací kód na konci stránky
+  window.MSB_CMS.nastaveni.catch(() => {});
+  window.MSB_CMS.aktuality.catch(() => {});
+})();
+</script>
 <title>Mateřská škola Brno, Bulharská 62, příspěvková organizace — Místo pro objevování a porozumění</title>
 <!-- display=optional: prohlížeč použije font jen pokud je v cache, jinak fallback — žádný FOUT -->
 <style>
@@ -752,61 +800,6 @@
     line-height: 1.55;
   }
 
-  /* Documents / resources */
-  .resources-wrapper {
-    max-width: 900px;
-    margin: 40px auto 0;
-  }
-  .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .resource-link {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 22px;
-    background: var(--cream);
-    border-radius: 18px;
-    text-decoration: none;
-    color: var(--text-dark);
-    transition: all 0.25s ease;
-    border: 2px solid transparent;
-  }
-  .resource-link:hover {
-    background: var(--warm-white);
-    border-color: var(--teal);
-    transform: translateX(4px);
-    box-shadow: var(--shadow-card);
-  }
-  .resource-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--teal-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-  .resource-text {
-    font-weight: 700;
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-  .resource-arrow {
-    margin-left: auto;
-    color: var(--brown-light);
-    font-size: 1.2rem;
-    transition: transform 0.25s ease, color 0.25s ease;
-  }
-  .resource-link:hover .resource-arrow {
-    color: var(--teal-deep);
-    transform: translateX(3px);
-  }
-
   /* School leaving info box */
   .info-box {
     max-width: 900px;
@@ -847,66 +840,45 @@
     background: var(--cream);
     position: relative;
   }
-  .documents-group {
+  .drive-grid {
     max-width: 1000px;
-    margin: 0 auto 48px;
-  }
-  .documents-group:last-child { margin-bottom: 0; }
-  .documents-group-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    color: var(--brown);
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 500;
-  }
-  .documents-grid {
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-  .doc-link {
+  .drive-btn {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 18px;
-    background: var(--warm-white);
-    border-radius: 14px;
-    text-decoration: none;
-    color: var(--text-dark);
-    transition: all 0.25s ease;
-    border: 2px solid transparent;
-    font-size: 0.92rem;
-  }
-  .doc-link:hover {
-    border-color: var(--yellow);
-    transform: translateX(3px);
-    box-shadow: var(--shadow-card);
-  }
-  .doc-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: var(--yellow-soft);
-    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
+    gap: 8px;
+    text-align: center;
+    padding: 34px 24px;
+    background: var(--warm-white);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .doc-text {
-    font-weight: 600;
-    line-height: 1.35;
-    flex: 1;
+  .drive-btn:hover,
+  .drive-btn:focus-visible {
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
-  .doc-arrow {
-    color: var(--brown-light);
-    font-size: 1.05rem;
-    transition: transform 0.25s ease, color 0.25s ease;
-  }
-  .doc-link:hover .doc-arrow {
+  .drive-btn-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--brown);
-    transform: translateX(3px);
+    line-height: 1.3;
+  }
+  .drive-btn-note {
+    font-size: 0.85rem;
+    color: var(--text-mid);
   }
 
   /* ── DINING SECTION ── */
@@ -1336,6 +1308,25 @@
     background: var(--cream);
     border-radius: var(--radius);
   }
+  .aktuality-retry {
+    display: block;
+    margin: 16px auto 0;
+    padding: 10px 22px;
+    border: 2px solid var(--brown-light);
+    border-radius: 999px;
+    background: var(--warm-white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--brown);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .aktuality-retry:hover {
+    background: var(--yellow-soft);
+    border-color: var(--yellow);
+  }
   .aktuality-loading {
     text-align: center;
     padding: 48px 24px;
@@ -1520,8 +1511,7 @@
     /* Parents section responsive */
     .info-cards { grid-template-columns: 1fr; max-width: 420px; }
     .teachers-grid { grid-template-columns: 1fr; max-width: 420px; }
-    .resources-grid { grid-template-columns: 1fr; }
-    .documents-grid { grid-template-columns: 1fr; }
+    .drive-grid { grid-template-columns: 1fr; max-width: 460px; }
     .dining-grid { grid-template-columns: 1fr; max-width: 420px; }
     .dining-tuition-box { padding: 28px 22px; }
     .contact-grid { grid-template-columns: 1fr; width: 100%; max-width: 100%; }
@@ -1612,7 +1602,7 @@
     .section-inner { padding-left: 20px; padding-right: 20px; }
     .contact-grid { width: 100%; }
     .dining-grid { width: 100%; }
-    .documents-grid { width: 100%; }
+    .drive-grid { width: 100%; }
     .aktuality-grid { width: 100%; }
     .aktualita-card { width: 100%; overflow: hidden; }
   }
@@ -1854,7 +1844,7 @@
       <div class="info-card">
         <div class="info-card-icon">🕐</div>
         <div class="info-card-label">Provozní doba</div>
-        <div class="info-card-value">PO–PÁ<br>6:30 – 16:30</div>
+        <div class="info-card-value">PO–PÁ<br>6:15 – 16:45</div>
       </div>
       <div class="info-card">
         <div class="info-card-icon">💳</div>
@@ -1944,33 +1934,6 @@
       </div>
     </div>
 
-    <!-- Useful info at entry -->
-    <h3 class="subsection-title">Užitečné informace při nástupu do MŠ</h3>
-    <div class="resources-wrapper">
-      <div class="resources-grid">
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679008Adapta%C4%8Dn%C3%AD%20program-converted.pdf" class="resource-link" target="_blank" rel="noopener">
-          <div class="resource-icon">📋</div>
-          <div class="resource-text">Adaptační program</div>
-          <span class="resource-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679333Co%20by%20m%C4%9Blo%20d%C3%ADt%C4%9B%20um%C4%9Bt-converted.pdf" class="resource-link" target="_blank" rel="noopener">
-          <div class="resource-icon">✨</div>
-          <div class="resource-text">Co by mělo dítě umět</div>
-          <span class="resource-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679329Co%20pot%C5%99ebuje%20va%C5%A1e%20d%C3%ADt%C4%9B%20do%20%C5%A1kolky.pdf" class="resource-link" target="_blank" rel="noopener">
-          <div class="resource-icon">🎒</div>
-          <div class="resource-text">Co potřebuje vaše dítě do školky</div>
-          <span class="resource-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/22/1628679324Desatero%20pro%20rodi%C4%8De%20p%C5%99ed%20n%C3%A1stupem%20d%C3%ADt%C4%9Bte%20do%20%C5%A1koly.pdf" class="resource-link" target="_blank" rel="noopener">
-          <div class="resource-icon">📖</div>
-          <div class="resource-text">Desatero před nástupem do školy</div>
-          <span class="resource-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
     <!-- School leaving info -->
     <h3 class="subsection-title">Odchod do školy a odklad docházky</h3>
     <div class="info-box">
@@ -1998,139 +1961,23 @@
   <div class="section-inner">
     <h2 class="section-title">Dokumenty</h2>
     <p class="parents-intro">
-      Všechny oficiální dokumenty školy, formuláře pro rodiče ke stažení a související zákony naleznete níže.
-      Kliknutím se otevřou v novém okně.
+      Dokumenty školy, formuláře pro rodiče i užitečné informace najdete ve třech složkách
+      na Google Disku. Kliknutím se složka otevře v novém okně a můžete v ní volně listovat.
     </p>
 
-    <!-- Main school documents -->
-    <div class="documents-group">
-      <h3 class="documents-group-title">Hlavní dokumenty školy</h3>
-      <div class="documents-grid">
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1756703407%C5%A1koln%C3%AD%20%C5%99%C3%A1d%20-2025.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📜</div>
-          <div class="doc-text">Školní řád</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1759739331%C5%A0VP%20doupraven%C3%A1%20verze%20(1).pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📘</div>
-          <div class="doc-text">Školní vzdělávací program</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1774273684MS%20Bulharska_ROZPIS_rozpoctu%20na%20rok%202026.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">💰</div>
-          <div class="doc-text">Rozpis rozpočtu na rok 2026</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1729667624MS%20Bulharska-st%C5%99edn%C4%9Bdob%C3%BD%20v%C3%BDhled%20hospodareni%202026-2027.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📊</div>
-          <div class="doc-text">Střednědobý výhled hospodaření 2026/2027</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1759908978MS%20Bulharska%2062%20-%20N%C3%A1vrh%20st%C5%99edn%C4%9Bdob%C3%A9ho%20v%C3%BDhledu%20rozpo%C4%8Dtu%202026.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📈</div>
-          <div class="doc-text">Střednědobý výhled rozpočtu 2027/2028</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/16279748501603188783Stanoven%C3%AD%20%C3%BAplaty%20za%20p%C5%99ed%C5%A1koln%C3%AD%20vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD.doc" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">💳</div>
-          <div class="doc-text">Stanovení úplaty za předškolní vzdělávání</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603120664Povinn%C4%9B%20zve%C5%99ej%C5%88ovan%C3%A9%20informace.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">ℹ️</div>
-          <div class="doc-text">Povinně zveřejňované informace</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603188773SM%C4%9ARNICE%20%C5%98EDITELE%20%C5%A0KOLY%20o%20svobodn%C3%A9m%20p%C5%99%C3%ADstupu%20k%20informac%C3%ADm.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📋</div>
-          <div class="doc-text">Směrnice o svobodném přístupu k informacím</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603189210Z%C3%A1sady%20ochrany%20osobn%C3%ADmi%20%C3%BAdaj%C5%AF%20%C5%BE%C3%A1k%C5%AF,%20zam%C4%9Bstnanc%C5%AF%20%C5%A1koly%20a%20dal%C5%A1%C3%ADch%20osob.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🔒</div>
-          <div class="doc-text">Zásady ochrany osobních údajů</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/27/1745321723WEB_M%C5%A0%20Bulharsk%C3%A1%20Brno.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🎓</div>
-          <div class="doc-text">Šablony II — OP JAK</div>
-          <span class="doc-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Forms for parents -->
-    <div class="documents-group">
-      <h3 class="documents-group-title">Formuláře ke stažení</h3>
-      <div class="documents-grid">
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628675800Jednorazov%C3%A9-zmocn%C4%9Bn%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">✍️</div>
-          <div class="doc-text">Jednorázové zmocnění</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628675957Pov%C4%9B%C5%99en%C3%AD-k-vyzved%C3%A1v%C3%A1n%C3%AD-d%C4%9Bt%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🤝</div>
-          <div class="doc-text">Pověření k vyzvedávání dětí</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676495Dohoda%20o%20ukon%C4%8Den%C3%AD%20%C5%A0D.doc" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📝</div>
-          <div class="doc-text">Dohoda o ukončení školní docházky</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676478%C5%BD%C3%A1dost-o-osvobozen%C3%AD-od-%C3%BAplaty-za-p%C5%99ed%C5%A1koln%C3%AD-vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">💸</div>
-          <div class="doc-text">Žádost o osvobození od úplaty</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628677194%C5%BD%C3%A1dost-o-uvoln%C4%9Bn%C3%AD-z-p%C5%99ed%C5%A1koln%C3%ADho-vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD-GDPR.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🗓️</div>
-          <div class="doc-text">Žádost o uvolnění z předškolního vzdělávání</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676186%C5%BD%C3%A1dost-o-odklad-%C5%A0D-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📚</div>
-          <div class="doc-text">Žádost o odklad školní docházky</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676269P%C5%99ihl%C3%A1%C5%A1ka_ke_stravov%C3%A1n%C3%AD_M%C5%A0_Bulharsk%C3%A1.docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🍽️</div>
-          <div class="doc-text">Přihláška ke stravování</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1628676636P%C5%99ihl%C3%A1%C5%A1ka-na-prazdninov%C3%BD-provoz-GDPR.doc" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">☀️</div>
-          <div class="doc-text">Přihláška na prázdninový provoz</div>
-          <span class="doc-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Laws and regulations -->
-    <div class="documents-group">
-      <h3 class="documents-group-title">Zákony a vyhlášky k předškolnímu vzdělávání</h3>
-      <div class="documents-grid">
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190564Vyhl%C3%A1%C5%A1ka%20410_2005%20sb..docx" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">⚖️</div>
-          <div class="doc-text">Hygienické požadavky (Vyhláška 410/2005)</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190634Vyhl%C3%A1%C5%A1ka%20o%20p%C5%99ed%C5%A1koln%C3%ADm%20vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🏫</div>
-          <div class="doc-text">Vyhláška o předškolním vzdělávání</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190650vyhlaska%20107_2005%20Sb.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">🥗</div>
-          <div class="doc-text">Vyhláška o školním stravování</div>
-          <span class="doc-arrow">→</span>
-        </a>
-        <a href="https://ms-bulharska.cz/public/frontend/data/content/27/1603190709skolskyzakon-k13.10.2020.pdf" class="doc-link" target="_blank" rel="noopener">
-          <div class="doc-icon">📖</div>
-          <div class="doc-text">Školský zákon</div>
-          <span class="doc-arrow">→</span>
-        </a>
-      </div>
+    <div class="drive-grid">
+      <a class="drive-btn" href="https://drive.google.com/drive/folders/18oe4jzJGmveNYBGndycz10uog7Rd5kmh" target="_blank" rel="noopener">
+        <span class="drive-btn-label">Užitečné informace</span>
+        <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+      </a>
+      <a class="drive-btn" href="https://drive.google.com/drive/folders/1UoGWfOPnXwNbc3GP_e8N1RMaF-hj2L7w" target="_blank" rel="noopener">
+        <span class="drive-btn-label">Povinně zveřejňované dokumenty</span>
+        <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+      </a>
+      <a class="drive-btn" href="https://drive.google.com/drive/folders/1oDwyn7sYdWpR5OjkiFuMd4VAiojjDjdq" target="_blank" rel="noopener">
+        <span class="drive-btn-label">Formuláře ke stažení</span>
+        <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+      </a>
     </div>
   </div>
 </section>
@@ -2195,12 +2042,6 @@
       </p>
       <p>
         <strong>Číslo účtu školy:</strong> <span data-cms="cislo_uctu">120032621/0100</span>
-      </p>
-      <p style="margin-top: 18px;">
-        <strong>Ke stažení:</strong>
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/23/17567021641724956910Provozn%C3%AD%20%C5%99%C3%A1d%20%C5%A0J%20(1).doc" target="_blank" rel="noopener">Provozní řád ŠJ</a>
-        ·
-        <a href="https://www.ms-bulharska.cz/public/frontend/data/content/23/17567021641724956927VNIT%C5%98N%C3%8D_%C5%98%C3%81D%20%C5%A0J.docx" target="_blank" rel="noopener">Vnitřní řád ŠJ</a>
       </p>
     </div>
   </div>
@@ -2388,47 +2229,30 @@
     document.body.classList.add('fonts-loaded');
   }
 
-  // ── AKTUALITY — Google Sheets loader ──────────────────────────────────────
-  // Sem vložte URL vašeho Google Apps Script po jeho nasazení:
-  const AKTUALITY_API_URL = 'https://script.google.com/macros/s/AKfycbzagSh8UcLFICLPbRyQPx0tLg1Cble4wZQbOGrIg7CGKeCSqC51IFUf2II4fShCXNzTmw/exec';
-
-  // Google Apps Script vrací redirect — musíme použít redirect: 'follow'
-  async function apiFetch(typ) {
-    const res = await fetch(AKTUALITY_API_URL + '?typ=' + typ, {
-      redirect: 'follow',
-      method: 'GET',
-    });
-    return res.json();
-  }
+  // ── AKTUALITY + NASTAVENÍ — vykreslení dat z Google Tabulek ──────────────
+  // Samotné stahování startuje už ve <head> (viz skript nahoře), tady se
+  // jen počká na výsledek a vykreslí se. Nic se v prohlížeči neukládá.
 
   // ── NASTAVENÍ — dosadí hodnoty ze Sheets do stránky ──────────────────────
-  async function nactiNastaveni() {
-    try {
-      const data = await apiFetch('nastaveni');
-      if (!data || typeof data !== 'object') return;
+  function pouzijNastaveni(data) {
+    if (!data || typeof data !== 'object') return;
 
-      document.querySelectorAll('[data-cms]').forEach(el => {
-        const klic = el.getAttribute('data-cms');
-        if (data[klic] !== undefined && data[klic] !== '') {
-          if (klic.endsWith('_html')) {
-            el.innerHTML = String(data[klic]).replace(/,\s*/g, '<br>');
-          } else {
-            el.textContent = data[klic];
-          }
+    document.querySelectorAll('[data-cms]').forEach(el => {
+      const klic = el.getAttribute('data-cms');
+      if (data[klic] !== undefined && data[klic] !== '') {
+        if (klic.endsWith('_html')) {
+          el.innerHTML = String(data[klic]).replace(/,\s*/g, '<br>');
+        } else {
+          el.textContent = data[klic];
         }
-      });
-
-      if (data['medvidci_ucitelky']) {
-        const el = document.querySelector('[data-cms="medvidci_ucitelky_html"]');
-        if (el) el.innerHTML = data['medvidci_ucitelky'].replace(/,\s*/g, '<br>');
       }
+    });
 
-    } catch (err) {
-      console.warn('Nastavení se nepodařilo načíst:', err);
+    if (data['medvidci_ucitelky']) {
+      const el = document.querySelector('[data-cms="medvidci_ucitelky_html"]');
+      if (el) el.innerHTML = data['medvidci_ucitelky'].replace(/,\s*/g, '<br>');
     }
   }
-
-  nactiNastaveni();
 
   function formatDatum(datumStr) {
     if (!datumStr) return { cely: '—' };
@@ -2475,25 +2299,52 @@
     }).join('');
   }
 
-  async function nactiAktuality() {
-    if (!AKTUALITY_API_URL) return;
+  // Místo slepé uličky "obnovte stránku" nabídne tlačítko, které zkusí
+  // stáhnout aktuality znovu — bez znovunačtení celé stránky.
+  function zobrazChybuAktualit() {
+    const container = document.getElementById('aktuality-container');
+    if (!container) return;
+
+    container.innerHTML =
+      '<div class="aktuality-prazdne">' +
+        'Aktuality se teď nepodařilo načíst.' +
+        '<button type="button" class="aktuality-retry">Zkusit znovu</button>' +
+      '</div>';
+
+    const btn = container.querySelector('.aktuality-retry');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+      container.innerHTML = '<div class="aktuality-loading">Načítám aktuality</div>';
+      try {
+        renderAktuality(await window.MSB_CMS.stahni('aktuality'));
+      } catch (err) {
+        zobrazChybuAktualit();
+      }
+    });
+  }
+
+  // ── start ────────────────────────────────────────────────────────────────
+  (async function vykresliCMS() {
+    if (!window.MSB_CMS) return;
 
     const container = document.getElementById('aktuality-container');
     if (container) {
       container.innerHTML = '<div class="aktuality-loading">Načítám aktuality</div>';
     }
 
-    try {
-      const data = await apiFetch('aktuality');
-      renderAktuality(data);
-    } catch (err) {
-      if (container) {
-        container.innerHTML = '<div class="aktuality-prazdne">Aktuality se nepodařilo načíst. Zkuste obnovit stránku.</div>';
-      }
-    }
-  }
+    // nastavení a aktuality jsou dva nezávislé požadavky běžící souběžně —
+    // co dorazí dřív, to se dřív projeví
+    window.MSB_CMS.nastaveni
+      .then(pouzijNastaveni)
+      .catch(err => console.warn('Nastavení se nepodařilo načíst:', err));
 
-  nactiAktuality();
+    try {
+      renderAktuality(await window.MSB_CMS.aktuality);
+    } catch (err) {
+      console.warn('Aktuality se nepodařilo načíst:', err);
+      zobrazChybuAktualit();
+    }
+  })();
   // ─────────────────────────────────────────────────────────────────────────
 </script>
 
