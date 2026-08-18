@@ -162,10 +162,49 @@
     background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--yellow) 100%);
     border-bottom: 2px dashed rgba(122, 78, 45, 0.35);
     color: var(--text-dark);
-    padding: 12px 24px;
+    padding: 12px 56px;
     text-align: center;
     font-size: 0.92rem;
     line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+    max-height: 220px;
+    transition: max-height 0.35s ease, padding 0.35s ease,
+                opacity 0.3s ease, border-bottom-width 0.35s ease;
+  }
+  /* stav po kliknutí na křížek — lišta se sbalí a pak se z DOM odstraní */
+  .site-notice.is-closing {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    border-bottom-width: 0;
+  }
+  .site-notice-close {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 253, 248, 0.6);
+    color: var(--brown);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .site-notice-close:hover,
+  .site-notice-close:focus-visible {
+    background: var(--warm-white);
+    transform: translateY(-50%) scale(1.12);
   }
   .site-notice-inner {
     max-width: 900px;
@@ -1511,7 +1550,8 @@
      horizontally so tree+animals stay pinned right while the cream area
      on the left grows to fit the text.                                        */
   @media (max-width: 960px) {
-    .site-notice { font-size: 0.84rem; padding: 10px 18px; }
+    .site-notice { font-size: 0.84rem; padding: 10px 48px; }
+    .site-notice-close { right: 12px; width: 28px; height: 28px; }
     .nav-inner { height: auto; padding: 12px 0; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 0; width: 100%; }
     .nav-links li { flex-shrink: 1; }
@@ -1622,9 +1662,10 @@
     }
 
     section.content-section { padding: 60px 20px; }
-    .site-notice { font-size: 0.76rem; padding: 9px 12px; line-height: 1.45; }
+    .site-notice { font-size: 0.76rem; padding: 9px 40px; line-height: 1.45; }
     .site-notice-inner { gap: 6px; }
     .site-notice-icon { font-size: 1rem; }
+    .site-notice-close { right: 8px; width: 26px; height: 26px; font-size: 0.9rem; }
     nav { padding: 0 8px; width: 100%; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 2px; }
     .nav-links li + li::before { display: none; }
@@ -1680,6 +1721,7 @@
         Děkujeme za trpělivost.
       </span>
     </div>
+    <button type="button" class="site-notice-close" id="site-notice-close" aria-label="Zavřít upozornění">✕</button>
   </div>
 
 <nav>
@@ -2247,6 +2289,21 @@
 </footer>
 
 <script>
+  // ── UPOZORNĚNÍ — zavření křížkem ─────────────────────────────────────────
+  // Nic se neukládá (žádné cookies ani localStorage), takže se lišta
+  // po obnovení stránky zase objeví.
+  (function zavreniUpozorneni() {
+    const notice = document.querySelector('.site-notice');
+    const btn = document.getElementById('site-notice-close');
+    if (!notice || !btn) return;
+
+    btn.addEventListener('click', () => {
+      notice.classList.add('is-closing');
+      // 400 ms = doba sbalovací animace (0,35 s) s malou rezervou
+      setTimeout(() => notice.remove(), 400);
+    });
+  })();
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
