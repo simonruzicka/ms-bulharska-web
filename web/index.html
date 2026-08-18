@@ -146,12 +146,43 @@
   img, svg, video, table { max-width: 100%; }
 
   /* ── NAV ── */
-  nav {
-    background: var(--warm-white);
+  /* Sticky header stack: upozornění + navigace drží u horního okraje spolu */
+  .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+  nav {
+    background: var(--warm-white);
     padding: 0 40px;
+  }
+
+  /* ── UPOZORNĚNÍ NA ROZPRACOVANÝ WEB ── */
+  .site-notice {
+    background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--yellow) 100%);
+    border-bottom: 2px dashed rgba(122, 78, 45, 0.35);
+    color: var(--text-dark);
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .site-notice-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .site-notice-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .site-notice strong {
+    color: var(--brown);
+    font-weight: 800;
   }
 
   /* Decorative divider between nav and hero — small paws and hearts
@@ -1480,6 +1511,7 @@
      horizontally so tree+animals stay pinned right while the cream area
      on the left grows to fit the text.                                        */
   @media (max-width: 960px) {
+    .site-notice { font-size: 0.84rem; padding: 10px 18px; }
     .nav-inner { height: auto; padding: 12px 0; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 0; width: 100%; }
     .nav-links li { flex-shrink: 1; }
@@ -1590,6 +1622,9 @@
     }
 
     section.content-section { padding: 60px 20px; }
+    .site-notice { font-size: 0.76rem; padding: 9px 12px; line-height: 1.45; }
+    .site-notice-inner { gap: 6px; }
+    .site-notice-icon { font-size: 1rem; }
     nav { padding: 0 8px; width: 100%; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 2px; }
     .nav-links li + li::before { display: none; }
@@ -1632,7 +1667,21 @@
 <body>
 <div style="overflow-x: clip; width: 100%; position: relative;">
 
-<!-- NAV -->
+<!-- UPOZORNĚNÍ + NAV (drží spolu nahoře při scrollování) -->
+<header class="site-header">
+
+  <!-- Dočasné upozornění — po dokončení obsahu stačí smazat celý tento blok -->
+  <div class="site-notice" role="status">
+    <div class="site-notice-inner">
+      <span class="site-notice-icon" aria-hidden="true">🚧</span>
+      <span>
+        <strong>Na webu se pracuje.</strong> Informace zde uvedené zatím nemusí být aktuální.
+        Přesné a aktuální údaje najdete na stránkách <strong>v posledním srpnovém týdnu</strong>.
+        Děkujeme za trpělivost.
+      </span>
+    </div>
+  </div>
+
 <nav>
   <div class="nav-inner">
     <ul class="nav-links">
@@ -1646,6 +1695,8 @@
     </ul>
   </div>
 </nav>
+
+</header>
 
 <!-- Decorative divider: scattered paws and hearts along a thin dotted line -->
 <div class="nav-divider" aria-hidden="true">
@@ -1803,7 +1854,7 @@
       <div class="info-card">
         <div class="info-card-icon">💳</div>
         <div class="info-card-label">Školné 2026/2027</div>
-        <div class="info-card-value">1 000 Kč / měsíc</div>
+        <div class="info-card-value" data-cms="skolne_castka">1 000 Kč / měsíc</div>
         <div class="info-card-note">Úhrada do 15. dne v měsíci.<br>Pouze převodem na účet školy.</div>
       </div>
       <div class="info-card">
@@ -1955,14 +2006,14 @@
         <div class="dining-card-breakdown">
           <div class="dining-card-breakdown-row"><span>Přesnídávka</span><span><span data-cms="stravne_3_6_prisnidavka">8 Kč</span></span></div>
           <div class="dining-card-breakdown-row"><span>Oběd</span><span><span data-cms="stravne_3_6_obed">33 Kč</span></span></div>
-          <div class="dining-card-breakdown-row"><span>Svačina</span><span><span data-cms="stravne_3_6_svacina"><span data-cms="stravne_7_prisnidavka">9 Kč</span></span></span></div>
+          <div class="dining-card-breakdown-row"><span>Svačina</span><span><span data-cms="stravne_3_6_svacina">9 Kč</span></span></div>
         </div>
       </div>
       <div class="dining-card">
         <div class="dining-card-age">Děti 7 let</div>
         <div class="dining-card-total"><span data-cms="stravne_7_cena">55 Kč / den</span></div>
         <div class="dining-card-breakdown">
-          <div class="dining-card-breakdown-row"><span>Přesnídávka</span><span>9 Kč</span></div>
+          <div class="dining-card-breakdown-row"><span>Přesnídávka</span><span><span data-cms="stravne_7_prisnidavka">9 Kč</span></span></div>
           <div class="dining-card-breakdown-row"><span>Oběd</span><span><span data-cms="stravne_7_obed">36 Kč</span></span></div>
           <div class="dining-card-breakdown-row"><span>Svačina</span><span><span data-cms="stravne_7_svacina">10 Kč</span></span></div>
         </div>
