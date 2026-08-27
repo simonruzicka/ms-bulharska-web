@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>ŠVP Mateřská škola Bulharská</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            background: white;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 50px 70px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Titulní strana */
+        .title-page {
+            text-align: center;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            page-break-after: always;
+            break-after: page;
+        }
+        .logo-container { margin-bottom: 20px; }
+        .logo-container img { max-width: 320px; height: auto; }
+        .school-name {
+            font-size: 1.2em;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        .main-title {
+            color: #5c4a44;
+            font-size: 3.2em;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .sub-title {
+            color: #7b9e87;
+            font-size: 1.6em;
+            margin-top: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .motivational-quote {
+            font-size: 1.3em;
+            font-style: italic;
+            color: #d18d83;
+            margin: 60px 0;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        
+        /* HLAVNÍ OCHRANA TISKU - BLOKY DRŽÍ U SEBE */
+        .keep-together {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-bottom: 15px;
+        }
+        
+        /* Nadpisy */
+        h1, h2, h3, h4 { 
+            color: #7b9e87; 
+            margin-bottom: 0.5em; 
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+        }
+        h2 {
+            border-bottom: 2px solid #eaf3ed;
+            padding-bottom: 5px;
+            font-size: 1.8em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            color: #d18d83;
+            font-size: 1.3em;
+            margin-top: 1.5em;
+        }
+        h4 {
+            font-size: 1.1em;
+            margin-top: 1.2em;
+        }
+        
+        .section-break {
+            page-break-before: always !important;
+            break-before: page !important;
+            padding-top: 1px;
+        }
+
+        p { margin-top: 0; margin-bottom: 1em; text-align: justify; }
+        
+        /* Seznamy */
+        ul, ol { 
+            padding-left: 25px; 
+            margin-top: 5px; 
+            margin-bottom: 1em; 
+        }
+        li { 
+            margin-bottom: 6px; 
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
+
+        /* Obyčejná tabulka */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            page-break-inside: avoid !important;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .info-table th {
+            background-color: #f9f9f9;
+            color: #555;
+            width: 30%;
+        }
+        
+        /* SWOT tabulka */
+        .swot-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 15px;
+            margin: 1em 0;
+            page-break-inside: avoid !important;
+        }
+        .swot-table td {
+            width: 50%;
+            padding: 25px 20px;
+            vertical-align: top;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .swot-title {
+            font-weight: 900;
+            font-size: 1.2em;
+            text-align: left;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            padding-left: 40px; /* Lícování nadpisu přesně s textem odrážek pod ním */
+        }
+        .swot-table ul { margin: 0; padding-left: 40px; color: #333; }
+        
+        /* Obsah */
+        .toc-box {
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 30px 40px;
+            margin: 20px 0 40px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            page-break-inside: avoid !important;
+        }
+        .toc-list { list-style-type: none; padding-left: 0; margin: 0; }
+        .toc-list > li {
+            margin-bottom: 12px;
+            font-weight: 900;
+            font-size: 1.15em;
+            color: #5c4a44;
+            border-bottom: 1px dashed #eaeaea;
+            padding-bottom: 8px;
+        }
+        .toc-list > li:last-child { border-bottom: none; }
+
+        /* Daltonský box */
+        .box-highlight {
+            background-color: #eaf3ed;
+            padding: 25px;
+            border-left: 6px solid #7b9e87;
+            margin: 2em 0;
+            border-radius: 0 8px 8px 0;
+            page-break-inside: avoid !important;
+        }
+
+        @media print {
+            body { background: white; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { box-shadow: none; margin: 0; padding: 0; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    
+    <!-- TITULNÍ STRANA -->
+    <div class="title-page">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Logo MŠ Bulharská">
+        </div>
+        <div class="school-name">
+            Mateřská škola Brno, Bulharská 62, příspěvková organizace
+        </div>
+        <div class="main-title">
+            Školní vzdělávací program
+        </div>
+        <div class="sub-title">
+            pro předškolní vzdělávání
+        </div>
+        <div class="motivational-quote">
+            „Neotvírejme dětem dveře, ale pomozme jim najít ten správný klíč, aby si je dokázaly otevřít samy.”
+        </div>
+    </div>
+
+    <!-- OBSAH -->
+    <div class="section-break keep-together">
+        <h2 style="margin-top: 0;">Obsah</h2>
+        <div class="toc-box">
+            <ul class="toc-list">
+                <li>1. Identifikační údaje školy</li>
+                <li>2. Charakteristika školy</li>
+                <li>3. Pedagogický tým školy</li>
+                <li>4. Podmínky vzdělávání</li>
+                <li>5. Charakteristika vzdělávacího programu</li>
+                <li>6. Klíčové kompetence (KK)</li>
+                <li>7. Základní gramotnosti</li>
+                <li>8. Metody a formy vzdělávání</li>
+                <li>9. Nastavení procesu pedagogického diagnostikování a individualizace vzdělávání</li>
+                <li>10. Charakteristika vzdělávacího obsahu (Integrované bloky)</li>
+                <li>11. Plán autoevaluace</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 1. IDENTIFIKAČNÍ ÚDAJE -->
+    <div class="section-break keep-together">
+        <h2 style="margin-top: 0;">1. Identifikační údaje školy</h2>
+        <table class="info-table">
+            <tr>
+                <th>Název školy</th>
+                <td>Mateřská škola Brno, Bulharská 62, příspěvková organizace</td>
+            </tr>
+            <tr>
+                <th>Sídlo školy</th>
+                <td>Bulharská 62, Brno - Královo pole, 612 00</td>
+            </tr>
+            <tr>
+                <th>Kontakty</th>
+                <td>e-mail: msbulharska@gmail.com<br>tel: 739 373 717<br>web školy: www.ms-bulharska.cz<br>ID datové schránky: kp56f3s</td>
+            </tr>
+            <tr>
+                <th>IČO</th>
+                <td>64328244</td>
+            </tr>
+            <tr>
+                <th>Číslo jednací</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Ředitelka školy a osoba odpovědná za tvorbu ŠVP</th>
+                <td>Bc. Pavla Kukletová</td>
+            </tr>
+            <tr>
+                <th>Zpracovatelé ŠVP</th>
+                <td>kolektiv pedagogických pracovníků školy</td>
+            </tr>
+            <tr>
+                <th>Údaje o zřizovateli</th>
+                <td><strong>Název:</strong> Statutární město Brno, Městská část Brno-Královo Pole<br>
+                <strong>Adresa:</strong> Úřad městské části města Brna, Brno – Královo Pole, Palackého tř. 1365/59, 612 93 Brno<br>
+                <strong>Kontakty:</strong> e-mail: podatelna@krpole.brno.cz, tel: +420 541 588 111, web: www.kralovopole.brno.cz, ID DS: xyxbwjb<br>
+                <strong>IČO/DIČ:</strong> 44992785 / CZ44992785</td>
+            </tr>
+            <tr>
+                <th>Platnost a účinnost dokumentu</th>
+                <td>Platnost dokumentu od 1. 9. 2026 do 1. 9. 2029. Dokument je pravidelně každý rok aktualizován na základě výsledků autoevaluace.</td>
+            </tr>
+            <tr>
+                <th>Schválení dokumentu</th>
+                <td>Dokument schválila pedagogická rada dne 24. 8. 2026.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 2. CHARAKTERISTIKA ŠKOLY -->
+    <h2 class="section-break">2. Charakteristika školy</h2>
+    
+    <div class="keep-together">
+        <h3>Lokalita</h3>
+        <p>Brno-Královo Pole je městská část na severu statutárního města Brna. Samosprávná městská část vznikla 24. listopadu 1990. Žije zde přes 28 000 obyvatel. Městská část Brno-Královo Pole má výrazně městský charakter, ale na severovýchodě městské části v katastrálním území Sadová se rozkládají rozsáhlé lesy a nachází se zde významný krajinný prvek Údolí Zaječího potoka. Na severozápad městské části zasahuje přírodní památka Medlánecké kopce s lesoparkem Palackého vrchu.</p>
+        <p>Samostatně stojící budova mateřské školy postavená v 80. letech 20. století se nachází uprostřed rozlehlé školní zahrady, v zástavbě rodinných domů. Budova prošla postupnou rekonstrukcí. Proběhla výměna oken a zateplení pláště budovy, při vnitřní rekonstrukci probíhající od roku 2020 se probouráním příček zprůchodnily vstupy do šaten dětí interiérem budovy. Všechny třídy a šatny dětí jsou vybaveny nábytkem na míru navrženým interiérovým architektem. Nový kabát v podobě obložení stěn a nového povrchu schodů z linolea dostaly i obě schodiště ke dvěma třídám v patře. Na okna byly v roce 2024 nainstalovány venkovní žaluzie. Prostředí mateřské školy se tak pro děti stalo příjemnějším, bezpečnějším a podnětnějším.</p>
+    </div>
+
+    <div class="keep-together">
+        <h3>Charakter a specifika budovy</h3>
+        <p>Budova mateřské školy je dvoupodlažní a není bezbariérová. Dvě třídy se nachází v patře. Budova je hodně prosklená a její podlahová plocha a objem vzduchu odpovídá příslušným předpisům a prostorové podmínky budovy tedy splňují požadavky pro vzdělávání celkem 72 dětí.</p>
+        <p>Mateřská škola má vlastní školní kuchyni se svým vstupem, jenž zároveň slouží jako vstup pro personál do budovy a pro zásobování kuchyně. V přízemí školy se nachází třída Veverek, ředitelna, kancelář vedoucí školní jídelny, školní kuchyně, sklady a zázemí personálu kuchyně. V prvním nadzemním podlaží budovy jsou umístěny dvě dispozičně zrcadlově obrácené třídy, třída Ježečků a třída Medvídků, knihovna a místnost pro individuální činnost.</p>
+        <p>Budova stojí uprostřed poměrně velké školní zahrady. Nachází se zde tři pískoviště a herní prvky sloužící k rozvoji pohybových dovedností dětí. V roce 2024 bylo na zahradě vybudováno mlhoviště a brouzdaliště k osvěžení dětí v horkých dnech. K dodržování pitného režimu byly na zahradu pořízeny dvě pítka pro děti. Třída Veverek má u budovy nainstalované krmítko pro ptáky a každá třída má na zahradě svůj pěstební vyvýšený záhon k podpoře environmentální výchovy. <strong>Nejvyšší povolený počet dětí: 72 dětí.</strong></p>
+    </div>
+
+    <div class="keep-together">
+        <h3>Specifika jednotlivých tříd</h3>
+        <p>Každá ze tří tříd má vlastní vchod do šatny pro děti, sociální zázemí, výdejnu stravy a šatnu pro zaměstnance. Všechny třídy disponují herní, jídelní a pracovní částí. Herní část je využívaná nejen k realizaci tělovýchovných aktivit, ale také jako část odpočinková, po obědě zde děti mají rozložená lůžka. Jídelní část je také využívána pro individuální a skupinovou práci s dětmi.</p>
+        <p>Třídy se liší pouze laděním vybavení tříd do jiné barevné škály, třída Veverek do zelené, třída Ježečků do žluté a oranžové a třída Medvídků do modré. K rozvoji dětí slouží řada edukativních pomůcek, didaktické hry a hračky. Všechny pomůcky a hračky jsou umístěny tak, aby byly pro děti dostupné a zároveň se obměňují a doplňují, aby dětem bylo zajištěno podnětné a obsahově bohaté prostředí a rozvíjeli se jejich kognitivní, motorické a kreativní schopnosti. Všechny tři třídy dětem poskytují útulné a bezpečné prostředí.</p>
+    </div>
+
+    <div class="keep-together">
+        <h3>SWOT analýza mateřské školy</h3>
+        <table class="swot-table">
+            <tr>
+                <td style="background-color: #e2efea;">
+                    <div class="swot-title" style="color: #4a7c59;">SILNÉ STRÁNKY</div>
+                    <ul>
+                        <li>Umístění mateřské školky</li>
+                        <li>Dobrá spolupráce s rodiči</li>
+                        <li>Pozitivní klima školy</li>
+                        <li>Kvalitní a podnětné prostředí</li>
+                        <li>Podpora inkluze</li>
+                    </ul>
+                </td>
+                <td style="background-color: #fcf4e3;">
+                    <div class="swot-title" style="color: #b08d43;">SLABÉ STRÁNKY</div>
+                    <ul>
+                        <li>Nedostatečné vybavení školy digitálními technologiemi</li>
+                        <li>Nedostatečné využívání moderních trendů ve vzdělání</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #fceceb;">
+                    <div class="swot-title" style="color: #c46c60;">PŘÍLEŽITOSTI</div>
+                    <ul>
+                        <li>Získání dotací na vybavení digitálními technologiemi</li>
+                        <li>Zapojení dětí do akcí v městské části</li>
+                        <li>Navázání spolupráce s místní základní školou</li>
+                        <li>Zavedení programu logopedické prevence</li>
+                        <li>Zapojení se do environmentálních programů</li>
+                    </ul>
+                </td>
+                <td style="background-color: #f2e6e6;">
+                    <div class="swot-title" style="color: #8e5b5b;">HROZBY</div>
+                    <ul>
+                        <li>Změny v legislativě</li>
+                        <li>Snižující se porodnost a tím klesající zájem o předškolní vzdělávání</li>
+                        <li>Zastaralý bezpečnostní systém vstupních dveří</li>
+                        <li>Nepředvídatelné situace</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 3. PEDAGOGICKÝ TÝM -->
+    <h2 class="section-break">3. Pedagogický tým školy</h2>
+    
+    <div class="keep-together">
+        <h3>Obecný popis složení týmu školy</h3>
+        <p>Náš pedagogický tým tvoří stabilní a plně kvalifikovaný kolektiv, ve kterém působí ředitelka školy, její zástupkyně, 5 učitelek a 2 asistentky pedagoga. Celý náš tým se neustále vzdělává a profesně zdokonaluje, abychom dětem poskytovali tu nejlepší možnou péči a vzdělávání. Učíme se novým metodám, sledujeme moderní trendy a sdílíme mezi sebou příklady dobré praxe. Díky tomuto společnému nasazení dokážeme jako celek fungovat co nejefektivněji a neustále posouvat kvalitu naší mateřské školy kupředu.</p>
+    </div>
+    
+    <div class="keep-together">
+        <h3>Profesní rozvoj pedagogických pracovníků</h3>
+        <p>Profesní rozvoj pedagogických pracovníků je realizován v souladu s individuálními potřebami jednotlivých zaměstnanců, které vycházejí z koncepčně zpracovaného plánu Dalšího vzdělávání pedagogických pracovníků (DVPP), který zpracovává ředitelka školy. Tento plán zohledňuje potřeby mateřské školy, aktuální trendy v oblasti vzdělávání a profesní cíle jednotlivých pedagogů a systematicky rozvíjí profesní kompetence pedagogů školy.</p>
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>rozvoj profesních kompetencí v oblasti logopedické prevence</li>
+            <li>rozvoj profesních kompetencí v oblasti situačního a prožitkového učení</li>
+            <li>rozvoj profesních dovedností v oblasti pedagogického diagnostikování</li>
+            <li>rozvoj profesních dovedností v oblasti tvorby portfolia dítěte</li>
+            <li>rozvoj profesních kompetencí v oblasti speciální pedagogiky</li>
+        </ul>
+    </div>
+
+    <!-- 4. PODMÍNKY VZDĚLÁVÁNÍ -->
+    <h2 class="section-break">4. Podmínky vzdělávání</h2>
+    
+    <div class="keep-together">
+        <h3>Psychosociální podmínky</h3>
+        <p>Snahou všech zaměstnanců školy je vytvářet takové prostředí, aby se zde cítili spokojeně, jistě a bezpečně nejen děti, ale i zákonní zástupci a zaměstnanci. Zákonným zástupcům dětí je při nástupu do mateřské školy nabídnut adaptační režim, jehož délka závisí na sociální vyspělosti a individuálních potřebách dítěte, ale i na požadavcích zákonných zástupců. Pedagogové přistupují k individuálním potřebám dětí vstřícně a v rámci možností se jim snaží vyhovět.</p>
+        <p>Děti se podílí na vytváření pravidel chování ve skupině tak, aby se ve třídách postupně formoval kolektiv, kde se všichni cítí dobře, jsou k sobě zdvořilí a ohleduplní, navzájem se respektují, tolerují, ochraňují a pomáhají si. Pedagogové děti vedou citlivě, ale důsledně k dodržování těchto pravidel a svým chováním jdou dětem příkladem. Pedagogové dětem naslouchají a vedou s nimi podporující, vstřícnou a empatickou komunikaci, používají především formativní hodnocení a vyhýbají se paušálním pochvalám i odsudkům. Všechny děti mají rovnocenné postavení, tedy stejná práva, možnosti, ale i povinnosti. Jakékoliv projevy nerovností, podceňování a zesměšňování dětí jsou nepřípustné.</p>
+        <p>V maximální možné míře je uplatňován pedagogický styl s nabídkou, který počítá s aktivní spoluúčastí a samostatným rozhodováním dítěte, pokud to není situace, při níž je nutné, aby se dítě přizpůsobilo skupině. Vzdělávací nabídka odpovídá mentalitě a věku předškolního dítěte, je mu tematicky blízká, jemu pochopitelná, přiměřeně náročná, užitečná a prakticky využitelná, čímž u každého dítěte podporujeme důvěru samo v sebe a zdravé sebevědomí. Učíme dítě pracovat samostatně i ve skupině a umět poznat a pojmenovat svoje emoce a pracovat s nimi. Pokud dítě vyžaduje klid a soukromí, je mu k dispozici klidový koutek, tzv. hnízdečko.</p>
+        <p>Po dohodě s učitelkou, za jakých pravidel užívání a ukládání, si dítě může vzít do mateřské školy osobní předmět, který mu pomůže zajistit pocit bezpečí a jistoty. Hru chápeme jako respektovanou potřebu dítěte, ale i metodu vzdělávání.</p>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>vytvářet pozitivní klima</li>
+            <li>zaměřit se na zvýšení kompetencí k řešení problému</li>
+            <li>věnovat větší prostor formativnímu hodnocení</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>Spolupráce se zákonnými zástupci</h3>
+        <p>Před zápisem je pro zájemce o přijetí do mateřské školy pořádán den otevřených dveří. Mohou si prohlédnout prostory školy a zahrady a jsou jim zodpovězeny případné dotazy. Po nástupu do mateřské školy je v maximální možné míře umožněn adaptační režim, dle možností a přání zákonných zástupců, a především dle potřeb jejich dítěte. Učitelé se v tomto období u dítěte zaměří především na vytváření pocitu bezpečí a jistoty. Zákonní zástupci mohou vyplnit dotazník, kde specifikují potřeby svého dítěte.</p>
+        <p>V první polovině září je pořádána třídní schůzka pro všechny zákonné zástupce, kde jsou mimo jiné informováni o možnostech spolupráce se školskými poradenskými zařízeními. Zákonní zástupci se mohou aktivně zapojovat do dění v mateřské škole (ukázkou svého povolání nebo zájmové činnosti anebo předčítáním), účastnit se vzdělávání i různých programů školy a podílet se na plánování a spolurozhodování při vzdělávání jejich dítěte a na autoevaluaci školy.</p>
+        <p>Zákonní zástupci jsou učitelkou informováni o prospívání a pokrocích svého dítěte v rozvoji a učení minimálně 2x ročně při sjednaných konzultačních hodinách, v nichž mají zákonní zástupci možnost v klidu a soukromí s učitelkami pohovořit o vývoji svého dítěte. Smyslem těchto konzultací je předat rodičům aktuální informace o pokrocích ve vzdělávání jejich dítěte, při případných vzniklých obtížích najít společně řešení, společnou cestou podpořit maximální rozvoj jejich dítěte v rámci jeho individuality a zajistit tak dítěti co nejplynulejší přechod z mateřské školy do základní školy. V případě potřeby si mohou zákonní zástupci kdykoliv dohodnout schůzku mimo tyto hovorové hodiny s učitelkou nebo ředitelkou školy.</p>
+        <p>Všichni zaměstnanci školy zachovávají mlčenlivost a diskrétnost ohledně informací, které jim byly svěřeny, chrání soukromí rodiny a se zákonnými zástupci jednají taktně a ohleduplně a k jednotlivým rodinám přistupují s porozuměním a respektem.</p>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>poskytovat zákonným zástupcům informace o rozvoji a vzdělávání jejich dětí formou rodičovských reportů z diagnostiky i-Sophi</li>
+            <li>komunikovat v rámci jednotlivých tříd nabídku aktivit pro rodiče s dětmi realizovaných školou</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>Organizace</h3>
+        <p>Mateřská škola má tři třídy: Veverky, Ježečky a Medvídky. V každé třídě je max. 24 dětí. <strong>Provoz v mateřské škole probíhá od 6:15 do 16:45 hod.</strong> Děti se schází ve třídě Veverek od 6:15 do 7:00 hod., poté se rozchází do kmenových tříd. V odpoledním provozu jsou děti sloučeny a rozchází se ze třídy Veverek nebo na školní zahradě.</p>
+        <p>Povinné předškolní vzdělávání probíhá denně od 8:00 do 12:00 hod. Nově přijatým dětem je umožněn adaptační režim.</p>
+        <p>Pravidelný režim dne a řád je nastaven tak, aby umožnil přizpůsobit průběh dne aktuálním potřebám, zájmům dětí a pružně reagovat na vzniklé podněty s ohledem na individuální potřeby dětí. Pro řízené i nepřímo řízené činnosti není vyhrazen pevný čas. Dětem je umožněno vybírat si z pestré nabídky spontánních i řízených činností, které vycházejí ze situací a zájmů dětí. Hra, spontánní činnost a nepřímo řízené činnosti převažují nad řízenou činností, protože hra a další činnosti bez přímého působení pedagoga jsou nepostradatelným prostředkem pro aktivní učení a zároveň příležitostí k pedagogickému diagnostikování. Ke hře a promyšlené vzdělávací nabídce využíváme nejen vnitřní prostory, ale v maximální možné míře i pobyt venku, ať už ve městě, volné přírodě nebo na zahradě mateřské školy.</p>
+        <p>V denním režimu je zařazena doba odpočinku po obědě. Její délka je sice individuální, ale protože pozitivně ovlivňuje růst, psychický rozvoj, zdraví, náladu i chování dětí, nelze ji vynechat.</p>
+    </div>
+
+    <div class="keep-together">
+        <p>Mateřská škola poskytuje podpůrná opatření dětem se speciálními vzdělávacími potřebami a dětem nadaným a spolupracuje s odborníky ze školských vzdělávacích zařízení případně s dalšími odborníky dle aktuálních speciálních vzdělávacích potřeb jednotlivých dětí. Zákonným zástupcům je nabízena každoročně možnost docházet s dítětem do Edukativně stimulační skupinky, kterou vedou 2 učitelky z mateřské školy. Dětem cizincům je v roce povinného předškolního vzdělávání poskytována jazyková podpora formou bezplatné jazykové přípravy 2 x 30 min.</p>
+        <p>Překrývání pedagogů při přímé pedagogické činnosti je v každé třídě zajištěno alespoň 2,5 hodiny denně. Pedagogové se v době přímé pedagogické činnosti věnují výchově a vzdělávání dětí a chovají se v souladu s obecně uznávanými společenskými normami. Dbáme na dodržování limitů počtu dětí ve třídách a jejich spojování omezujeme na nezbytné minimum.</p>
+        <p>Všichni zaměstnanci se snaží o zajištění bezpečného prostředí a chrání zdraví dětí. Naše mateřská škola se aktivně zapojuje do různých zajímavých projektů a environmentálních programů, které pestře obohacují naši vzdělávací nabídku. Mateřská škola organizuje pro zájemce akce, kde je účast zákonných zástupců vítána, např. Vánoční tvoření, Jarní tvoření s besídkou ke Dni matek a Zahradní slavnost se stužkováním dětí odcházejících do základní školy. Během roku také pořádáme akce určené primárně dětem: pravidelně jezdíme na školy v přírodě, organizujeme předplavecký výcvik (plavání), školní celodenní výlety, karnevaly, návštěvy divadla a divadelní představení v mateřské škole. Spolupracujeme rovněž s externími lektory a organizacemi, které nabízejí další obohacující aktivity.</p>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>v plánování činností zařadit více situační a prožitkové učení a kooperativní učení hrou</li>
+            <li>vzdělávací nabídku plánovat na základě pedagogické diagnostiky, činnosti diferenciovat a individualizovat</li>
+            <li>zařazovat více preventivní logopedická cvičení a aktivity k rozvoji řečových dovedností</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>Životospráva</h3>
+        <p>Všichni zaměstnanci mateřské školy v denním režimu respektují individuální potřeby dětí k aktivitě, k odpočinku a při stravování. Děti mohou k relaxaci využít ve všech třídách klidný kout, tzv. hnízdečko. Dětem s nižší potřebou spánku po obědovém odpočinku jsou nabízeny klidové činnosti. Nucení dětí do spánku nebo dlouhého ležení je nepřípustné.</p>
+        <p>Dětem je nabízena pestrá a vyvážená strava. Pedagog hledá způsoby, které děti podpoří v chuti k jídlu, ale zásadně dítě do jídla nenutí a dodržuje u dítěte možnost rozhodnout se, co sní. Podmínky stravování poskytují dětem samostatnost při stolování a jsou podporovány v kultuře stolování a dodržování slušného chování. Po celý čas provozu škola zajišťuje pitný režim nabídkou neslazených nápojů (čaj, voda) a na zahradě mateřské školy nainstalovanými pítky.</p>
+        <p>K pohybovým aktivitám děti využívají především část třídy, která je k tomu určená a je zde velký bezpečný prostor. Na zahradě školy mohou využívat celou zahradu včetně všech nainstalovaných hracích prvků a volně přístupných sportovních pomůcek (míče, pálky, hokejky apod.).</p>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>děti s povinností předškolního vzdělávání si samy nalévají polévku</li>
+            <li>děti si samy mažou pomazánky na pečivo</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>Věcné podmínky</h3>
+        <p>Prostory ve všech třídách odpovídají zákonným požadavkům na prostory pro předškolní vzdělávání. Vybavení je uspořádáno tak, aby umožňovalo s dětmi pracovat při různorodých činnostech a aktivitách. Stoly a židličky jsou ve dvou velikostech a respektují tím různou výšku dětí. Veškeré vybavení je bezpečné a zdravotně nezávadné.</p>
+        <p>Hračky, pomůcky a materiál pro děti je uspořádaný přehledně a je dětem volně přístupný a jsou stanoveny pravidla pro jejich používání (např. nůžky, fixy, při vracení ukládání zpět na svá místa apod.). Materiál pedagogové doplňují dle spotřeby a hračky a pomůcky průběžně obměňují v rámci třídy podle zájmu, silných stránek dětí nebo v souladu s aktuálně probíraným tématem.</p>
+        <p>Výzdobu v šatnách a společných prostorách tvoří děti svými výrobky. K prezentaci tvorby dětí slouží především nástěnky v šatnách tříd a výrobky ve 3D jsou vystavené na parapetech ve třídě nebo ve společných prostorách.</p>
+        <p>Zahrada mateřské školy je dostatečně vybavena herními prvky k rozvoji pohybových dovedností jako např. věž se skluzavkami se vstupem přes lezecké stěny a tabulí na kreslení; počítadlo; domečky, pružinovou houpačkou, prolézačkou ve tvaru mašinky, skluzavkou se vstupem přes schody. Každá třída má své pískoviště.</p>
+        <p>Děti mají volně, za dodržování stanovených pravidel, k dispozici tříkolky a odrážedla, pro které je i vytvořena dráha. Všechny hračky a pomůcky uložené v zahradních domcích jsou dětem také volně přístupné. Nově jsou na zahradě instalovány vodní prvky – mlhoviště a brouzdaliště. Každá třída má k rozšíření environmentální výchovy a vzdělávání umístěn vyvýšený záhon a třída Veverek se ještě stará o krmítko pro ptáky. Pro děti, které si chtějí odpočinout nebo mít chvilku klidu, je určeno několik laviček umístěných ve stínu stromů, nebo si v teplém počasí mohou dát deku na trávu.</p>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Záměry, které si škola stanovila na následující období:</strong></p>
+        <ul>
+            <li>obměňovat hračky a pomůcky v rámci všech tříd – půjčovat si je mezi třídami</li>
+            <li>zřídit místo ve společných prostorách školy, kde budou pomůcky a hračky k mezitřídní výměně uloženy</li>
+            <li>postupně modernizovat školní zahradu</li>
+        </ul>
+    </div>
+
+    <!-- 5. CHARAKTERISTIKA VZDĚLÁVACÍHO PROGRAMU -->
+    <h2 class="section-break">5. Charakteristika vzdělávacího programu</h2>
+    
+    <div class="keep-together">
+        <h3>Vize a cíle vzdělávacího programu</h3>
+        <p>Naším záměrem je doplňovat a podporovat rodinnou výchovu a vytvářet prostředí, které bude pro děti bezpečné, otevřené a podnětné. Vize našeho programu vychází z přesvědčení, že hra a přirozená dětská zvídavost jsou nejúčinnější cestou k učení, a proto stavíme vzdělávání na principech Daltonského plánu. Ten vnímáme jako klíčový nástroj, který dětem umožňuje rozvíjet samostatnost, zodpovědnost za vlastní rozhodnutí a svobodnou volbu v bezpečných hranicích.</p>
+        <p>Při respektování individuálních potřeb a možností jednotlivých dětí usilujeme o celostní rozvoj osobnosti. Naší prioritou je systematická podpora komunikačních dovedností prostřednictvím intenzivní logopedické prevence a hravé seznamování s anglickým jazykem jako přirozenou součástí multikulturního světa. Tímto přístupem připravujeme děti nejen na plynulý přechod do základní školy, ale především pro život ve společnosti, kde je schopnost kritického myšlení, kooperace a efektivní komunikace nezbytná.</p>
+        <p>Profilace školy spočívá v důrazu na partnerské vztahy, demokratické principy, spolupráci a podporu rodinného prostředí.</p>
+    </div>
+    
+    <div class="keep-together">
+        <p><strong>Hlavní cíle vzdělávacího programu:</strong></p>
+        <ul>
+            <li>podporovat u dětí radost z objevování, touhu po poznání a chuť učit se novým věcem</li>
+            <li>rozvíjet klíčové kompetence a základní gramotnosti dle RVP PV</li>
+            <li>vést děti k přirozené komunikaci, spolupráci a respektu k druhým</li>
+            <li>podporovat zdravý životní styl, pohybové aktivity a vztah k přírodě</li>
+            <li>vytvářet u dětí pozitivní vztah ke kultuře, tradicím a hodnotám</li>
+            <li>posilovat u dětí jejich sebevědomí, samostatnost a schopnost řešit problémy</li>
+            <li>zajišťovat inkluzivní prostředí, v němž je každé dítě přijato a respektováno</li>
+        </ul>
+        <p>Naše mateřská škola naplňuje cíle Rámcového vzdělávacího programu pro předškolní vzdělávání a systematicky rozvíjí osm klíčových kompetencí a dvě základní gramotnosti. Vzdělávání vychází z přirozených potřeb dítěte a je postaveno na hře, prožitku a aktivním zapojení dítěte do různorodých činností.</p>
+    </div>
+
+    <!-- 6. KLÍČOVÉ KOMPETENCE -->
+    <h2 class="section-break">6. Klíčové kompetence (KK)</h2>
+
+    <div class="keep-together">
+        <h3>6.1 KLÍČOVÁ KOMPETENCE K UČENÍ (KKU)</h3>
+        <p><em>Dítě získává zkušenosti z různých činností, propojuje poznatky a využívá je v praxi</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Při učení využívá strategie pokusu a omylu.</li>
+            <li>Záměrně se soustředí na činnost a udrží pozornost.</li>
+            <li>Projevuje přirozený zájem o učení a svět, který ho obklopuje.</li>
+            <li>Uplatňuje získané poznatky a zkušenosti v praktických situacích.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí podporující zvídavost, aktivní objevování a radost z poznávání. Děti jsou vedeny k tomu, aby samy vyhledávaly informace, experimentovaly a nacházely vlastní cesty k řešení.</li>
+            <li>Vzdělávání je založeno na prožitkovém a situačním učení – děti získávají nové poznatky z autentických situací a vlastní zkušenosti přetvářejí v poznání.</li>
+            <li>Umožňujeme dětem plánovat, rozhodovat a hodnotit vlastní činnost. Prostřednictvím jednoduchých forem sebereflexe si děti uvědomují, co se naučily a co je dále zajímá.</li>
+            <li>Učení probíhá v sociální interakci – prostřednictvím spolupráce, sdílení a vzájemného učení mezi dětmi. Děti si navzájem předávají zkušenosti a učí se pracovat v týmu.</li>
+            <li>Součástí procesu učení je také práce s portfoliem – děti sledují své individuální pokroky, čímž se učí sebeuvědomění.</li>
+            <li>Poskytujeme dětem formativní zpětnou vazbu a vedou je k uvědomování si vlastních pokroků. Podporují vnitřní motivaci, nikoliv výkonové srovnávání.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.2 KLÍČOVÁ KOMPETENCE KOMUNIKAČNÍ (KKK)</h3>
+        <p><em>Dítě se učí srozumitelně vyjadřovat, naslouchat a porozumět, využívá různé formy komunikace – verbální, neverbální, výtvarné, hudební</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Vyjadřuje se různými způsoby.</li>
+            <li>Prezentuje své zkušenosti, zájmy, výsledky své práce či práce skupiny.</li>
+            <li>Klade otázky a hledá na ně odpovědi.</li>
+            <li>Poznává informační zdroje, se kterými se běžně setkává.</li>
+            <li>Naslouchá druhému a dodržuje domluvená pravidla komunikace.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme otevřené, respektující a bezpečné prostředí, ve kterém se dítě cítí přijímané a má prostor vyjádřit své myšlenky, přání i pocity. Důraz je kladen na kulturu komunikace, aktivní naslouchání a vzájemný respekt.</li>
+            <li>Rozvíjíme slovní zásobu a jazykové dovednosti dětí prostřednictvím každodenních situací.</li>
+            <li>Podporujeme různé formy vyjadřování – slovní, pohybové, dramatické, výtvarné i hudební. Dítě si volí způsob, jak sdělit, co cítí nebo prožívá, čímž rozvíjí schopnost neverbální i verbální komunikace.</li>
+            <li>Děti jsou vedeny k aktivnímu naslouchání a dialogu. Modelujeme kultivovaný rozhovor, klademe otevřené otázky, motivujeme děti k vzájemnému sdílení a vyjadřování vlastních názorů.</li>
+            <li>Uplatňujeme individuální přístup k dětem s odlišnou úrovní komunikačních dovedností. Poskytujeme jim vhodné řečové vzory, přiměřený prostor pro reakci a motivujeme je k aktivní zapojení.</li>
+            <li>Vzdělávací nabídka zahrnuje situace, které přirozeně stimulují komunikaci – komunitní kruhy, skupinové hry, společné plánování či hodnocení činností. Děti se učí sdílet, formulovat myšlenky, naslouchat druhým a respektovat jejich projev.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.3 KOMPETENCE K OBČANSTVÍ A UDRŽITELNOSTI (KOB)</h3>
+        <p><em>Dítě se chová v souladu se základními pravidly soužití a myšlenkami udržitelného rozvoje</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Vyjadřuje pozitivní vztah k živé přírodě ve svém okolí.</li>
+            <li>Chová se v souladu s myšlenkami, které směřují k udržitelnému rozvoji.</li>
+            <li>Přijímá zodpovědnost za svá rozhodnutí.</li>
+            <li>Přispívá k fungování společenství v mateřské škole.</li>
+            <li>Respektuje dohodnutá pravidla a práva druhých.</li>
+            <li>Identifikuje nespravedlnost a učí se na ni reagovat.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí založené na respektu, spolupráci a spravedlnosti. Děti vedeme k tomu, aby vnímaly, že jejich chování ovlivňuje ostatní, a učíme je chovat se férově, tolerantně a zodpovědně.</li>
+            <li>Podporujeme porozumění základním pravidlům soužití. Společně si stanovujeme jednoduchá třídní pravidla, mluvíme o jejich smyslu a učíme se chápat, že společná dohoda je cestou ke spokojenému soužití ve skupině.</li>
+            <li>Motivujeme děti k aktivní zapojení do života mateřské školy. Dáváme jim prostor rozhodovat o společných záležitostech, podílet se na plánování aktivit a nést odpovědnost za svá rozhodnutí.</li>
+            <li>Podněcujeme zájem o okolní svět a dění kolem nás. Společně si všímáme proměn prostředí, tradic, událostí a života v našem městě či obci. Děti poznávají svou roli v komunitě a učí se, že mohou svým chováním pozitivně ovlivňovat svět kolem sebe.</li>
+            <li>Podporujeme ekologické myšlení a udržitelný životní styl. Nabízíme dětem zkušenosti, při nichž si uvědomují, že i malé kroky (šetření papírem, opravování hraček, opětovné využívání materiálu) mohou mít velký význam.</li>
+            <li>Podporujeme úctu k lidským právům, rovnost a rozmanitost. Děti poznávají, že lidé mohou být různí, ale všichni mají stejnou hodnotu a zaslouží si respekt a přijetí.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.4 KOMPETENCE OSOBNOSTNÍ A SOCIÁLNÍ (KOS)</h3>
+        <p><em>Dítě si uvědomuje vlastní identitu, rozvíjí zdravé sebepojetí, učí se spolupracovat, respektovat druhé a přijímat odpovědnost za své chování</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Odmítá nevhodné a jemu nepříjemné chování i komunikaci.</li>
+            <li>Požádá o pomoc vrstevníky či dospělého.</li>
+            <li>Pojmenuje vlastní silné stránky.</li>
+            <li>Projevuje důvěru v sebe sama.</li>
+            <li>Vyjadřuje svůj názor.</li>
+            <li>Chová se empaticky a projevuje ohleduplnost k druhým.</li>
+            <li>Rozlišuje vhodné a nevhodné chování.</li>
+            <li>Chová se v souladu se základními společenskými pravidly.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí důvěry, jistoty a přijetí, v němž se děti cítí bezpečně a mohou svobodně projevit své emoce, potřeby i nápady. Pomáháme jim porozumět vlastním pocitům a naučit se je vyjadřovat přiměřeným způsobem.</li>
+            <li>Podporujeme zdravé sebevědomí a sebeúctu. Dětem dáváme možnost rozhodovat se, volit činnosti podle svých zájmů a vnímat zodpovědnost za svá rozhodnutí. Učíme je radovat se z vlastního pokroku i úspěchu druhých.</li>
+            <li>Motivujeme děti k samostatnosti a vytrvalosti. Povzbuzujeme je, aby se nevzdávaly při neúspěchu, aby hledaly nové cesty a chyby vnímaly jako přirozenou součást života.</li>
+            <li>Podporujeme empatii a ohleduplnost. Společně s dětmi reflektujeme, jak se v určitých situacích cítí oni sami i ostatní, učíme se pojmenovávat pocity a hledat způsoby, jak pomoci druhým.</li>
+            <li>Rozvíjíme spolupráci a prosociální chování. Prostřednictvím her, projektů a společných činností děti poznávají význam spolupráce, učí se domlouvat, respektovat pravidla, naslouchat a společně hledat řešení.</li>
+            <li>Podporujeme děti v přijímání pravidel a hodnot společnosti. Společně vytváříme jednoduchá pravidla třídy a učíme se chápat, proč jsou důležitá pro naši pohodu, spolupráci a bezpečí.</li>
+            <li>Posilujeme pozitivní sociální vzorce chování. Sami jdeme příkladem – ukazujeme, jak pomáhat, poděkovat, omluvit se, požádat o pomoc či ocenit úspěch druhých.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.5 KLÍČOVÁ KOMPETENCE K PODNIKAVOSTI A PRACOVNÍ (KPP)</h3>
+        <p><em>Dítě rozvíjí své nápady, využívá příležitosti, reaguje na změny. Vytváří si základy pracovních dovedností a vztah k práci.</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Přichází s vlastními nápady.</li>
+            <li>Ke změnám přistupuje jako k příležitostem.</li>
+            <li>Navrhuje, co potřebuje k realizaci vlastních činností.</li>
+            <li>Dokáže měnit cesty k dosažení cíle.</li>
+            <li>Dokončí, co započalo.</li>
+            <li>Organizuje a realizuje svoje činnosti.</li>
+            <li>Domlouvá se a spolupracuje s ostatními dětmi.</li>
+            <li>Spolupodílí se na společných rozhodnutích.</li>
+            <li>Oceňuje práci i úsilí druhých.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme podnětné prostředí, které nabízí prostor pro nápady, tvořivost a realizaci vlastních záměrů. Děti vedeme k tomu, aby hledaly nové způsoby řešení a zkušeností nabývaly prostřednictvím pokusů a objevování.</li>
+            <li>Podporujeme tvořivost, samostatnost a vytrvalost. Povzbuzujeme děti, aby se nevzdávaly při nezdaru, aby dokončovaly započatou práci a dokázaly posoudit, jak se jim činnost podařila.</li>
+            <li>Motivujeme děti k zodpovědnému přístupu k úkolům a materiálům. Učíme je zacházet s pomůckami, nástroji a materiály bezpečně, hospodárně a s ohledem na životní prostředí.</li>
+            <li>Rozvíjíme pracovní návyky a pozitivní vztah k práci. Děti se zapojují do jednoduchých pracovních a úklidových činností, učí se pečovat o prostředí, pomáhat druhým a vnímat smysl společné práce.</li>
+            <li>Podporujeme iniciativu a zdravé sebeprosazení. Děti povzbuzujeme, aby přicházely s nápady, sdílely je se skupinou a dokázaly je realizovat v praxi, ať už formou tvoření, her či projektů.</li>
+            <li>Učíme děti plánovat, organizovat a hodnotit svou činnost. Společně si stanovujeme jednoduché cíle, volíme postupy a na závěr reflektujeme výsledek práce i pocity, které s ním souvisejí.</li>
+            <li>Podněcujeme odpovědnost a ohleduplnost. Děti vedeme k dokončení započatého, k dodržování domluvených pravidel a k přijetí důsledků svého jednání.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.6 KLÍČOVÁ KOMPETENCE K ŘEŠENÍ PROBLÉMŮ (KRP)</h3>
+        <p><em>Dítě si poradí v běžných situacích, pracuje s chybou, zpracovává informace. Reflektuje bezprostředně prožité situace</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Vnímá chybu jako přirozenou součást řešení problémů.</li>
+            <li>Řeší jednoduché problémové situace na základě předchozí zkušenosti.</li>
+            <li>Pozoruje, zkoumá, experimentuje, objevuje.</li>
+            <li>Vymýšlí a zkouší různá řešení problémů a situací.</li>
+            <li>Volí adekvátní řešení vedoucí k cíli.</li>
+            <li>Tvořivě pracuje s informacemi.</li>
+            <li>Čerpá informace z různých autentických, tištěných a digitálních zdrojů.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí, které podporuje přemýšlení, zvídavost a hledání nových cest. Děti vedeme k tomu, aby zkoušely, experimentovaly, kladly otázky a přemýšlely o tom, proč se věci dějí určitým způsobem.</li>
+            <li>Podporujeme tvořivé myšlení a hledání různých možností řešení. Nabízíme činnosti, ve kterých mohou děti samy navrhovat postupy, zkoušet nové způsoby a objevovat vztahy mezi věcmi a jevy.</li>
+            <li>Motivujeme děti k vytrvalosti a odvaze při řešení problémových situací. Povzbuzujeme je, aby se nebály chyb, učíme je brát chybu jako přirozenou součást učení a příležitost k dalšímu poznání.</li>
+            <li>Učíme děti přemýšlet o svých krocích. Společně pojmenováváme problém, plánujeme, jak jej vyřešit, a poté se k situaci vracíme, abychom zjistili, co fungovalo a co by se dalo udělat jinak.</li>
+            <li>Rozvíjíme schopnost spolupráce při řešení problémů. Děti se učí naslouchat nápadům druhých, navrhovat kompromisy, sdílet úkoly a společně hledat nejlepší řešení.</li>
+            <li>Podporujeme logické a kritické myšlení. Děti se prostřednictvím her, pokusů a praktických situací učí porovnávat, třídit, usuzovat, hledat souvislosti a vyvozovat závěry.</li>
+            <li>Podporujeme sebevědomí dětí při řešení problémů. Učíme je, že každé řešení má svou hodnotu, že mohou přispět svým nápadem a že úsilí a spolupráce jsou stejně důležité jako výsledek.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.7 KLÍČOVÁ KOMPETENCE KULTURNÍ (KKT)</h3>
+        <p><em>Dítě přijímá kulturní a uměleckou rozmanitost ve společnosti, vyjadřuje se uměleckými prostředky</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Má povědomí o kultuře, umění a o kulturním dění ve svém okolí</li>
+            <li>Reaguje autenticky na umělecké a kulturní podněty</li>
+            <li>Zapojuje se do tvůrčích činností</li>
+            <li>Přijímá osobnostní, kulturní, náboženské a jazykové rozmanitosti ostatních.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí bohaté na podněty estetického vnímání. Nabízíme dětem rozmanité materiály, hudební nástroje, výtvarné techniky i kulturní podněty, které rozvíjejí tvořivost, fantazii a smysl pro krásu.</li>
+            <li>Podporujeme spontánní umělecký projev dětí. Dáváme prostor pro volné vyjádření prostřednictvím hudby, pohybu, dramatické hry, zpěvu či výtvarné tvorby. Vnímáme proces tvoření jako cennější než výsledek.</li>
+            <li>Motivujeme děti k vnímání a objevování kulturních hodnot. Společně se seznamujeme s tradicemi, zvyky, lidovou tvorbou a uměním, které rozvíjejí povědomí o naší kulturní identitě i o kulturní rozmanitosti světa.</li>
+            <li>Podporujeme děti v tvořivé spolupráci. Společně tvoříme kolektivní díla, zpíváme, tančíme, dramatizujeme příběhy, čímž rozvíjíme cit pro spolupráci i společný estetický prožitek.</li>
+            <li>Vytváříme příležitosti pro společné kulturní zážitky. Navštěvujeme divadelní, hudební či výtvarná vystoupení, zveme umělce do školky a sdílíme radost z prožitku prostřednictvím rozhovorů a následných aktivit.</li>
+            <li>Učíme děti vnímat a respektovat kulturní rozmanitost. Seznamujeme je s odlišnými kulturami, tradicemi a zvyky, rozvíjíme úctu k různorodosti a chápání, že každý projev má svou hodnotu.</li>
+            <li>Podněcujeme radost z tvoření a sebevyjádření. Učíme děti vnímat, že každý tvůrčí projev je jedinečný a má smysl, a posilujeme jejich sebedůvěru v uměleckém projevu.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>6.8 KLÍČOVÁ KOMPETENCE DIGITÁLNÍ (KDI)</h3>
+        <p><em>Dítě se seznamuje s možnostmi využívání digitálních technologií. Rozvíjí své informatické myšlení.</em></p>
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Využívá digitální technologie k badatelským činnostem a poznávání světa kolem sebe</li>
+            <li>Rozlišuje přínosy a rizika používání digitálních technologií</li>
+            <li>Uplatňuje informatické myšlení, pracuje s algoritmy.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí, ve kterém se děti bezpečně seznamují s digitálními technologiemi. Učíme je chápat, že digitální zařízení jsou užitečným nástrojem pro poznávání, tvoření i komunikaci, pokud se používají smysluplně a s rozvahou.</li>
+            <li>Rozvíjíme informatické myšlení prostřednictvím her a řízených aktivit. Při práci s Bee Botem nebo interaktivními úlohami děti plánují kroky, hledají strategie a učí se přemýšlet systematicky, tvořivě a s rozvahou.</li>
+            <li>Podporujeme tvořivou spolupráci s využitím technologií. Děti společně sdílejí nápady, zkoumají, experimentují a využívají digitální nástroje jako prostředek k učení, objevování i vzájemnému porozumění.</li>
+        </ul>
+    </div>
+
+    <!-- 7. ZÁKLADNÍ GRAMOTNOSTI -->
+    <h2 class="section-break">7. Základní gramotnosti</h2>
+    
+    <div class="keep-together">
+        <h3>7.1 ČTENÁŘSKÁ GRAMOTNOST (CGR)</h3>
+        <p>Čtenářská gramotnost představuje soubor znalostí, dovedností a postojů při práci s texty v nejširším slova smyslu. Schopnost porozumět textům a efektivně zpracovávat informace je základním předpokladem procesu učení. Vstřícný vztah ke čtení chápeme jako základní předpoklad pro další rozvoj čtenářství a čtenářské gramotnosti. Vzdělávací obsah uspořádaný do vzdělávacích oblastí nabízí potenciál k rozvoji čtenářské gramotnosti. V některých případech je rozvoj čtenářské gramotnosti nedílnou součástí očekávaných výsledků učení. Jindy je gramotnost rozvíjena prostřednictvím vhodně zvolené vzdělávací strategie.</p>
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme prostředí bohaté na jazyk a text. Ve třídě je dostupná rozmanitá nabídka knih i časopisů. Knihy jsou dětem volně přístupné a stávají se přirozenou součástí her i odpočinkových chvil.</li>
+            <li>Podporujeme každodenní kontakt s literaturou. Pravidelně čteme dětem nahlas, sdílíme příběhy, pohádky a verše, povídáme si o nich a motivujeme děti, aby si vybíraly knihy podle svého zájmu.</li>
+            <li>Rozvíjíme porozumění textu a naslouchání. Při čtení se s dětmi zastavujeme, klademe otázky, společně přemýšlíme o ději, postavách a poselství příběhu. Děti se učí vyjadřovat své dojmy, názory a předvídat, jak příběh dopadne.</li>
+            <li>Vytváříme příležitosti pro rozvoj předčtenářských dovedností. Děti se hravou formou seznamují s písmeny, zvuky, rytmem řeči, směrem čtení a strukturou knihy. Učí se rozlišovat rýmy, slabiky a rozvíjejí sluchovou analýzu.</li>
+            <li>Propojujeme čtení s reálným životem. Knihy a texty využíváme při projektech, pro poznávání okolního světa, práci s emocemi či plánování aktivit, aby děti vnímaly smysl čtení i v běžných situacích.</li>
+            <li>Spolupracujeme s rodinou. Motivujeme rodiče, aby s dětmi doma četli, povídali si o knihách a sdíleli čtenářské zážitky. Společné čtení posiluje vztah dítěte k literatuře i k rodiči.</li>
+        </ul>
+    </div>
+    
+    <div class="keep-together">
+        <h3>7.2 MATEMATICKÁ GRAMOTNOST</h3>
+        <p>Matematická gramotnost je schopnost uplatnit získané vědomosti, dovednosti, návyky, postoje a hodnoty při řešení nejrůznějších úkolů a životních situací s využitím matematického jazyka. Vede dítě k rozpoznání matematické situace v různých kontextech, souvislostech a životních situacích, k volbě a využívání matematického jazyka při jejich popisu, řešení a vyvození závěrů. Ukazuje dítěti smysluplnost učení a umožňuje mu zažít radost z úspěšně vyřešené situace. Vzdělávací obsah uspořádaný do vzdělávacích oblastí nabízí potenciál k rozvoji matematické gramotnosti. V některých případech je rozvoj matematické gramotnosti nedílnou součástí očekávaných výsledků učení. Jindy je gramotnost rozvíjena prostřednictvím vhodně zvolené vzdělávací strategie.</p>
+        <p><strong>Vzdělávací strategie:</strong></p>
+        <ul>
+            <li>Vytváříme podnětné prostředí, které podporuje logické a matematické myšlení. Dětem nabízíme situace, ve kterých objevují vztahy mezi tvary, velikostmi, množství a strukturou, manipulují s materiály a samy hledají souvislosti.</li>
+            <li>Podporujeme rozvoj matematických představ prostřednictvím hry. Děti třídí, porovnávají, měří a kombinují, získávají zkušenost s čísly, tvary a množstvím v konkrétních činnostech, čímž posilují základní matematické dovednosti.</li>
+            <li>Motivujeme děti k objevování zákonitostí světa kolem nich. Učíme je vnímat rytmus, posloupnost, symetrii či opakování v přírodě, výtvarné tvorbě i běžném životě – čímž rozvíjejí schopnost vnímat strukturu a řád.</li>
+            <li>Rozvíjíme schopnost řešit jednoduché problémové a badatelské úlohy. Děti plánují kroky, zkoušejí různé varianty, porovnávají výsledky a učí se, že hledání vlastního řešení je významné.</li>
+            <li>Propojujeme matematickou gramotnost s reálnými situacemi. Děti využívají matematiku v každodenních činnostech: při stavění, měření, vaření, manipulaci s pomůckami i v přirozených herních situacích.</li>
+            <li>Podporujeme spolupráci a sdílení myšlenkových postupů. Děti společně diskutují o tom, jak postupovaly, navrhují odlišná řešení, sdílejí své myšlenky a učí se obhájit svůj názor.</li>
+        </ul>
+    </div>
+
+    <!-- 8. METODY A FORMY VZDĚLÁVÁNÍ -->
+    <h2 class="section-break">8. Metody a formy vzdělávání</h2>
+    <div class="keep-together">
+        <p>Vzdělávací proces v naší mateřské škole vychází z principu aktivního, prožitkového a činnostního učení, které respektuje individuální tempo a potřeby každého dítěte. Základem je přirozená dětská hra, jež představuje nejúčinnější cestu k osvojování poznatků, dovedností a zkušeností. Metody a formy vzdělávání se vzájemně prolínají a jsou voleny tak, aby odpovídaly věku dětí, jejich zkušenostem a aktuálním potřebám. Důraz je kladen na aktivní zapojení dětí, podporu jejich samostatnosti, tvořivosti a spolupráce.</p>
+        
+        <div class="box-highlight">
+            <h4 style="margin-top: 0;">Využití Daltonského vzdělávacího plánu</h4>
+            <p>V naší mateřské škole cíleně zařazujeme prvky a principy Daltonského vzdělávacího plánu (práce s úkolem, volba pracovního místa a tempa, sebekontrola). Tento pedagogický přístup stavíme na těchto základních pilířích:</p>
+            <ul>
+                <li><strong>Zodpovědnost a volnost:</strong> Děti mají možnost svobodné volby činností v rámci stanovených pravidel. Učí se tak přijímat zodpovědnost za své rozhodnutí a za dokončení vybraného úkolu.</li>
+                <li><strong>Samostatnost:</strong> Podporujeme děti v tom, aby úkoly řešily vlastním tempem a hledaly svá vlastní řešení předtím, než požádají o pomoc dospělého.</li>
+                <li><strong>Spolupráce (kooperace):</strong> Vytváříme situace, kde si děti navzájem radí a pomáhají, čímž rozvíjíme kooperativní učení a sociální dovednosti.</li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>Jak to funguje v praxi:</strong> Základním nástrojem je <strong>Daltonská tabule</strong>. Každé dítě má na tabuli svou značku. Na tabuli jsou vizuálně (pomocí obrázků a symbolů) znázorněny úkoly pro daný den nebo týden. Dítě si samo svobodně volí, v jakém pořadí a s kým úkoly splní. Po dokončení úkolu si dítě samo (nebo s pomocí paní učitelky) označí na tabuli jeho splnění. Tímto způsobem děti vizuálně vidí svůj pokrok, učí se plánovat svůj čas a přirozeně přebírají zodpovědnost za vlastní učení.</p>
+        </div>
+    </div>
+
+    <div class="keep-together">
+        <p><strong>Metody vzdělávání:</strong></p>
+        <ul>
+            <li>prožitkové učení</li>
+            <li>situační učení</li>
+            <li>kooperativní učení hrou</li>
+            <li>smyslové učení</li>
+            <li>experimentální a badatelské činnosti</li>
+            <li>názorně demonstrační a slovní metody</li>
+        </ul>
+        <p><strong>Formy vzdělávání:</strong> individuální, skupinová, hromadná</p>
+    </div>
+
+    <!-- 9. DIAGNOSTIKA -->
+    <h2 class="section-break">9. Nastavení procesu pedagogického diagnostikování a individualizace vzdělávání</h2>
+    
+    <div class="keep-together">
+        <p>Pedagogická diagnostika je nedílnou součástí vzdělávacího procesu a slouží k systematickému sledování pokroků a potřeb jednotlivých dětí. Výsledky diagnostiky jsou využívány k plánování vzdělávací nabídky, k individualizaci a diferenciaci vzdělávání a k podpoře rozvoje každého jednotlivého dítěte podle jeho možností, schopností a zájmů.</p>
+        <p><strong>Pedagogické diagnostikování probíhá prostřednictvím:</strong></p>
+        <ul>
+            <li><strong>Průběžného pedagogického pozorování:</strong> Tvoří stěžejní bod naší práce. Učitelky cíleně a každodenně sledují reakce, zájmy, potřeby a herní projevy dětí. Získané poznatky ihned reflektují v úpravě vzdělávací nabídky a přístupu k jednotlivým dětem.</li>
+            <li><strong>i–Sophi:</strong> Standardizovaný elektronický nástroj doporučený MŠMT, který umožňuje komplexně sledovat rozvoj dítěte v různých oblastech v souladu s RVP PV. Diagnostika prostřednictvím tohoto nástroje je u všech dětí realizována dvakrát ročně. U dětí v povinném předškolním vzdělávání musí být diagnostika dokončena do 31. října a 15. března. U mladších dětí do 15. listopadu a 31. března. Zákonní zástupci dostanou po každém vyhodnocení diagnostiky písemný report s výsledky a doporučeními.</li>
+            <li><strong>Portfolio:</strong> Každému dítěti je vedeno portfolio, které zahrnuje záznamy o jeho pokrocích v různých oblastech. Portfolio je pravidelně doplňováno a vyhodnocováno a také slouží jako podklad pro plánování individualizovaných vzdělávacích činností. Zákonní zástupci mohou do portfolia kdykoliv nahlédnout a seznámit se tak s pokroky svého dítěte. Po ukončení docházky v mateřské škole je toto portfolio předáno do základní školy, kam dítě nastupuje.</li>
+        </ul>
+        <p>Zákonní zástupci mají možnost využít individuální konzultace s třídními učitelkami, kde se mohou komplexně seznámit s celkovou diagnostikou a rozvojem svého dítěte.</p>
+    </div>
+    
+    <div class="keep-together">
+        <h3>Zajištění individualizace vzdělávání</h3>
+        <p>Na základě diagnostických zjištění pedagogové průběžně přizpůsobují vzdělávací činnosti individuálním potřebám dětí. Individualizace se uskutečňuje prostřednictvím přizpůsobení obsahu, metod a forem možnostem a zájmům dětí, poskytnutí cílené podpory dětem, které potřebují více času nebo specifické vedení, a nabídky obohacujících aktivit pro děti s mimořádným zájmem či nadáním.</p>
+        <p>U dětí se speciálními vzdělávacími potřebami je vzdělávání realizováno v souladu s doporučeními školských poradenských zařízení. Pedagogové se při plánování a realizaci činností opírají o tato doporučení, zajišťují vhodnou úpravu podmínek, přizpůsobují metody a formy práce a podle potřeby spolupracují s asistenty pedagoga a dalšími odborníky.</p>
+    </div>
+
+    <!-- 10. CHARAKTERISTIKA VZDĚLÁVACÍHO OBSAHU -->
+    <h2 class="section-break">10. Charakteristika vzdělávacího obsahu</h2>
+    <div class="keep-together">
+        <p>Vzdělávací obsah je realizován prostřednictvím flexibilně uspořádaných integrovaných bloků, které umožňují přirozené propojení jednotlivých vzdělávacích oblastí v souladu s principy Rámcového vzdělávacího programu pro předškolní vzdělávání (RVP PV). Vzdělávání zahrnuje všechny čtyři oblasti: Dítě a jeho tělo, Dítě a jeho psychika, Dítě, ten druhý a společnost, Dítě a svět. Tyto oblasti nejsou naplňovány izolovaně, ale v přirozeném propojení, které podporuje celostní rozvoj dítěte.</p>
+        <p>Naplňování rámcových i dílčích cílů probíhá nejen v rámci každodenních aktivit, ale také prostřednictvím projektových dnů a výchovně vzdělávacích akcí, které jsou plánovány průběžně. Vzdělávací nabídka reaguje na aktuální potřeby dětí.</p>
+        <h3>Integrované bloky</h3>
+        <p>Vzdělávací obsah naší mateřské školy je strukturován do čtyř integrovaných bloků, které jsou přizpůsobeny věku, schopnostem i individuálním potřebám dětí.</p>
+    </div>
+
+    <div class="keep-together">
+        <h4>1. MOJE TĚLO A MŮJ SVĚT</h4>
+        <p>Tento integrovaný blok podporuje děti v poznávání vlastního těla, jeho potřeb a možností. Učí se chápat význam zdraví a péče o něj, osvojovat si základní hygienické, bezpečnostní a sebeobslužné návyky. Velký důraz je kladen na rozvoj smyslů, prostřednictvím nichž děti objevují svět kolem sebe, učí se jej vnímat, zkoumat a porovnávat své prožitky. Součástí je také rozvoj emocionální oblasti – děti poznávají, pojmenovávají a vyjadřují emoce a učí se je vhodným způsobem regulovat. Blok také podporuje tělesný rozvoj, pohybovou zdatnost i schopnost spolupráce a ohleduplnosti.</p>
+    </div>
+    
+    <div class="keep-together">
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Orientuje se na svém těle, pojmenuje jeho části a zná jejich funkce.</li>
+            <li>Zachovává správné držení těla.</li>
+            <li>Rozlišuje pomocí všech smyslů.</li>
+            <li>Naplňuje své biologické potřeby.</li>
+            <li>Zvládá základní pohybové dovednosti.</li>
+            <li>Zvládá běžné způsoby pohybu v různém prostředí a terénu, prokazuje obratnost.</li>
+            <li>Koordinuje pohyby těla, ruky a oka.</li>
+            <li>Ovládá jemnou motoriku a motoriku mluvidel.</li>
+            <li>Zvládá základy grafomotoriky.</li>
+            <li>Sladí pohyb s rytmem, zpěvem a hudbou.</li>
+            <li>Vykonává jednoduchý pohyb podle vzoru a provede ho podle pokynu.</li>
+            <li>Vyhledává příležitosti k pohybu.</li>
+            <li>Zvládá sebeobsluhu.</li>
+            <li>Zvládá jednoduché pracovní úkony s různými materiály, nástroji, nářadím, náčiním a dalšími pomůckami.</li>
+            <li>Využívá příležitosti k samostatnosti a sebeobslužným činnostem.</li>
+            <li>Prokazuje vytrvalost, sílu a odolnost.</li>
+            <li>Překonává fyzické překážky.</li>
+            <li>Má osvojené základní hygienické návyky.</li>
+            <li>Rozlišuje, co zdraví prospívá a co mu škodí.</li>
+            <li>Chová se bezpečně, používá ochranné pomůcky.</li>
+            <li>Odloučí se na určitou dobu od rodičů a blízkých a je aktivní i bez jejich opory.</li>
+            <li>Orientuje se v základních emocích a pocitech.</li>
+            <li>Vhodně projevuje emoce vůči sobě, blízkým a cizím osobám.</li>
+            <li>Navazuje a rozvíjí citové vazby.</li>
+            <li>Přijímá i vyjadřuje pozitivní ocenění.</li>
+            <li>Vyrovná se s neúspěchem.</li>
+            <li>Poradí si v nové situaci.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h4>2. ROK PLNÝ PŘÍBĚHŮ</h4>
+        <p>V tomto integrovaném bloku se děti seznámí s pohádkami, příběhy a českými tradicemi, které jsou neoddělitelnou součástí kulturního dědictví i každodenního života. Děti se seznamují s lidovými i autorskými pohádkami, s tradičními českými svátky a obyčeji, které se vážou k průběhu roku a učí se chápat jejich význam pro život jednotlivce, rodiny i společnosti.</p>
+        <p>Prostřednictvím poslechu, vyprávění a dramatizace rozvíjejí jazyk, řeč, představivost a fantazii. Pohádky a příběhy podporují také rozvoj mravního uvědomování a hodnot, přinášejí dětem ponaučení a dávají prostor k přemýšlení o dobru, zlu, spravedlnosti či přátelství. Tradice a svátky se dětem přibližují nejen prostřednictvím vyprávěni, ale také výtvarných, hudebních a pohybových činností, které vytvářejí prostor pro prožitek, tvořivost i spolupráci. Blok pomáhá dětem orientovat se v čase, vnímat opakující se události v průběhu roku a chápat jejich význam. „Rok plný příběhů“ tak přirozeně propojuje jazykový, poznávací, sociální i estetický rozvoj dítěte a vede k utváření pozitivního vztahu k české kultuře.</p>
+    </div>
+    
+    <div class="keep-together">
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Vyjadřuje své představy různými způsoby, prostředky, technikami i s využitím digitálních technologií.</li>
+            <li>Využije vhodné příležitosti a materiály pro vyjádření své fantazie.</li>
+            <li>Správně vyslovuje většinu hlásek, ovládá dech, tempo a intonaci řeči.</li>
+            <li>Pozná a pojmenuje osoby, zvířata, věci a jevy, kterými je obklopeno.</li>
+            <li>Používá slova ve správném tvaru a gramaticky správně formuluje věty.</li>
+            <li>Zapamatuje si krátké texty a dokáže je reprodukovat.</li>
+            <li>Sluchově rozlišuje různé zvuky, pozná první hlásku ve slově.</li>
+            <li>Rozpozná rým, rytmizuje.</li>
+            <li>Vypráví jednoduchý děj.</li>
+            <li>Postupuje podle slovních i obrazových instrukcí.</li>
+            <li>Formuluje instrukce a předá je ostatním.</li>
+            <li>Rozliší český jazyk od jiných jazyků.</li>
+            <li>Vybere si knihy nebo časopisy podle svého zájmu.</li>
+            <li>Rozumí předčítanému textu, vyprávění a soustředěně sleduje děj.</li>
+            <li>Analyzuje děj, hodnotí ho, vyjadřuje se k jednání postav.</li>
+            <li>Předvídá a usuzuje děj z obrázku i textu, vymyslí alternativní konec příběhu.</li>
+            <li>Rozlišuje některé symboly, piktogramy, znaky a rozumí jejich významu a funkci.</li>
+            <li>Reflektuje čtenářský zážitek a sdílí ho s ostatními.</li>
+            <li>Spolupodílí se na udržování regionálních tradic.</li>
+            <li>Vyjadřuje se prostřednictvím vokálních, instrumentálních a hudebně pohybových činností.</li>
+            <li>Vyjadřuje se pomocí dramatizace, přijímá různé role při dramatických činnostech.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h4>3. SVĚT LIDÍ A VĚCÍ</h4>
+        <p>Děti poznávají svět, který je obklopuje, a postupně si vytvářejí povědomí o tom, že každý člověk žije v určitém prostředí, které je pro něj domovem. Učí se vnímat svůj dům, ulici, vesnici či město jako místo, které jim poskytuje zázemí, bezpečí i prostor pro společné zážitky. V rámci činností se zaměřujeme na rodinu jako základní prvek života dítěte, na vztahy v ní a na uvědomění si vlastní role v rodině.</p>
+        <p>Děti se učí chápat význam přátelství, spolupráce a vzájemné pomoci. Prostřednictvím her, vyprávění a skupinových aktivit si osvojují pravidla soužití a učí se projevovat ohleduplnost k ostatním. Skrze hru na povolání, rozhovory, tematické projekty i praktické ukázky se seznamují s prací dospělých a jejím významem pro každodenní život. Při činnostech spojených s dopravou se učí rozeznávat dopravní prostředky a osvojovat si základní pravidla bezpečného chování chodce i spolucestujícího. Významnou roli hraje také seznamování s prostředím školy, které je pro děti přirozeným pokračováním jejich vzdělávací cesty. Děti tak získávají první povědomí o vzdělávání jako součásti života a připravují se na přechod do základní školy. Součástí integrovaného bloku je také rozvoj multikulturní výchovy – děti poznávají, že lidé mohou mít odlišný jazyk, vzhled, zvyky či kulturu, a učí se k těmto rozdílům přistupovat s respektem, tolerancí a porozuměním.</p>
+    </div>
+    
+    <div class="keep-together">
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Určí a využije při činnostech pravidelnosti, rytmus a zákonitosti, včetně symetrie.</li>
+            <li>Vyhledá společné znaky, shodu, podobu, rozdíly objektů, osob a jevů a odhalí vzájemné souvislosti mezi nimi.</li>
+            <li>Rozpozná a pojmenuje charakteristické rysy předmětů či jevů a vybere ty, které tyto charakteristiky nemají.</li>
+            <li>Rozpozná, které situace mohou a které nemohou nastat.</li>
+            <li>Rozlišuje příčinu a důsledek při hře, ve svém jednání či v příběhu.</li>
+            <li>Pracuje s jednou i s více podmínkami v zadání.</li>
+            <li>Využívá myšlenkovou analýzu a syntézu při hře i při praktických činnostech.</li>
+            <li>Uplatňuje konstrukční myšlení při sestavování a skládání objektů.</li>
+            <li>Využívá analogii a jednoduchou strategii při hře.</li>
+            <li>Ověří správnost řešení.</li>
+            <li>Roztřídí, vybere, spáruje a zkombinuje objekty na základě jejich vlastností.</li>
+            <li>Uspořádá objekty podle daných kritérií včetně času.</li>
+            <li>Určí postupným načítáním po jedné počet konkrétních předmětů od 1 do 6 bez ohledu na jejich rozmístění.</li>
+            <li>Porovná kvantitu na základě manipulace, zaznamená ji graficky pomocí čárek a obdobných symbolů.</li>
+            <li>Určí charakteristické vlastnosti geometrických objektů v reálném prostředí, rozliší rovinné a prostorové útvary.</li>
+            <li>Orientuje se v prostoru a rovině, rozliší a pojmenuje prostorové vztahy.</li>
+            <li>Sestavuje prostorové objekty podle předlohy.</li>
+            <li>Určí míru objektů a porovná je pomocí poměřování.</li>
+            <li>Začlení se do skupiny.</li>
+            <li>Přijímá různé sociální role.</li>
+            <li>Ovlivňuje směřování společné činnosti.</li>
+            <li>Navazuje a udržuje dětská přátelství.</li>
+            <li>Chová se zdvořile v kontaktu s dospělými a dětmi.</li>
+            <li>Zachází šetrně s hračkami, pomůckami, věcmi a vnímá jejich hodnotu.</li>
+            <li>Spolupodílí se na tvorbě pravidel vzájemného soužití.</li>
+            <li>Dodržuje pravidla her a jiných činností, požaduje dodržování dohodnutých pravidel i od druhých.</li>
+            <li>Přijímá kompromisy, řeší konflikty dohodou.</li>
+            <li>Pojmenuje místo a zemi, ve které žije.</li>
+            <li>Identifikuje rizika, chová se obezřetně při setkání s neznámými dětmi a dospělými.</li>
+            <li>Přijímá rozmanitost lidí a vnímá ji jako přirozenou.</li>
+            <li>Sděluje informace s ohledem na soukromí a bezpečí svoje i blízkých osob v osobním kontaktu.</li>
+            <li>Zachytí autenticky své představy i prožitky různými výtvarnými prostředky a technikami.</li>
+            <li>Tvoří z rozmanitých materiálů a přírodnin.</li>
+            <li>Používá reálné nástroje, předměty a nářadí při rukodělných činnostech.</li>
+            <li>Orientuje se v blízkém prostředí – doma, v mateřské škole i v širším prostředí – v okolí MŠ a v obci.</li>
+            <li>Reaguje na bezpečnostní pokyny dospělých v rizikových situacích.</li>
+            <li>Rozezná některá nebezpečí a ví, jak se jim vyhnout.</li>
+            <li>Jedná bezpečně na komunikacích, v dopravních prostředcích a při jejich používání.</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h4>4. TAJEMSTVÍ PŘÍRODY</h4>
+        <p>V rámci tohoto integrovaného bloku děti objevují přírodu, která je obklopuje. Učí se poznávat rozdíl mezi živou a neživou přírodou a poznávat podmínky, které jsou pro život nezbytné. Seznamují se s rostlinami a zvířaty a učí se chápat význam péče o ně, postupně získávají základní environmentální návyky. Prostřednictvím různorodých aktivit děti poznávají přírodní jevy, změny počasí a střídání ročních období. Učí se vnímat přírodní zákonitosti a chápat, že příroda má svůj řád, který ovlivňuje život lidí, zvířat i rostlin. Součástí bloku je také poznávání širšího Vesmíru, čímž se dětem otevírá představa o planetě Zemi, jakožto součástí většího celku. Tím se učí chápat význam ochrany naší planety a rozvíjí základní ekologické povědomí. Děti jsou vedeny k uvědomění, že přírodu je třeba chránit a pečovat o ni – třídit odpad, šetřit vodu a energie a respektovat živé tvory. Postupně tak získávají vztah k přírodě jako k prostředí, které je jejich domovem a které potřebuje jejich ohleduplnost.</p>
+    </div>
+    
+    <div class="keep-together">
+        <p><strong>Očekávané výsledky učení:</strong></p>
+        <ul>
+            <li>Pojmenuje a rozlišuje některé objekty ze živé a neživé přírody a zapamatuje si jejich názvy.</li>
+            <li>Porovná charakteristiky a vlastnosti objektů z přírody.</li>
+            <li>Rozpozná a pojmenuje některé jevy a děje na Zemi.</li>
+            <li>Rozlišuje mezi světem přírody a techniky a vysvětlí jejich význam pro člověka a život na Zemi.</li>
+            <li>Orientuje se v dění a změnách v přírodě a ve svém okolí a přizpůsobuje se jim.</li>
+            <li>Udržuje pořádek v blízkém prostředí.</li>
+            <li>Jedná s ohledem na ochranu životního prostředí.</li>
+            <li>Rozpozná udržitelné přístupy v běžných životních situacích a umí je uplatnit.</li>
+            <li>Spolupodílí se na péči o rostliny a živočichy.</li>
+            <li>Respektuje různé formy života.</li>
+            <li>Zná způsoby ochrany při některých nebezpečných situacích (v kontaktu se zvířaty, rostlinami i při rizicích způsobených přírodními podmínkami).</li>
+        </ul>
+    </div>
+
+    <!-- 11. PLÁN AUTOEVALUACE -->
+    <h2 class="section-break">11. Plán autoevaluace</h2>
+    
+    <div class="keep-together">
+        <p>Autoevaluace je nedílnou součástí vzdělávacího procesu v mateřské škole. Slouží k pravidelnému a systematickému hodnocení kvality poskytovaného vzdělávání a podmínek, v nichž vzdělávání probíhá. Jejím cílem je zjistit, zda škola naplňuje stanovené cíle ŠVP, a zároveň odhalit silné stránky, slabé stránky a možnosti dalšího rozvoje.</p>
+
+        <!-- BAREVNÁ TABULKA AUTOEVALUACE -->
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #7b9e87; border-radius: 8px; overflow: hidden; margin-top: 1.5em; page-break-inside: avoid;">
+            <thead>
+                <tr style="background-color: #7b9e87; color: white;">
+                    <th style="padding: 15px; width: 35%; color: white; border-right: 1px solid white;">Oblast hodnocení</th>
+                    <th style="padding: 15px; color: white;">Cíl, nástroje, odpovědnost a časový plán</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #fdfdfd;">
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; border-right: 1px solid #eaf3ed; vertical-align: top;">
+                        <strong style="color: #4a7c59; font-size: 1.1em;">Průběh vzdělávání</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">(způsoby realizace, metody a formy práce, klima školy)</span>
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; vertical-align: top;">
+                        <ul style="margin: 0; padding-left: 20px; color: #333;">
+                            <li><strong>Cíl:</strong> Zda je průběh v souladu s RVP PV a ŠVP, návrhy na zlepšení.</li>
+                            <li><strong>Nástroje:</strong> Pozorování spontánních i řízených činností, analýza dokumentace školy.</li>
+                            <li><strong>Odpovídá:</strong> Ředitelka a celý kolektiv (průběžně během roku).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; border-right: 1px solid #eaf3ed; vertical-align: top;">
+                        <strong style="color: #4a7c59; font-size: 1.1em;">Pokroky dětí</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">(rozvoj dítěte v oblastech RVP PV)</span>
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; vertical-align: top;">
+                        <ul style="margin: 0; padding-left: 20px; color: #333;">
+                            <li><strong>Cíl:</strong> Individualizace vzdělávání na základě výsledků.</li>
+                            <li><strong>Nástroje:</strong> Pedagogické pozorování, i-Sophi, diagnostika dětí (portfolia, záznamové archy).</li>
+                            <li><strong>Odpovídá:</strong> Třídní pedagogové (2x ročně v termínech stanovených v ŠVP).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="background-color: #fdfdfd;">
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; border-right: 1px solid #eaf3ed; vertical-align: top;">
+                        <strong style="color: #4a7c59; font-size: 1.1em;">Podmínky vzdělávání</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">(materiální, prostorové, organizační a personální)</span>
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; vertical-align: top;">
+                        <ul style="margin: 0; padding-left: 20px; color: #333;">
+                            <li><strong>Cíl:</strong> Zlepšení podmínek vzdělávání.</li>
+                            <li><strong>Nástroje:</strong> Checklisty a inventáře, analýza prostor.</li>
+                            <li><strong>Odpovídá:</strong> Ředitelka (průběžně během celého školního roku).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; border-right: 1px solid #eaf3ed; vertical-align: top;">
+                        <strong style="color: #4a7c59; font-size: 1.1em;">Spolupráce se zákonnými zástupci</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">(komunikace, zapojení rodiny, spokojenost)</span>
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #eaf3ed; vertical-align: top;">
+                        <ul style="margin: 0; padding-left: 20px; color: #333;">
+                            <li><strong>Cíl:</strong> Zkvalitnění klimatu v MŠ a spokojenosti dětí i rodičů.</li>
+                            <li><strong>Nástroje:</strong> Dotazníky spokojenosti, ankety, rozhovory a konzultace s rodiči.</li>
+                            <li><strong>Odpovídá:</strong> Ředitelka a pedagogové (min. 1x ročně plošně, 2x ročně hovorové hodiny).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="background-color: #fdfdfd;">
+                    <td style="padding: 15px; border-right: 1px solid #eaf3ed; vertical-align: top;">
+                        <strong style="color: #4a7c59; font-size: 1.1em;">Práce pedagogů</strong><br>
+                        <span style="font-size: 0.9em; color: #666;">(profesionalita, týmová spolupráce, DVPP)</span>
+                    </td>
+                    <td style="padding: 15px; vertical-align: top;">
+                        <ul style="margin: 0; padding-left: 20px; color: #333;">
+                            <li><strong>Cíl:</strong> Zlepšení kvality vzdělávání, prohloubení znalostí a týmové spolupráce.</li>
+                            <li><strong>Nástroje:</strong> Sebehodnocení, hospitace (min. 2x ročně), vzájemné náslechy, zápisy z porad.</li>
+                            <li><strong>Odpovídá:</strong> Ředitelka a pedagogové (průběžně).</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

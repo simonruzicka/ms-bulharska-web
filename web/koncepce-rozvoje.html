@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Koncepce rozvoje - MŠ Bulharská</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            background: white;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 60px 80px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Hlavička a Logo */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+        }
+        
+        .main-title {
+            text-align: center;
+            font-size: 24pt;
+            font-weight: 900;
+            margin: 0 0 5px 0;
+            color: #4a5c50;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 13pt;
+            color: #777;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* Citát */
+        .quote-box {
+            background-color: #f8fbf9;
+            border-left: 5px solid #d18d83;
+            padding: 20px 30px;
+            margin: 30px 0 40px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 11.5pt;
+            font-style: italic;
+            color: #4a5c50;
+            text-align: center;
+            position: relative;
+            page-break-inside: avoid;
+        }
+        .quote-box::before {
+            content: '"';
+            font-size: 40pt;
+            color: #d18d83;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        /* Ochrana proti roztržení pro tisk */
+        .keep-together {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-bottom: 30px;
+        }
+        
+        /* Nadpisy */
+        h2 {
+            font-size: 16pt;
+            color: #7b9e87;
+            border-bottom: 2px solid #eaf3ed;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+        }
+        
+        /* Specifické nadpisy pro oblasti */
+        .area-title {
+            font-size: 13pt;
+            font-weight: 700;
+            color: #2c3e32;
+            background-color: #fdfdfd;
+            border: 1px solid #eaf3ed;
+            border-left: 4px solid #7b9e87;
+            padding: 10px 15px;
+            margin: 25px 0 15px 0;
+            border-radius: 4px;
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+            display: flex;
+            align-items: center;
+        }
+        .area-title span {
+            margin-right: 10px;
+            font-size: 14pt;
+        }
+        
+        p, li { 
+            text-align: justify; 
+            orphans: 3; /* Zamezí "sirotkům" (osamoceným řádkům na konci/začátku strany) */
+            widows: 3; 
+        }
+        p { margin-top: 0; margin-bottom: 12px; }
+        
+        /* Seznamy */
+        ul { 
+            padding-left: 20px; 
+            margin-top: 10px; 
+            margin-bottom: 20px; 
+            list-style-type: none;
+        }
+        ul li { 
+            margin-bottom: 8px; 
+            position: relative;
+            padding-left: 15px;
+        }
+        ul li::before {
+            content: "▪";
+            color: #d18d83;
+            font-weight: bold;
+            display: inline-block;
+            width: 15px;
+            margin-left: -15px;
+        }
+
+        /* Podpis */
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 40px;
+        }
+        .date-box {
+            font-size: 11pt;
+            padding-bottom: 10px;
+        }
+        .signature-box {
+            text-align: center;
+            width: 250px;
+        }
+        .signature-line {
+            border-bottom: 1px solid #000;
+            margin-bottom: 8px;
+            height: 35px;
+        }
+
+        @media print {
+            @page {
+                margin: 20mm 25mm; /* Pevné tiskové okraje - nahoře/dole 20mm, po stranách 25mm */
+            }
+            body { 
+                background: white; 
+                margin: 0; 
+                padding: 0; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+                font-size: 11pt; /* Mírné zmenšení písma pro tisk */
+            }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                padding: 0; 
+                max-width: 100%; 
+                border-radius: 0; 
+            }
+            h2 { margin-top: 20px; }
+            .keep-together { margin-bottom: 20px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        
+        <!-- Prostor pro vložení loga -->
+        <div class="logo-container" style="min-height: 220px; display: flex; justify-content: center; align-items: center;">
+            <img src="logo.jpg" alt="" style="max-width: 280px; height: auto; color: transparent;">
+        </div>
+        
+        <div class="main-title">
+            Koncepce rozvoje
+        </div>
+        <div class="sub-title">
+            Mateřské školy Brno, Bulharská 62 (Období 2026 – 2032)
+        </div>
+
+        <div class="quote-box">
+            Dopřejme dětem prostor pro vlastní volbu, možnost učit se z chyb a radost z objevování světa v prostředí založeném na důvěře a respektu. Právě takové prostředí podporuje rozvoj sebevědomých osobností, které si váží sebe i druhých.
+        </div>
+
+        <div class="keep-together">
+            <h2>Úvod</h2>
+            <p>Východiskem pro zpracování této koncepce rozvoje mateřské školy je přímá znalost každodenního chodu školy, vyplývající z mého působení v této mateřské škole a ze současného výkonu funkce statutární zástupkyně. Koncepce dále zohledňuje dostupné vnitřní dokumenty školy a také závěry a doporučení České školní inspekce. Cílem koncepce je vymezit základní směřování této organizace a vytvořit rámec pro její systematický a dlouhodobý rozvoj.</p>
+            <p>Tato koncepce je vytvořena pro účely konkurzního řízení na pozici ředitelky. V případě mého jmenování se stane základním rámcem pro systematický a dlouhodobý rozvoj školy v období následujících šesti let. Mým záměrem je vytvořit moderní vzdělávací instituci, která reaguje na aktuální trendy a potřeby dětí i rodičů.</p>
+            <p>V následující části dokumentu představuji naši společnou vizi a strategii rozvoje pěti klíčových oblastí.</p>
+        </div>
+
+        <div class="keep-together">
+            <h2>Vize</h2>
+            <p>Našim cílem je vybudovat z mateřské školy inspirativní prostředí pro všechny zúčastněné – děti, rodiče i pedagogy. Chceme vytvořit prostor, kde se každý bude cítit přijímaný a respektovaný bez ohledu na individuální odlišnosti.</p>
+            <p>Budeme se snažit být pro děti průvodci, kteří jim poskytnou podporu a porozumění při objevování světa a osamostatňování se a skrze Daltonské principy je postupně učit přijímat zodpovědnost za vlastní rozhodnutí.</p>
+            <p>Jednou z našich nejvýznamnějších priorit je rozšířit mateřskou školu o logopedickou třídu v nevyužitých prostorách bývalé kuchyně. Záměrem je vytvořit moderní zázemí pro včasnou odbornou péči při narušené komunikační schopnosti u dětí.</p>
+            <p>Pro rodiče chceme být především rovnocenným partnerem. Považujeme za klíčové vybudovat nový systém spolupráce, kde rodič nebude jen pasivním příjemcem informací, ale aktivní součástí života školy. Budeme se soustředit na to, abychom pro rodiče byly odbornou oporou, ale především také lidskou oporou při výchově a vzdělávání jejich dětí.</p>
+            <p>Naším společným záměrem je vytvářet pracovní prostředí postavené na otevřenosti a vzájemné důvěře. Postupným rozvojem odbornosti týmu a aktivní péčí o duševní zdraví zaměstnanců budeme budovat stabilní a spokojený kolektiv, což se přímo promítne do celkové atmosféry školy.</p>
+            <p>Nedílnou součástí naší vize je také obnova dobrého jména mateřské školy. Budeme usilovat o to, abychom se stali moderní institucí, která bude zárukou kvality a odbornosti, a to jak pro rodiče, zřizovatele, tak i širší veřejnost.</p>
+        </div>
+
+        <h2>Strategie rozvoje</h2>
+
+        <div class="keep-together">
+            <div class="area-title"><span>📚</span> Oblast výchovně vzdělávací</div>
+            <p>Základním východiskem pro výchovně vzdělávací oblast je Rámcový vzdělávací program pro předškolní vzdělávání a také stávající školní vzdělávací program, který chci dále rozvíjet a obohacovat o moderní pedagogické přístupy. Mým cílem je, aby vzdělávání v naší škole bylo pro děti přirozené, prožitkové a maximálně individualizované. Chci stavět na respektujícím přístupu, který zohledňuje vývojová specifika dětí předškolního věku a podnětném prostředí, které děti motivuje k učení skrze objevování.</p>
+            <p><strong>Dlouhodobé záměry a cíle výchovně vzdělávací oblasti:</strong></p>
+            <ul>
+                <li>postupně zavádět prvky Daltonského vzdělávacího plánu – využívat Daltonskou tabuli pro vizualizaci týdenních úkolů, pracovat s barevným rozlišením dnů v týdnu pro lepší časovou orientaci u dětí, uplatňovat principy odložené pozornosti pro posilování trpělivosti</li>
+                <li>zajistit pravidelnou logopedickou intervenci – zařazovat oromotorická a dechová cvičení a aktivity pro rozvoj fonematického sluchu. Aktivně pracovat s logopedickými pomůckami jako jsou logopedická zrcadla, foukací trenažéry, vibrační pomůcky, logopedické karty aj.</li>
+                <li>aktivně využívat digitální technologie – pořídit další interaktivní tabuli a licencovaný vzdělávací program, např. Medvídek EDU, vybavit každou třídu sadou programovatelných včelek BEEBOT pro rozvoj algoritmického myšlení u dětí, pořídit další digitální pomůcky např. interaktivní podlahu, digitální lupu, mikroskop, diktafon, světelný panel</li>
+                <li>rozšířit využití pedagogické diagnostiky I-Sophi</li>
+                <li>rozvíjet emoční inteligenci – pracovat s didaktickou sadou EMUŠÁCI a emočním semaforem pro rozpoznávání, pojmenovávání a bezpečné projevování emocí u dětí</li>
+                <li>podporovat wellbeing a pozitivní klima – vytvářet v každé třídě bezpečné a podnětné prostředí, kde se děti cítí spokojeně a učí se respektovat sebe i ostatní</li>
+                <li>diferencovat vzdělávací nabídku tak, aby každé dítě mohlo zažít úspěch</li>
+                <li>aktivně využívat formativní hodnocení</li>
+                <li>budovat osm základních dovedností pro život (Essential Skills) podle metodiky Skills Builder – využívat tento univerzální rámec k systematickému budování tzv. měkkých dovedností (soft skills), které jsou klíčové pro rozvoj osobnosti a budoucí směřování dítěte</li>
+                <li>rozvíjet edukačně stimulační skupinu pro předškoláky – pokračovat v realizaci této skupiny a neustále zkvalitňovat její náplň tak, aby dětem usnadnila vstup do ZŠ</li>
+                <li>budovat u dětí vztah k přírodě a základy udržitelnosti pomocí různých projektů – Mrkvička, Ukliďme Česko aj.</li>
+                <li>podporovat prosociální cítění a empatii – zapojovat se do charitativních projektů a realizovat vlastní dobročinné akce</li>
+                <li>zapojit se do celorepublikového projektu SE SOKOLEM DO ŽIVOTA, čímž budeme u dětí budovat přirozenou formou radost z pohybu</li>
+                <li>podporovat čtenářskou gramotnost skrze projekt Celé Česko čte dětem</li>
+                <li>pořádat pravidelné exkurze pro obohacení tematických celků o reálný prožitek</li>
+                <li>aktivně spolupracovat se základními školami</li>
+                <li>pořádat pravidelné školky v přírodě</li>
+            </ul>
+        </div>
+
+        <div class="keep-together">
+            <div class="area-title"><span>🤝</span> Oblast personální</div>
+            <p>V mateřské škole v současnosti pracuje 9 pedagogických a 4 provozní zaměstnanci. Od ledna je přerušena činnost školní kuchyně a strava je dovážena z kuchyně základní školy. Personální obsazení je v tuto chvíli stabilní. Zaměstnanci projevují aktivní snahu o profesní růst, zároveň však v rámci týmu rezonuje potřeba zvýšené podpory a metodické pomoci v souvislosti s přechodem na digitální správu dokumentace a také v souvislosti se změnami v novém Rámcovém vzdělávacím programu pro předškolní vzdělávání.</p>
+            <p><strong>Dlouhodobé záměry a cíle personální oblasti:</strong></p>
+            <ul>
+                <li>udržet a podporovat stabilitu týmu</li>
+                <li>prohlubovat u zaměstnanců schopnost sebereflexe</li>
+                <li>iniciovat sdílení zkušeností s pedagogy z jiných mateřských škol</li>
+                <li>podporovat vzájemné hospitace</li>
+                <li>poskytovat pravidelnou zpětnou vazbu</li>
+                <li>vytvářet prostředí založené na otevřené komunikaci a vzájemném porozumění</li>
+                <li>využívat individuální potenciál každého zaměstnance</li>
+                <li>vytvořit efektivní plán dalšího vzdělávání pedagogických pracovníků</li>
+                <li>rozvíjet digitální kompetence celého týmu tak, aby technologie byly vnímány jako pomocník, nikoliv jako bariéra</li>
+                <li>poskytovat individuální i skupinovou metodickou podporu při práci s digitálními nástroji</li>
+                <li>zajistit systematický proces adaptace pro nové zaměstnance</li>
+                <li>předcházet syndromu vyhoření vytvářením bezpečného a vnímavého pracovního prostředí, kde je kladen důraz na individuální potřeby pedagogů, ocenění jejich každodenní práce a možnost otevřeně sdílet a řešit náročné profesní situace s podporou vedení i kolegů</li>
+            </ul>
+        </div>
+
+        <div class="keep-together">
+            <div class="area-title"><span>📊</span> Oblast řízení</div>
+            <p>Přestože škola v současnosti disponuje všemi povinnými dokumenty, považuji za nezbytné provést jejich hloubkovou revizi. Chci upravit stávající vnitřní předpisy a směrnice tak, aby odpovídaly reálnému chodu mateřské školy a zohledňovaly platnou legislativu. Mým cílem je, aby řízení školy bylo transparentní, funkční a založené na vzájemné důvěře.</p>
+            <p><strong>Dlouhodobé záměry a cíle v oblasti řízení:</strong></p>
+            <ul>
+                <li>revidovat vnitřní předpisy a směrnice</li>
+                <li>nastavit otevřenou a efektivní komunikaci</li>
+                <li>zavést pravidelné a obsahově přínosné pedagogické i provozní porady</li>
+                <li>využívat analýzu zpětných vazeb od zaměstnanců a rodinných příslušníků</li>
+                <li>zmodernizovat vnitřní i vnější komunikační systém</li>
+                <li>plně využívat všechny moduly, které nabízí školní inf. systém Správa MŠ</li>
+                <li>zajišťovat pravidelnou revizi a inovaci Školního vzdělávacího programu</li>
+                <li>vytvořit funkční systém delegování pravomocí</li>
+                <li>motivovat všechny zaměstnance k naplňování společných cílů</li>
+                <li>oceňovat zásluhy jednotlivých zaměstnanců</li>
+                <li>pracovat s výsledky autoevaluace</li>
+                <li>zajistit vzdělávání vedoucích pracovníků v oblasti řízení a managementu</li>
+            </ul>
+        </div>
+
+        <div class="keep-together">
+            <div class="area-title"><span>💰</span> Oblast materiálně ekonomická</div>
+            <p>Zřizovatelem mateřské školy je městská část Královo Pole, která zajišťuje financování provozních nákladů a nově také mzdových nákladů nepedagogických pracovníků. Platy pedagogů jsou hrazeny ze státního rozpočtu prostřednictvím přímých nákladů na vzdělávání. Mým cílem je zajistit stabilitu rozpočtu a zároveň aktivně vyhledávat další možnosti financování rozvoje školy.</p>
+            <p><strong>Dlouhodobé záměry a cíle materiálně ekonomické oblasti:</strong></p>
+            <ul>
+                <li>hospodařit s finančními prostředky účelně a transparentně</li>
+                <li>vybudovat a vybavit logopedickou třídu</li>
+                <li>aktivně vyhledávat a využívat dotační programy</li>
+                <li>propojovat rozvojové plány školy s Místním akčním plánem a aktivně se zapojovat do jeho projektů</li>
+                <li>zvyšovat úroveň vybavení jednotlivých tříd i společných prostor, pořízení interaktivních pomůcek, obměna hraček apod.</li>
+                <li>pokračovat v revitalizaci školní zahrady a doplnit ji o nové herní prvky a vybudovat užitkovou část zahrady s vyvýšenými záhonky na pěstování bylinek, ovoce a zeleniny</li>
+                <li>získávat další finance mimo rozpočet skrze sponzorské dary a menší grantové výzvy</li>
+                <li>spolupracovat se zřizovatelem na dlouhodobém plánu investic do budovy školy</li>
+                <li>plánovat a realizovat průběžné opravy</li>
+                <li>hledat cesty k úsporám na energiích</li>
+            </ul>
+        </div>
+
+        <div class="keep-together">
+            <div class="area-title"><span>🌐</span> Oblast spolupráce</div>
+            <p>Mým cílem je proměnit mateřskou školu v otevřenou instituci, která je přirozenou součástí místní komunity. Chci do života školy vnést atmosféru založenou na vzájemné důvěře, respektu a ochotě spolupracovat s rodinou, zřizovatelem i dalšími organizacemi.</p>
+            <p><strong>Dlouhodobé záměry a cíle v oblasti spolupráce:</strong></p>
+            <ul>
+                <li><strong>Spolupráce se zřizovatelem</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>nastavit aktivní a iniciativní partnerství založené na pravidelné komunikaci a společném řešení rozvojových plánů školy</li>
+                        <li>vytvářet prostor pro nahlédnutí do každodenního života školy</li>
+                    </ul>
+                </li>
+                <li><strong>Spolupráce s rodinou</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>vybudovat nový model partnerství založený na vzájemné důvěře a individuálním přístupu</li>
+                        <li>vytvářet pravidelné příležitosti pro společná setkávání a upevňování vztahů při pravidelně pořádaných akcích jako je dýňování, vánoční tvoření, jarní tvoření, zahradní slavnost, četba dětem v rámci projektu Celé Česko čte dětem či formou tematických besed</li>
+                        <li>pravidelně nabízet konzultační hodiny</li>
+                    </ul>
+                </li>
+                <li><strong>Spolupráce se základní školou:</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>začít spolupracovat při realizaci edukačně stimulační skupiny</li>
+                        <li>iniciovat metodická setkávání učitelek z MŠ a ZŠ</li>
+                    </ul>
+                </li>
+                <li><strong>Spolupráce s ostatními mateřskými školami</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>navazovat partnerství</li>
+                        <li>realizovat společné projekty</li>
+                        <li>vytvořit prostor pro kolegiální sdílení dobré praxe</li>
+                    </ul>
+                </li>
+                <li><strong>Spolupráce se školskými poradenskými zařízeními</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>navázat kontakty s pracovníky z SPC a PPP</li>
+                    </ul>
+                </li>
+                <li><strong>Public relations</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li>vytvořit nové moderní webové stránky</li>
+                        <li>prezentovat školu na sociálních sítích</li>
+                        <li>inovovat logo školy</li>
+                        <li>informovat veřejnost o aktivitách školy</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Závěr a podpis zabalené do jedné entity -->
+        <div class="keep-together">
+            <h2>Závěr</h2>
+            <p>Předložená koncepce je pro mě víc než jen strategický dokument. Je to osobní závazek k rozvoji školy, kterou důvěrně znám. Mým cílem je být lídrem, který dokáže propojit odbornost s lidskostí. Věřím, že s podporou stabilního týmu a v úzké spolupráci se zřizovatelem vybudujeme moderní vzdělávací instituci. Jsem připravena převzít plnou odpovědnost za naplňování této vize a zajistit dlouhodobý rozvoj školy.</p>
+            
+            <div class="signature-section">
+                <div class="date-box">
+                    V Brně dne: 24. srpna 2026
+                </div>
+                <div class="signature-box">
+                    <div class="signature-line"></div>
+                    <strong>Bc. Pavla Kukletová</strong><br>
+                    <span>ředitelka školy</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CHYTRÝ SKRIPT PRO SPRÁVNOU ČESKOU TYPOGRAFII (Předložky) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const regex = /(\s|^)([kKsSvVzZoOuUaAiI])\s+/g;
+            while (node = walker.nextNode()) {
+                if (node.parentElement.tagName === 'SCRIPT' || node.parentElement.tagName === 'STYLE') continue;
+                if (node.nodeValue.trim() !== '') {
+                    node.nodeValue = node.nodeValue.replace(regex, '$1$2\u00A0');
+                    node.nodeValue = node.nodeValue.replace(regex, '$1$2\u00A0');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

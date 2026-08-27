@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Školní řád - MŠ Bulharská</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; line-height: 1.5; color: #333; margin: 0; padding: 20px; background: white; }
+        
+        /* Odsazení a šířka textu na obrazovce */
+        .page { max-width: 850px; margin: 0 auto; padding: 5mm 15mm; }
+        
+        /* HLAVIČKA S LOGEM A NADPISEM */
+        .top-header { text-align: center; margin-bottom: 25px; }
+        
+        /* Ještě větší logo */
+        .logo-box {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .main-title { font-size: 26pt; font-weight: bold; margin: 0 0 5px 0; color: #2c3e32; text-transform: uppercase; line-height: 1.1; }
+        .sub-title { font-size: 13pt; color: #555; margin-bottom: 0; font-weight: bold; text-transform: uppercase; }
+        
+        /* DOKUMENTAČNÍ INFO */
+        .header-box { border: 2px solid #2c3e32; padding: 20px; margin-bottom: 40px; text-align: center; border-radius: 6px; background-color: #fcfcfc;}
+        .header-box strong { font-size: 12.5pt; display: block; margin-bottom: 5px; color: #111; }
+        
+        .doc-meta { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #aaa; font-size: 10.5pt; font-weight: bold; display: flex; justify-content: space-between; color: #444; }
+
+        /* NADPISY A TEXTY */
+        h2 { font-size: 14pt; color: #2c3e32; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-top: 35px; margin-bottom: 15px; text-transform: uppercase; page-break-after: avoid; }
+        h3 { font-size: 12pt; margin-top: 25px; margin-bottom: 10px; page-break-after: avoid; color: #d18d83; }
+        
+        p { margin-top: 0; margin-bottom: 12px; text-align: justify; font-size: 11pt;}
+        ul, ol { margin-top: 5px; margin-bottom: 15px; padding-left: 25px; font-size: 11pt; text-align: justify;}
+        li { margin-bottom: 8px; }
+
+        .info-box { background-color: #f8fbf9; border: 1px solid #c8dcd0; border-left: 5px solid #7b9e87; padding: 15px 20px; margin: 20px 0; font-size: 11pt; text-align: justify; }
+        .alert-box { background-color: #fff9e6; border: 1px solid #fbdc70; border-left: 5px solid #f39c12; padding: 15px 20px; margin: 20px 0; font-size: 11pt; text-align: justify;}
+
+        /* OCHRANA PROTI TRHÁNÍ TEXTU PŘI TISKU */
+        .article-block { page-break-inside: avoid; margin-bottom: 25px; }
+
+        /* VYLADĚNÁ PODPISOVÁ ČÁST */
+        .signature-section { 
+            margin-top: 60px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            page-break-inside: avoid; 
+        }
+        .signature-left {
+            font-size: 11pt;
+            color: #333;
+            padding-bottom: 5px;
+        }
+        .signature-left .approval-note {
+            font-size: 9.5pt;
+            color: #666;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .signature-right { 
+            text-align: center; 
+            width: 260px; 
+            font-size: 11pt;
+        }
+        .signature-line { 
+            border-bottom: 1px solid #000; 
+            margin-bottom: 8px; 
+            height: 1px; 
+        }
+
+        /* TISKOVÉ STYLY - ZMENŠENÉ OKRAJE */
+        @media print { 
+            /* Klasické okraje: 2 cm nahoře a dole, 1.5 cm po stranách */
+            @page { margin: 20mm 15mm 20mm 15mm; } 
+            body { padding: 0; } 
+            .page { padding: 0; box-shadow: none; max-width: 100%; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        
+        <div class="top-header">
+            <div class="logo-box">
+                <!-- VÁŠ OBRÁZEK -->
+                <img src="logo.jpg" alt="Logo MŠ">
+            </div>
+            
+            <div class="main-title">Školní řád</div>
+            <div class="sub-title">Mateřské školy pro školní rok 2026/2027</div>
+        </div>
+        
+        <div class="header-box">
+            <strong>Mateřská škola Brno, Bulharská 62, příspěvková organizace</strong>
+            Sídlo: Bulharská 62, 612 00 Brno | IČO: 64328244<br>
+            Zastoupená: Bc. Pavlou Kukletovou, ředitelkou školy<br>
+            Zástupkyně ředitelky: Vladimíra Křivánková
+            <div class="doc-meta">
+                <span>Č.j.: 682/26</span>
+                <span>Spisový znak: 1.2.1</span>
+                <span>Skartace: A/10</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            Ředitelka mateřské školy vydává v souladu s § 30 zákona č. 561/2004 Sb. (školský zákon) tento Školní řád, který upravuje podrobnosti k výkonu práv a povinností dětí, jejich zákonných zástupců, provoz a vnitřní režim školy, bezpečnost a podrobnosti o pravidlech vzájemných vztahů.
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 1: Práva, povinnosti a vzájemné vztahy</h2>
+            <h3>1.1 Práva dětí</h3>
+            <ul>
+                <li>Na kvalitní předškolní vzdělávání zaručující optimální rozvoj schopností a rozvoj osobnosti.</li>
+                <li>Na fyzicky i psychicky bezpečné prostředí při pobytu v mateřské škole.</li>
+                <li>Na svobodnou hru, odpočinek a volný čas.</li>
+                <li>Na respektování své individuality, soukromí a na ochranu před jakýmkoliv tělesným či duševním násilím.</li>
+                <li>Děti se specifickými vzdělávacími potřebami mají právo na poskytnutí podpůrných opatření.</li>
+            </ul>
+            <h3>1.2 Práva zákonných zástupců</h3>
+            <ul>
+                <li>Na informace o průběhu a výsledcích vzdělávání svého dítěte (v konzultačních hodinách nebo po předchozí domluvě).</li>
+                <li>Vyjadřovat se ke všem rozhodnutím týkajícím se podstatných záležitostí vzdělávání dětí.</li>
+                <li>Na informace a poradenskou pomoc školy ve věcech vzdělávání a výchovy.</li>
+                <li>Na diskrétnost a ochranu informací týkajících se jejich osobního a rodinného života.</li>
+            </ul>
+            <h3>1.3 Povinnosti zákonných zástupců</h3>
+            <ul>
+                <li>Zajistit, aby dítě řádně docházelo do mateřské školy, čistě a vhodně upravené.</li>
+                <li><strong>Oznámit škole omluvu nepřítomnosti dítěte (prostřednictvím aplikace Naše MŠ).</strong></li>
+                <li>Informovat školu o změně zdravotní způsobilosti, zdravotních obtížích dítěte nebo jiných závažných skutečnostech (změna bydliště, telefonního čísla).</li>
+                <li>Včas hradit úplatu za předškolní vzdělávání a úplatu za školní stravování.</li>
+                <li>V případě úmyslu požádat o odklad povinné školní docházky a s tím spojeného zájmu o setrvání dítěte v naší MŠ, požádat písemně ředitelku o "podržení místa" nejpozději do 15. března.</li>
+            </ul>
+            <h3>1.4 Pravidla vzájemných vztahů</h3>
+            <ul>
+                <li>Vzájemné vztahy mezi zaměstnanci školy, dětmi a zákonnými zástupci vycházejí ze zásad vzájemné úcty, respektu, důvěry a otevřenosti.</li>
+                <li>Zákonní zástupci i zaměstnanci školy dbají při vzájemné komunikaci na dodržování pravidel slušnosti a ohleduplnosti. Případné problémy či nejasnosti jsou řešeny věcně a bez přítomnosti dětí.</li>
+            </ul>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 2: Upřesnění výkonu práv a povinností</h2>
+            <h3>2.1 Povinné předškolní vzdělávání</h3>
+            <div class="alert-box">
+                <strong>Omlouvání dětí plnících povinné předškolní vzdělávání:</strong> Zákonný zástupce je povinen omluvit nepřítomnost dítěte, pro které je vzdělávání povinné. Omluvenku je nutné nahlásit neprodleně přes aplikaci Naše MŠ, a po návratu dítěte do MŠ nepřítomnost případně doložit do omluvného listu (na výzvu ředitelky).
+            </div>
+            <p>Povinné předškolní vzdělávání probíhá formou pravidelné denní docházky v pracovních dnech, a to v rozsahu 4 hodin denně (od 8:00 do 12:00 hod.). Tato povinnost neplatí v době školních prázdnin.</p>
+            <h3>2.2 Individuální vzdělávání</h3>
+            <p>Zákonný zástupce dítěte, pro které je předškolní vzdělávání povinné, může pro dítě v odůvodněných případech zvolit individuální vzdělávání. Tuto skutečnost musí písemně oznámit ředitelce školy nejpozději 3 měsíce před počátkem školního roku (nebo i v jeho průběhu).</p>
+            <p>Zákonný zástupce dítěte, které je individuálně vzděláváno, je povinen zajistit účast dítěte u ověření úrovně osvojování očekávaných výstupů v mateřské škole. Ověření probíhá formou přátelského rozhovoru a didaktických her. <br>Řádný termín ověření je stanoven na <strong>18. 11. 2026</strong>. <br>Náhradní termín ověření je stanoven na <strong>14. 12. 2026</strong>.</p>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 3: Provoz a vnitřní režim mateřské školy</h2>
+            <ol>
+                <li><strong>Provozní doba a příchod:</strong> Provoz mateřské školy je od <strong>6:15 do 16:45 hod.</strong> Děti se do mateřské školy scházejí <strong>od 6:15 do 8:30 hod.</strong> (U dětí plnících povinné vzdělávání doporučujeme příchod do 8:00 hod.).</li>
+                <li><strong>Uzamykání budovy a čipový systém:</strong> Z bezpečnostních důvodů se budova MŠ v <strong>8:30 hod.</strong> zamyká. Vstup rodičů do budovy je zajištěn pomocí přístupového čipového systému. Čip je nepřenosný na cizí osoby. Při ztrátě čipu je zákonný zástupce povinen toto neprodleně nahlásit vedení školy.</li>
+                <li><strong>Předávání dětí a oční kontakt:</strong> Zákonní zástupci předávají dítě osobně učitelce. <strong>Dítě je považováno za předané a škola za něj přebírá zodpovědnost až po navázání osobního a očního kontaktu rodiče s učitelkou.</strong> Rodič nesmí dítě nechat v šatně samotné a spoléhat na to, že samo dojde do třídy.</li>
+                <li><strong>Zdržování se v areálu MŠ:</strong> V šatnách se rodiče a děti zdržují pouze po dobu nezbytně nutnou pro převlečení a předání dítěte. Stejně tak <strong>žádáme rodiče, aby se z bezpečnostních důvodů nezdržovali na školní zahradě ani v jiných prostorách areálu MŠ déle, než je nezbytně nutné k předání či vyzvednutí dítěte.</strong></li>
+                <li><strong>Oblečení a obuv:</strong> Z bezpečnostních důvodů musí mít děti obuv s pevnou patou. Z hygienických důvodů musí mít děti jiné oblečení na pobyt v budově školy a jiné na pobyt venku.</li>
+                <li><strong>Zmocnění jiné osoby:</strong> Učitelky mohou vydat dítě jiné osobě než zákonnému zástupci pouze na základě písemného zmocnění podepsaného zákonným zástupcem. Bez tohoto pověření nebude dítě vydáno.</li>
+                <li><strong>Hračky z domova:</strong> Z hygienických a bezpečnostních důvodů <strong>není dovoleno nosit si do mateřské školy vlastní hračky</strong>. Výjimkou je pouze plyšák na usínání, kterého si děti mohou přinést bez předchozí dohody s učitelkou.</li>
+                <li><strong>Stravování a donáška vlastního jídla:</strong> Dětem, které se nemohou (např. ze zdravotních důvodů) nebo nechtějí stravovat jídlem dodávaným mateřskou školou, je umožněno donášet si z domova vlastní stravu. Vlastní jídlo musí být předáno ve vhodných, řádně podepsaných nádobách. Z hygienických důvodů (v souladu s vyhláškou č. 107/2005 Sb.) <strong>škola nezajišťuje uchovávání tohoto jídla v chladicím zařízení ani jeho ohřev.</strong> Personál poskytne dítěti pouze nezbytnou pomoc při samotné konzumaci.</li>
+            </ol>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 4: Bezpečnost, ochrana zdraví a prevence</h2>
+            <ol>
+                <li>Mateřská škola zajišťuje bezpečnost a <strong>ochranu</strong> zdraví dětí při vzdělávání a s ním přímo souvisejících činnostech.</li>
+                <li><strong>Zdravotní stav dětí:</strong> Do mateřské školy mohou docházet <strong>pouze děti zcela zdravé</strong>. Učitelka má právo nepřijmout dítě se zjevnými příznaky onemocnění (silný kašel, zelená/žlutá rýma, teplota, průjem, zvracení, vši - pedikulóza, opar, zánět spojivek, sádra atd.).</li>
+                <li>Vyskytne-li se onemocnění během dne, učitelka informuje zákonného zástupce, který je povinen si dítě bez zbytečného odkladu vyzvednout.</li>
+                <li>Zaměstnanci MŠ nepodávají dětem žádné léky (s výjimkou život zachraňujících léků u chronicky nemocných dětí, a to pouze na základě písemné dohody lékaře, rodiče a ředitelky).</li>
+                <li><strong>Ochrana před sociálně patologickými jevy:</strong> Mateřská škola zajišťuje ochranu dětí před sociálně patologickými jevy, před projevy diskriminace, nepřátelství nebo násilí. Důležitým prvkem prevence je vytváření příznivého sociálního klimatu a uplatňování Minimálního preventivního programu MŠ.</li>
+            </ol>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 5: Podmínky zacházení s majetkem školy</h2>
+            <ol>
+                <li>Děti jsou pedagogy a zaměstnanci školy prokazatelně a přiměřeně svému věku vedeny k šetrnému zacházení s majetkem školy (hračky, pomůcky, vybavení tříd a zahrady) a k ochraně tohoto majetku před poškozením.</li>
+                <li>Zákonní zástupci jsou povinni chovat se v areálu mateřské školy (budova i zahrada) tak, aby nepoškozovali majetek školy. V případě, že zjistí jeho poškození, neprodleně tuto skutečnost nahlásí personálu.</li>
+                <li>V případě prokazatelného a svévolného poškození majetku školy ze strany dítěte či zákonného zástupce, bude tato záležitost se zákonnými zástupci individuálně projednána.</li>
+            </ol>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 6: Předčasné ukončení předškolního vzdělávání</h2>
+            <p>V souladu s § 35 zákona č. 561/2004 Sb. (školský zákon) může ředitelka mateřské školy po předchozím <strong>písemném upozornění</strong> zákonného zástupce rozhodnout o ukončení předškolního vzdělávání dítěte, jestliže:</p>
+            <ul>
+                <li>Zákonný zástupce opakovaně neuhradí úplatu za předškolní vzdělávání nebo úplatu za školní stravování ve stanoveném termínu a nedohodne s ředitelkou jiný termín úhrady.</li>
+                <li>Zákonný zástupce závažným způsobem nebo opakovaně narušuje provoz mateřské školy (např. nerespektováním pravidel školního řádu, agresivním či nevhodným chováním vůči personálu školy).</li>
+                <li>Zákonný zástupce bez mimořádných důvodů opakovaně narušuje provoz školy pozdním vyzvedáváním dítěte po ukončení provozní doby mateřské školy.</li>
+                <li>Dítě se bez omluvy zákonného zástupce nepřetržitě neúčastní předškolního vzdělávání po dobu delší než dva týdny.</li>
+            </ul>
+        </div>
+
+        <div class="article-block">
+            <h2>Článek 7: Závěrečná ustanovení</h2>
+            <ol>
+                <li>Seznámení se Školním řádem a jeho dodržování je závazné pro všechny zaměstnance a zákonné zástupce dětí.</li>
+                <li>Zákonní zástupci jsou s tímto řádem seznámeni na první třídní schůzce v září. Dokument je celoročně vyvěšen na nástěnkách v šatnách tříd, na webových stránkách školy a v aplikaci Naše MŠ.</li>
+                <li>Tento Školní řád nabývá platnosti dnem podpisu a účinnosti dnem 1. 9. 2026 a ruší platnost předchozího Školního řádu.</li>
+            </ol>
+
+            <div class="signature-section">
+                <div class="signature-left">
+                    V Brně dne: 24. 8. 2026
+                    <div class="approval-note">Projednáno a schváleno na pedagogické radě</div>
+                </div>
+                <div class="signature-right">
+                    <div class="signature-line"></div>
+                    <strong>Bc. Pavla Kukletová</strong><br>
+                    <span style="color: #666;">ředitelka školy</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

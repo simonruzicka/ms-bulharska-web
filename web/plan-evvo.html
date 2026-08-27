@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plán EVVO - MŠ Bulharská</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        :root {
+            --primary: #27ae60; /* Zelená barva přírody */
+            --secondary: #2c3e50;
+            --bg: #f4f6f7;
+            --field-bg: #fdfdfd;
+            --field-border: #bdc3c7;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #333; background: var(--bg); margin: 0; padding: 20px; }
+
+        .screen-notice { max-width: 850px; margin: 0 auto 20px auto; background: #e9f7ef; color: #1e8449; padding: 15px 20px; border-left: 5px solid var(--primary); font-size: 11pt; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); font-family: 'Nunito', sans-serif; }
+
+        .page { background: white; max-width: 850px; margin: 0 auto 40px auto; padding: 50px 70px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-radius: 8px; box-sizing: border-box; }
+
+        .header-box { text-align: center; border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        .header-box h1 { font-family: 'Nunito', sans-serif; font-size: 22pt; font-weight: 900; margin: 0 0 5px 0; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
+        .header-box h2 { font-family: 'Nunito', sans-serif; font-size: 13pt; color: #555; margin: 0 0 10px 0; font-weight: 700; text-transform: uppercase; }
+        .header-box .school-name { font-size: 11pt; color: #777; }
+
+        h3 { font-family: 'Nunito', sans-serif; font-size: 13pt; color: white; background-color: var(--secondary); padding: 8px 15px; margin-top: 35px; margin-bottom: 15px; text-transform: uppercase; border-radius: 4px; page-break-after: avoid; }
+        
+        .section-subtitle { font-weight: 700; color: var(--primary); font-size: 11.5pt; margin-top: 20px; margin-bottom: 5px; }
+
+        p, ul { margin-top: 0; margin-bottom: 15px; text-align: justify; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+
+        /* Interaktivní tabulka cílů */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 10.5pt; }
+        th, td { border: 1px solid var(--field-border); padding: 10px 12px; vertical-align: middle; }
+        th { background-color: #ecf0f1; color: var(--secondary); font-weight: 700; text-align: left; text-transform: uppercase; font-size: 9.5pt; }
+        
+        textarea { width: 100%; border: none; background-color: transparent; font-family: 'Open Sans', sans-serif; font-size: 10.5pt; padding: 5px; box-sizing: border-box; resize: none; overflow: hidden; min-height: 40px; color: #222; }
+        textarea:focus { outline: none; background-color: #fcfcfc; border-left: 3px solid var(--primary); }
+
+        .signature-section { margin-top: 50px; display: flex; justify-content: space-between; page-break-inside: avoid; }
+        .signature-box { text-align: center; width: 250px; }
+        .signature-line { border-bottom: 1px solid #000; margin-bottom: 8px; height: 30px; }
+
+        @media print {
+            @page { margin: 15mm 20mm; }
+            body { background: white; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .screen-notice { display: none; }
+            .page { box-shadow: none; margin: 0; padding: 0; max-width: 100%; border-radius: 0; }
+            textarea { resize: none; background-color: transparent !important; border: none !important; }
+            input::placeholder, textarea::placeholder { color: transparent; }
+            h3 { color: #000; background-color: #eee !important; border: 1px solid #000; }
+            table, th, td { border: 1px solid #000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="screen-notice">
+        <strong>💡 Plán EVVO (Environmentální vzdělávání, výchova a osvěta):</strong> Tento dokument vyžaduje ČŠI. Text je plně předvyplněn s ohledem na profilaci MŠ Bulharská. Pokud si přejete dopsat do tabulky konkrétní akce na tento rok, klikněte do textových polí. Stiskněte <strong>Ctrl+P</strong> pro tisk.
+    </div>
+
+    <div class="page">
+        <div class="header-box">
+            <h1>Plán EVVO</h1>
+            <h2>Environmentální vzdělávání, výchova a osvěta</h2>
+            <div class="school-name">Mateřská škola Brno, Bulharská 62 | Školní rok: 2026/2027</div>
+        </div>
+
+        <h3>1. Charakteristika a hlavní cíle EVVO</h3>
+        <p>
+            Plán environmentálního vzdělávání, výchovy a osvěty (EVVO) vychází ze Školního vzdělávacího programu a je jeho nedílnou součástí. Cílem je utvářet u dětí od raného věku pozitivní vztah k přírodě, učit je vnímat svět v jeho souvislostech a vést je k odpovědnosti za životní prostředí.
+        </p>
+        <div class="section-subtitle">Dílčí cíle naší mateřské školy:</div>
+        <ul>
+            <li>Vytváření základních ekologických návyků u dětí (třídění odpadu, šetření vodou a energiemi).</li>
+            <li>Přímý kontakt s přírodou prostřednictvím vycházek, badatelských aktivit a prožitkového učení.</li>
+            <li>Rozvoj respektu k živým tvorům a péče o ně (zimní přikrmování ptactva, péče o zeleň na zahradě).</li>
+            <li>Začleňování environmentálních témat do Daltonských bloků, podpora samostatného objevování a kritického myšlení.</li>
+        </ul>
+
+        <h3>2. Metody a formy práce</h3>
+        <p>
+            V předškolním věku je základem učení prostřednictvím vlastního prožitku, smyslového vnímání a praktické činnosti. Využíváme především tyto metody:
+        </p>
+        <ul>
+            <li><strong>Prvky Daltonského plánu:</strong> Děti prostřednictvím volby úkolů na Daltonské tabuli samostatně plní úkoly spojené s objevováním přírody (např. třídění obrázků, skládání životních cyklů zvířat).</li>
+            <li><strong>Badatelské činnosti:</strong> Práce s lupou, mikroskopem, pozorování hmyzu, klíčení semínek.</li>
+            <li><strong>Prožitkové učení venku:</strong> Pravidelný pobyt venku, práce s přírodninami (klacíky, kameny, kaštany), land art.</li>
+            <li><strong>Zapojení do běžného provozu:</strong> Každodenní vedení dětí ke zhasínání světel, vypínání vody při mytí rukou a správnému třídění odpadků do barevných košů ve třídě.</li>
+        </ul>
+
+        <h3>3. Realizace EVVO v průběhu roku (Interaktivní plán)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Roční období</th>
+                    <th style="width: 75%;">Témata a plánované činnosti</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: 700; color: #e67e22;">PODZIM</td>
+                    <td>
+                        <textarea placeholder="Doplňte podzimní aktivity...">- Sběr přírodnin a plodů (kaštany, žaludy).&#10;- Pozorování změn v přírodě (barvy listí, odlet ptáků).&#10;- Výstava podzimních plodů, poznávání přírody všemi smysly.</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 700; color: #2980b9;">ZIMA</td>
+                    <td>
+                        <textarea placeholder="Doplňte zimní aktivity...">- Péče o volně žijící zvířata a ptactvo (výroba krmítek, sypání semínek).&#10;- Pokusy se sněhem a ledem (tání, mrznutí, skupenství vody).&#10;- Poznávání stop zvířat ve sněhu.</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 700; color: #27ae60;">JARO</td>
+                    <td>
+                        <textarea placeholder="Doplňte jarní aktivity...">- Probouzení přírody (pozorování pupenů a prvních květin).&#10;- Setí semínek, péče o truhlíky a záhonky na zahradě MŠ.&#10;- Oslava Dne Země (úklid okolí školky, ekologické hry).</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 700; color: #f39c12;">LÉTO</td>
+                    <td>
+                        <textarea placeholder="Doplňte letní aktivity...">- Pozorování hmyzu a života u vody.&#10;- Výlety do lesa, hry v přírodě, stavění domečků z přírodnin.&#10;- Ochrana před sluncem a pitný režim (vliv počasí na lidské tělo).</textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4. Ekologizace provozu mateřské školy</h3>
+        <p>
+            Vedení školy a všichni zaměstnanci jdou dětem osobním příkladem. Klademe důraz na ekologický chod naší instituce:
+        </p>
+        <ul>
+            <li><strong>Odpadové hospodářství:</strong> Důsledné třídění odpadu (papír, plast, směsný odpad) dospělými i dětmi. Využívání recyklovaných a zbytkových materiálů k výtvarným činnostem.</li>
+            <li><strong>Šetření energiemi:</strong> Používání úsporných žárovek, zhasínání v prázdných místnostech, efektivní větrání.</li>
+            <li><strong>Hospodaření s vodou:</strong> Výchova dětí k nenechávání téct vody zbytečně. Používání ekologicky šetrných čisticích prostředků (viz Sanitační řád).</li>
+        </ul>
+
+        <h3>5. Projekty a spolupráce</h3>
+        <ul>
+            <li><strong>Environmentální projekty:</strong> Aktivní zapojení mateřské školy do celostátních či regionálních ekologických projektů (např. Recyklohraní, Mrkvička apod.), které obohacují vzdělávací nabídku a motivují děti k praktické ochraně přírody.</li>
+            <li><strong>Externí subjekty:</strong> Spolupráce s environmentálními centry (např. Lipka v Brně), návštěvy výukových programů zaměřených na poznávání přírody a udržitelnost.</li>
+            <li><strong>Spolupráce s rodinou:</strong> Informování zákonných zástupců o ekologických aktivitách dětí. Zapojování rodin do sběrových akcí (sběr papíru, baterií, elektroodpadu) a podpora přenosu ekologických návyků z MŠ do domácího prostředí.</li>
+        </ul>
+
+        <div class="signature-section">
+            <div style="font-size: 11pt; padding-top: 10px;">
+                Vypracováno v Brně dne: 24. 8. 2026
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <strong>Bc. Pavla Kukletová</strong><br>
+                <span style="font-size: 10pt; color: #555;">ředitelka školy</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('textarea');
+            function autoResize() {
+                this.style.height = 'auto'; 
+                this.style.height = this.scrollHeight + 'px'; 
+            }
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', autoResize);
+                autoResize.call(textarea);
+            });
+        });
+    </script>
+</body>
+</html>
