@@ -157,73 +157,6 @@
     padding: 0 40px;
   }
 
-  /* ── UPOZORNĚNÍ NA ROZPRACOVANÝ WEB ── */
-  .site-notice {
-    background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--yellow) 100%);
-    border-bottom: 2px dashed rgba(122, 78, 45, 0.35);
-    color: var(--text-dark);
-    padding: 12px 56px;
-    text-align: center;
-    font-size: 0.92rem;
-    line-height: 1.5;
-    position: relative;
-    overflow: hidden;
-    max-height: 220px;
-    transition: max-height 0.35s ease, padding 0.35s ease,
-                opacity 0.3s ease, border-bottom-width 0.35s ease;
-  }
-  /* stav po kliknutí na křížek — lišta se sbalí a pak se z DOM odstraní */
-  .site-notice.is-closing {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-    border-bottom-width: 0;
-  }
-  .site-notice-close {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 253, 248, 0.6);
-    color: var(--brown);
-    font-family: inherit;
-    font-size: 1rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .site-notice-close:hover,
-  .site-notice-close:focus-visible {
-    background: var(--warm-white);
-    transform: translateY(-50%) scale(1.12);
-  }
-  .site-notice-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .site-notice-icon {
-    font-size: 1.2rem;
-    line-height: 1;
-  }
-  .site-notice strong {
-    color: var(--brown);
-    font-weight: 800;
-  }
-
   /* Decorative divider between nav and hero — small paws and hearts
      scattered across a thin dotted line in the school's palette.            */
   .nav-divider {
@@ -271,27 +204,34 @@
     50% { transform: translateY(-3px); }
   }
   .nav-inner {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 76px;
+    min-height: 76px;
   }
   .nav-links {
     display: flex;
-    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
     list-style: none;
     align-items: center;
+    padding: 0;
+    margin: 0;
   }
+  /* flex-shrink: 0 + nowrap = položka se nikdy nezlomí uprostřed názvu;
+     když se nevejde celá, přeteče na další řádek jako celek */
   .nav-links li {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .nav-links li + li::before {
     content: '|';
     color: var(--brown-light);
-    margin: 0 8px;
+    margin: 0 5px;
     font-weight: 300;
     opacity: 0.5;
   }
@@ -299,10 +239,11 @@
     text-decoration: none;
     color: var(--brown);
     font-weight: 700;
-    font-size: 0.98rem;
-    letter-spacing: 0.08em;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 12px 16px;
+    white-space: nowrap;
+    padding: 10px 11px;
     border-radius: 50px;
     transition: all 0.25s ease;
   }
@@ -910,21 +851,66 @@
     background: var(--cream);
     position: relative;
   }
+
+  /* Horní mřížka — 6 malých dlaždic (3 na řádek), přímé odkazy na dokumenty */
+  .doc-grid {
+    max-width: 960px;
+    margin: 0 auto 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .doc-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: left;
+    padding: 24px 22px;
+    min-height: 92px;
+    background: var(--warm-white);
+    border: 2px solid transparent;
+    border-radius: 24px;
+    text-decoration: none;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .doc-btn:hover,
+  .doc-btn:focus-visible {
+    border-color: var(--teal);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .doc-btn-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .doc-btn-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  /* Spodní část — dvě velké složky pod sebou */
   .drive-grid {
-    max-width: 720px;
+    max-width: 880px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
   .drive-btn {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-align: center;
-    padding: 34px 24px;
+    justify-content: flex-start;
+    gap: 26px;
+    text-align: left;
+    padding: 42px 44px;
     background: var(--warm-white);
     border: 2px solid transparent;
     border-radius: var(--radius);
@@ -939,21 +925,177 @@
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
   }
+  .drive-btn-icon {
+    font-size: 2.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .drive-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
   .drive-btn-label {
     font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
+    font-size: 1.55rem;
     font-weight: 700;
     color: var(--brown);
     line-height: 1.3;
   }
   .drive-btn-note {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-mid);
   }
+  .drive-btn-arrow {
+    margin-left: auto;
+    font-size: 1.7rem;
+    color: var(--brown-light);
+    flex-shrink: 0;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .drive-btn:hover .drive-btn-arrow {
+    transform: translateX(5px);
+    color: var(--brown);
+  }
+
+  /* ── PORADENSKÉ SLUŽBY — rozbalovací náhled PDF ── */
+  .poradenstvi-section {
+    background: var(--warm-white);
+    position: relative;
+  }
+  .pdf-preview {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .pdf-preview-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 24px 28px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .pdf-preview-head:hover,
+  .pdf-preview-head:focus-visible {
+    background: rgba(245, 200, 66, 0.14);
+  }
+  .pdf-preview-thumb {
+    width: 85px;
+    height: 110px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--warm-white);
+    border: 1px solid rgba(122, 78, 45, 0.16);
+    box-shadow: 0 4px 12px rgba(122, 78, 45, 0.14);
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  /* živá miniatura dokumentu — zmenšená stránka, klikat se dá skrz ni */
+  .pdf-preview-mini {
+    width: 850px;
+    height: 1100px;
+    border: none;
+    transform: scale(0.1);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  .pdf-preview-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .pdf-preview-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  .pdf-preview-note {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+  }
+  .pdf-preview-chevron {
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: var(--brown-light);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .pdf-preview.is-open .pdf-preview-chevron {
+    transform: rotate(180deg);
+  }
+  .pdf-preview-body {
+    padding: 0 20px 22px;
+  }
+  .pdf-preview-frame {
+    width: 100%;
+    height: 70vh;
+    min-height: 420px;
+    border: none;
+    border-radius: 16px;
+    background: var(--warm-white);
+    box-shadow: inset 0 0 0 1px rgba(122, 78, 45, 0.12);
+    display: block;
+  }
+  .pdf-preview-actions {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .pdf-preview-placeholder {
+    padding: 26px 20px;
+    text-align: center;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── SPOLEK RODIČŮ ── */
+  .spolek-section {
+    background: var(--warm-white);
+    position: relative;
+  }
+  .spolek-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 2px dashed rgba(122, 78, 45, 0.28);
+    border-radius: var(--radius);
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+  }
+  .spolek-icon {
+    font-size: 2.6rem;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .spolek-box p {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin: 0;
+  }
+  .spolek-box strong { color: var(--brown); }
 
   /* ── DINING SECTION ── */
   .dining-section {
-    background: var(--warm-white);
+    background: var(--cream);
     position: relative;
   }
   .dining-intro {
@@ -973,7 +1115,8 @@
     margin-bottom: 48px;
   }
   .dining-contact-chip {
-    background: var(--cream);
+    background: var(--warm-white);
+    box-shadow: 0 3px 10px rgba(122, 78, 45, 0.08);
     padding: 10px 20px;
     border-radius: 999px;
     font-size: 0.92rem;
@@ -993,7 +1136,7 @@
     margin: 0 auto 40px;
   }
   .dining-card {
-    background: var(--cream);
+    background: var(--warm-white);
     border-radius: var(--radius);
     padding: 32px 28px;
     text-align: center;
@@ -1550,13 +1693,10 @@
      horizontally so tree+animals stay pinned right while the cream area
      on the left grows to fit the text.                                        */
   @media (max-width: 960px) {
-    .site-notice { font-size: 0.84rem; padding: 10px 48px; }
-    .site-notice-close { right: 12px; width: 28px; height: 28px; }
-    .nav-inner { height: auto; padding: 12px 0; }
-    .nav-links { flex-wrap: wrap; justify-content: center; gap: 0; width: 100%; }
-    .nav-links li { flex-shrink: 1; }
-    .nav-links a { font-size: 0.82rem; padding: 8px 10px; }
-    .nav-links li + li::before { margin: 0 4px; }
+    .nav-inner { min-height: 0; height: auto; padding: 12px 0; }
+    .nav-links { gap: 0; width: 100%; }
+    .nav-links a { font-size: 0.8rem; padding: 8px 9px; }
+    .nav-links li + li::before { margin: 0 3px; }
     .nav-divider { top: auto; position: relative; height: 38px; }
     .nav-divider-icons { gap: 16px; padding: 0 12px; }
     .nav-divider-icons svg { width: 16px; height: 16px; }
@@ -1583,7 +1723,14 @@
     /* Parents section responsive */
     .info-cards { grid-template-columns: 1fr; max-width: 420px; }
     .teachers-grid { grid-template-columns: 1fr; max-width: 420px; }
-    .drive-grid { grid-template-columns: 1fr; max-width: 460px; }
+    .doc-grid { grid-template-columns: repeat(2, 1fr); max-width: 560px; }
+    .drive-grid { max-width: 620px; }
+    .drive-btn { padding: 32px 28px; gap: 20px; }
+    .drive-btn-label { font-size: 1.3rem; }
+    .drive-btn-icon { font-size: 2.2rem; }
+    .pdf-preview-head { padding: 20px 20px; gap: 16px; }
+    .pdf-preview-thumb { width: 60px; height: 78px; font-size: 1.6rem; }
+    .pdf-preview-frame { height: 60vh; min-height: 360px; }
     .dining-grid { grid-template-columns: 1fr; max-width: 420px; }
     .dining-tuition-box { padding: 28px 22px; }
     .contact-grid { grid-template-columns: 1fr; width: 100%; max-width: 100%; }
@@ -1662,10 +1809,6 @@
     }
 
     section.content-section { padding: 60px 20px; }
-    .site-notice { font-size: 0.76rem; padding: 9px 40px; line-height: 1.45; }
-    .site-notice-inner { gap: 6px; }
-    .site-notice-icon { font-size: 1rem; }
-    .site-notice-close { right: 8px; width: 26px; height: 26px; font-size: 0.9rem; }
     nav { padding: 0 8px; width: 100%; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 2px; }
     .nav-links li + li::before { display: none; }
@@ -1679,6 +1822,14 @@
     .contact-grid { width: 100%; }
     .dining-grid { width: 100%; }
     .drive-grid { width: 100%; }
+    .doc-grid { grid-template-columns: 1fr; max-width: 340px; width: 100%; }
+    .drive-btn { flex-direction: column; align-items: flex-start; padding: 26px 22px; gap: 14px; }
+    .drive-btn-label { font-size: 1.2rem; }
+    .drive-btn-icon { font-size: 2rem; }
+    .drive-btn-arrow { margin-left: 0; }
+    .pdf-preview-body { padding: 0 12px 18px; }
+    .pdf-preview-frame { height: 55vh; min-height: 320px; }
+    .spolek-box { padding: 32px 22px; }
     .aktuality-grid { width: 100%; }
     .aktualita-card { width: 100%; overflow: hidden; }
   }
@@ -1708,30 +1859,17 @@
 <body>
 <div style="overflow-x: clip; width: 100%; position: relative;">
 
-<!-- UPOZORNĚNÍ + NAV (drží spolu nahoře při scrollování) -->
+<!-- NAV -->
 <header class="site-header">
-
-  <!-- Dočasné upozornění — po dokončení obsahu stačí smazat celý tento blok -->
-  <div class="site-notice" role="status">
-    <div class="site-notice-inner">
-      <span class="site-notice-icon" aria-hidden="true">🚧</span>
-      <span>
-        <strong>Na webu se pracuje.</strong> Informace zde uvedené zatím nemusí být aktuální.
-        Přesné a aktuální údaje najdete na stránkách <strong>v posledním srpnovém týdnu</strong>.
-        Děkujeme za trpělivost.
-      </span>
-    </div>
-    <button type="button" class="site-notice-close" id="site-notice-close" aria-label="Zavřít upozornění">✕</button>
-  </div>
-
 <nav>
   <div class="nav-inner">
     <ul class="nav-links">
-      <li><a href="#aktivity">Naše třída</a></li>
+      <li><a href="#aktivity">Naše třídy</a></li>
       <li><a href="#aktuality-rodice">Aktuality</a></li>
       <li><a href="#rodice">Pro rodiče</a></li>
       <li><a href="#dokumenty">Dokumenty</a></li>
       <li><a href="#stravovani">Stravování</a></li>
+      <li><a href="#spolek">Spolek rodičů</a></li>
       <li><a href="#akce">Akce</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -1999,19 +2137,87 @@
   <div class="section-inner">
     <h2 class="section-title">Dokumenty</h2>
     <p class="parents-intro">
-      Dokumenty školy i formuláře pro rodiče najdete ve dvou složkách
-      na Google Disku. Kliknutím se složka otevře v novém okně a můžete v ní volně listovat.
+      Nejdůležitější dokumenty školy si otevřete přímo jedním kliknutím.
+      Níže pak najdete celé složky na Google Disku, ve kterých můžete volně listovat.
     </p>
 
+    <!-- 6 dlaždic s přímými odkazy na jednotlivé dokumenty (3 na řádek) -->
+    <div class="doc-grid">
+      <a class="doc-btn" href="svp.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">📘</span>
+        <span class="doc-btn-label">ŠVP</span>
+      </a>
+
+      <a class="doc-btn" href="skolni-rad.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">📕</span>
+        <span class="doc-btn-label">Školní řád</span>
+      </a>
+
+      <a class="doc-btn" href="logopedicka-prevence.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">🗣️</span>
+        <span class="doc-btn-label">Program logopedické prevence</span>
+      </a>
+
+      <a class="doc-btn" href="plan-evvo.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">🌱</span>
+        <span class="doc-btn-label">Plán EVVO</span>
+      </a>
+
+      <a class="doc-btn" href="minimalni-preventivni-program.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">🛡️</span>
+        <span class="doc-btn-label">Minimální preventivní program</span>
+      </a>
+
+      <a class="doc-btn" href="koncepce-rozvoje.html" target="_blank" rel="noopener">
+        <span class="doc-btn-icon" aria-hidden="true">🧭</span>
+        <span class="doc-btn-label">Koncepce rozvoje</span>
+      </a>
+    </div>
+
+    <!-- Velké bloky se složkami na Google Disku, pod sebou -->
     <div class="drive-grid">
       <a class="drive-btn" href="https://drive.google.com/drive/folders/1UoGWfOPnXwNbc3GP_e8N1RMaF-hj2L7w" target="_blank" rel="noopener">
-        <span class="drive-btn-label">Povinně zveřejňované dokumenty</span>
-        <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+        <span class="drive-btn-icon" aria-hidden="true">📂</span>
+        <span class="drive-btn-text">
+          <span class="drive-btn-label">Povinně zveřejňované dokumenty</span>
+          <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+        </span>
+        <span class="drive-btn-arrow" aria-hidden="true">→</span>
       </a>
       <a class="drive-btn" href="https://drive.google.com/drive/folders/1oDwyn7sYdWpR5OjkiFuMd4VAiojjDjdq" target="_blank" rel="noopener">
-        <span class="drive-btn-label">Formuláře ke stažení</span>
-        <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+        <span class="drive-btn-icon" aria-hidden="true">📝</span>
+        <span class="drive-btn-text">
+          <span class="drive-btn-label">Formuláře ke stažení</span>
+          <span class="drive-btn-note">Otevřít složku na Google Disku</span>
+        </span>
+        <span class="drive-btn-arrow" aria-hidden="true">→</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- PORADENSKÉ SLUŽBY -->
+<section class="content-section poradenstvi-section" id="poradenstvi">
+  <div class="section-inner">
+    <h2 class="section-title">Poskytování poradenských služeb</h2>
+    <p class="parents-intro">
+      Podrobnosti o poradenských službách v naší mateřské škole najdete v dokumentu níže.
+      Kliknutím na kartičku se dokument rozbalí přímo zde na stránce.
+    </p>
+
+    <!-- data-doc = název souboru ve stejné složce jako index.html -->
+    <div class="pdf-preview" id="pdf-poradenstvi" data-doc="poradenske-sluzby.html">
+      <button type="button" class="pdf-preview-head" aria-expanded="false" aria-controls="pdf-poradenstvi-body">
+        <span class="pdf-preview-thumb" aria-hidden="true">
+          <iframe class="pdf-preview-mini" src="poradenske-sluzby.html" loading="lazy" tabindex="-1" scrolling="no" title=""></iframe>
+        </span>
+        <span class="pdf-preview-meta">
+          <span class="pdf-preview-title">Směrnice o poskytování poradenských služeb</span>
+          <span class="pdf-preview-note">Klikněte pro zobrazení celého dokumentu</span>
+        </span>
+        <span class="pdf-preview-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pdf-preview-body" id="pdf-poradenstvi-body" hidden></div>
     </div>
   </div>
 </section>
@@ -2076,6 +2282,21 @@
       </p>
       <p>
         <strong>Číslo účtu školy:</strong> <span data-cms="cislo_uctu">120032621/0100</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SPOLEK RODIČŮ -->
+<section class="content-section spolek-section" id="spolek">
+  <div class="section-inner">
+    <h2 class="section-title">Spolek rodičů</h2>
+    <div class="spolek-box">
+      <div class="spolek-icon" aria-hidden="true">🤝</div>
+      <p>
+        Na této části webu se <strong>právě pracuje</strong>. Brzy zde zveřejníme více informací
+        o spolku rodičů — kdo ho tvoří, čemu se věnuje a jak se do jeho činnosti můžete zapojit.
+        Děkujeme za trpělivost.
       </p>
     </div>
   </div>
@@ -2223,26 +2444,31 @@
               <td class="staff-name">Vladimíra Křivánková</td>
               <td class="staff-role">Zástupkyně ředitelky</td>
               <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td>—</td>
             </tr>
             <tr>
               <td class="staff-name">Jaroslava Jonášová</td>
               <td class="staff-role">Nabídky — divadla, projekty, zboží</td>
               <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td>—</td>
             </tr>
             <tr>
               <td class="staff-name">🐿️ Veverky</td>
               <td class="staff-role">Třída</td>
               <td><a href="tel:+420776630705">776 630 705</a></td>
+              <td><a href="mailto:veverky62@gmail.com">veverky62@gmail.com</a></td>
             </tr>
             <tr>
               <td class="staff-name">🦔 Ježečci</td>
               <td class="staff-role">Třída</td>
               <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td><a href="mailto:jezecci62@gmail.com">jezecci62@gmail.com</a></td>
             </tr>
             <tr>
-              <td class="staff-name">🐻 Medvíďata</td>
+              <td class="staff-name">🐻 Medvídci</td>
               <td class="staff-role">Třída</td>
               <td><a href="tel:+420776630746">776 630 746</a></td>
+              <td><a href="mailto:medvidci62@gmail.com">medvidci62@gmail.com</a></td>
             </tr>
           </tbody>
         </table>
@@ -2289,20 +2515,32 @@
 </footer>
 
 <script>
-  // ── UPOZORNĚNÍ — zavření křížkem ─────────────────────────────────────────
-  // Nic se neukládá (žádné cookies ani localStorage), takže se lišta
-  // po obnovení stránky zase objeví.
-  (function zavreniUpozorneni() {
-    const notice = document.querySelector('.site-notice');
-    const btn = document.getElementById('site-notice-close');
-    if (!notice || !btn) return;
+  // ── ROZBALOVACÍ NÁHLED DOKUMENTU ─────────────────────────────────────────
+  // Celý dokument se načte až při prvním rozbalení, aby nezdržoval stránku.
+  document.querySelectorAll('.pdf-preview').forEach(box => {
+    const head = box.querySelector('.pdf-preview-head');
+    const body = box.querySelector('.pdf-preview-body');
+    const doc = (box.getAttribute('data-doc') || '').trim();
+    const nazev = (box.querySelector('.pdf-preview-title') || {}).textContent || 'Dokument';
 
-    btn.addEventListener('click', () => {
-      notice.classList.add('is-closing');
-      // 400 ms = doba sbalovací animace (0,35 s) s malou rezervou
-      setTimeout(() => notice.remove(), 400);
+    head.addEventListener('click', () => {
+      const open = box.classList.toggle('is-open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.hidden = !open;
+      if (!open || body.dataset.loaded) return;
+
+      if (!doc) {
+        body.innerHTML = '<div class="pdf-preview-placeholder">' +
+          'Dokument zatím není k dispozici.</div>';
+      } else {
+        body.innerHTML =
+          '<iframe class="pdf-preview-frame" src="' + doc + '" title="' + nazev + '"></iframe>' +
+          '<div class="pdf-preview-actions"><a href="' + doc +
+          '" target="_blank" rel="noopener">Otevřít dokument v novém okně →</a></div>';
+      }
+      body.dataset.loaded = '1';
     });
-  })();
+  });
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
