@@ -445,162 +445,6 @@
     text-transform: uppercase;
   }
 
-  /* ── SOCIAL MEDIA CTA SECTION ── */
-  .social-section {
-    background: var(--cream-hero);
-    position: relative;
-    overflow: hidden;
-  }
-  .social-section::before,
-  .social-section::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-  .social-section::before {
-    width: 280px; height: 280px;
-    background: var(--pink-soft);
-    top: -80px; left: -80px;
-  }
-  .social-section::after {
-    width: 220px; height: 220px;
-    background: var(--teal-soft);
-    bottom: -60px; right: -60px;
-  }
-  .social-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .social-lead {
-    max-width: 640px;
-    margin: -24px auto 48px;
-    font-size: 1.1rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-  }
-  .social-lead strong {
-    color: var(--brown);
-    font-weight: 800;
-  }
-  .social-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 780px;
-    margin: 0 auto;
-  }
-  .social-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 32px;
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    color: var(--text-dark);
-    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
-    box-shadow: var(--shadow-card);
-    position: relative;
-    overflow: hidden;
-  }
-  .social-card.facebook {
-    background: linear-gradient(135deg, #E3EFFF 0%, #CFE1FA 100%);
-  }
-  .social-card.instagram {
-    background: linear-gradient(135deg, #FDE2D9 0%, #F5C4D8 50%, #E5C8EC 100%);
-  }
-  .social-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-hover);
-  }
-  .social-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
-  }
-  .social-card:hover .social-icon {
-    transform: rotate(-6deg) scale(1.08);
-  }
-  .social-card.facebook .social-icon {
-    background: #1877F2;
-    color: white;
-  }
-  .social-card.instagram .social-icon {
-    background: linear-gradient(135deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%);
-    color: white;
-  }
-  .social-icon svg {
-    width: 44px;
-    height: 44px;
-  }
-  .social-card-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-  .social-card-handle {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-mid);
-    margin-bottom: 16px;
-  }
-  .social-card-desc {
-    font-size: 0.95rem;
-    color: var(--text-mid);
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-  .social-card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: rgba(255, 253, 248, 0.85);
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brown);
-    transition: background 0.25s ease, gap 0.25s ease;
-  }
-  .social-card:hover .social-card-cta {
-    background: var(--warm-white);
-    gap: 14px;
-  }
-
-  /* Decorative floating hearts in social section */
-  .social-heart {
-    position: absolute;
-    color: var(--pink-deep);
-    opacity: 0.35;
-    animation: heartFloat 5s ease-in-out infinite;
-    pointer-events: none;
-    font-size: 1.4rem;
-  }
-  .sh1 { top: 18%; left: 8%; animation-delay: 0s; }
-  .sh2 { top: 12%; right: 10%; animation-delay: 1s; font-size: 1rem; }
-  .sh3 { bottom: 22%; left: 12%; animation-delay: 2s; font-size: 1.1rem; }
-  .sh4 { bottom: 16%; right: 8%; animation-delay: 0.5s; }
-  @keyframes heartFloat {
-    0%, 100% { transform: translateY(0) rotate(-8deg); opacity: 0.35; }
-    50% { transform: translateY(-16px) rotate(8deg); opacity: 0.55; }
-  }
-
   /* ── PRO RODIČE — Info Section ── */
   .parents-section {
     background: var(--warm-white);
@@ -1258,12 +1102,13 @@
   .contact-card-content a:hover { border-color: var(--teal-deep); }
   .contact-card-content .contact-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 8px;
     margin-bottom: 4px;
   }
   .contact-card-content .contact-row strong {
-    min-width: 0;
+    flex: 0 0 auto;
     color: var(--text-mid);
     font-weight: 700;
     font-size: 0.85rem;
@@ -1459,7 +1304,6 @@
   }
 
   section { overflow-x: clip; }
-  .social-section { overflow: hidden; }
 
   /* ── AKTUALITY ── */
   .aktuality-section {
@@ -1716,7 +1560,6 @@
     .hero-content-inner { max-width: 58%; padding-top: 2%; }
 
     .classes-grid { grid-template-columns: 1fr; gap: 24px; max-width: 360px; }
-    .social-grid { grid-template-columns: 1fr; max-width: 420px; }
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
     .footer-inner.footer-inner-simple { grid-template-columns: 1fr 1fr; gap: 28px; text-align: center; }
     .footer-inner.footer-inner-simple .footer-logo-col { grid-column: 1 / -1; }
@@ -1736,6 +1579,14 @@
     .contact-grid { grid-template-columns: 1fr; width: 100%; max-width: 100%; }
     .contact-card { width: 100%; box-sizing: border-box; min-width: 0; }
     .contact-card-content { word-break: break-word; }
+    /* popisek nad hodnotu — vedle sebe se na úzkém displeji slévaly */
+    .contact-card-content .contact-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 10px;
+    }
+    .contact-card-content .contact-row strong { white-space: normal; }
     .staff-table, .staff-table thead, .staff-table tbody, .staff-table tr, .staff-table th, .staff-table td { display: block; }
     .staff-table thead { display: none; }
     .staff-table tr {
@@ -1870,7 +1721,6 @@
       <li><a href="#dokumenty">Dokumenty</a></li>
       <li><a href="#stravovani">Stravování</a></li>
       <li><a href="#spolek">Spolek rodičů</a></li>
-      <li><a href="#akce">Akce</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
   </div>
@@ -2005,8 +1855,7 @@
         <div class="aktualita-content">
           <div class="aktualita-nadpis">Vítejte v sekci Aktualit</div>
           <div class="aktualita-text">
-            Tato sekce bude brzy propojena s Google Sheets, kde bude ředitelka
-            přidávat příspěvky přímo. Sledujte nás také na Facebooku a Instagramu.
+            Zde budeme zveřejňovat novinky ze života školky.
           </div>
         </div>
       </div>
@@ -2298,52 +2147,6 @@
         o spolku rodičů — kdo ho tvoří, čemu se věnuje a jak se do jeho činnosti můžete zapojit.
         Děkujeme za trpělivost.
       </p>
-    </div>
-  </div>
-</section>
-
-<!-- SOCIAL MEDIA / SLEDUJTE NAS -->
-<section class="content-section social-section" id="akce">
-  <span class="social-heart sh1">♥</span>
-  <span class="social-heart sh2">♥</span>
-  <span class="social-heart sh3">♥</span>
-  <span class="social-heart sh4">♥</span>
-
-  <div class="section-inner social-inner">
-    <h2 class="section-title">Podívejte se, jak to u nás chodí!</h2>
-    <p class="social-lead">
-      Sledujte naše <strong>sociální sítě</strong> a nakoukněte, co u nás v Bulharské prožíváme každý den —
-      akce, výlety, výtvarné dílničky i obyčejné radostné chvíle ze života školky.
-    </p>
-
-    <div class="social-grid">
-      <a href="https://www.facebook.com/profile.php?id=61565265640943" target="_blank" rel="noopener" class="social-card facebook">
-        <div class="social-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </div>
-        <div class="social-card-title">Facebook</div>
-        <div class="social-card-handle">@msbulharska</div>
-        <p class="social-card-desc">
-          Fotky z akcí, aktuální informace pro rodiče a ohlédnutí za tím nejhezčím ze školky.
-        </p>
-        <span class="social-card-cta">Navštívit stránku →</span>
-      </a>
-
-      <a href="https://www.instagram.com/msbulharska/" target="_blank" rel="noopener" class="social-card instagram">
-        <div class="social-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </div>
-        <div class="social-card-title">Instagram</div>
-        <div class="social-card-handle">@msbulharska</div>
-        <p class="social-card-desc">
-          Krátké momentky a příběhy ze života dětí — každý den plný objevování a radosti.
-        </p>
-        <span class="social-card-cta">Sledovat nás →</span>
-      </a>
     </div>
   </div>
 </section>
