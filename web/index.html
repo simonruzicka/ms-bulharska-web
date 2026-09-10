@@ -563,6 +563,7 @@
     margin-top: 14px;
     margin-bottom: 4px;
   }
+  .teacher-slot[hidden] { display: none; }
   .teacher-names {
     font-size: 0.95rem;
     color: var(--text-dark);
@@ -1882,41 +1883,58 @@
       </div>
       <div class="info-card">
         <div class="info-card-icon">💳</div>
-        <div class="info-card-label">Školné 2026/2027</div>
+        <div class="info-card-label">Školné <span data-cms="skolne_rok">2026/2027</span></div>
         <div class="info-card-value" data-cms="skolne_castka">1 000 Kč / měsíc</div>
-        <div class="info-card-note">Úhrada do 15. dne v měsíci.<br>Pouze převodem na účet školy.</div>
+        <div class="info-card-note">Úhrada <span data-cms="skolne_splatnost">do 15. dne v měsíci</span>.<br>Pouze převodem na účet školy.</div>
       </div>
       <div class="info-card">
         <div class="info-card-icon">📞</div>
         <div class="info-card-label">Telefon ředitelky</div>
-        <div class="info-card-value"><a href="tel:739373717" style="color:inherit;text-decoration:none;">739 373 717</a></div>
+        <div class="info-card-value"><a href="tel:739373717" style="color:inherit;text-decoration:none;"><span data-cms="reditelka_telefon">739 373 717</span></a></div>
       </div>
     </div>
 
     <!-- Teachers -->
     <h3 class="subsection-title">O vaše děti se starají</h3>
     <div class="teachers-grid">
+      <!-- Pozor: hodnota data-cms se musí PŘESNĚ shodovat s názvem řádku
+           v listu „nastaveni". Jména oddělená čárkou se zalomí pod sebe.
+           Prázdná buňka v tabulce celý blok (nadpis i jména) skryje. -->
       <div class="teacher-card t-jezecci">
         <div class="teacher-class-name">Ježečci</div>
-        <div class="teacher-role">Učitelky</div>
-        <div class="teacher-names" data-cms="jezecci_ucitelky_html">Jaroslava Jonášová<br>Vladimíra Křivánková</div>
-        <div class="teacher-role">Asistentka</div>
-        <div class="teacher-names" data-cms="jezecci_asistentka">Kateřina Králová</div>
-        <a href="tel:776630728" class="teacher-phone">📞 776 630 728</a>
+        <div class="teacher-slot">
+          <div class="teacher-role">Učitelky</div>
+          <div class="teacher-names" data-cms="jezecci_ucitelky">Jaroslava Jonášová<br>Vladimíra Křivánková</div>
+        </div>
+        <div class="teacher-slot">
+          <div class="teacher-role">Asistentka</div>
+          <div class="teacher-names" data-cms="jezecci_asistentka">Kateřina Hořanská</div>
+        </div>
+        <a href="tel:608444268" class="teacher-phone">📞 <span data-cms="jezecci_telefon">608 444 268</span></a>
       </div>
       <div class="teacher-card t-veverky">
         <div class="teacher-class-name">Veverky</div>
-        <div class="teacher-role">Učitelky</div>
-        <div class="teacher-names" data-cms="veverky_ucitelky_html">Kateřina Širůčková<br>Pavla Kukletová</div>
-        <a href="tel:776630705" class="teacher-phone">📞 776 630 705</a>
+        <div class="teacher-slot">
+          <div class="teacher-role">Učitelky</div>
+          <div class="teacher-names" data-cms="veverky_ucitelky">Kateřina Širůčková<br>Soňa Peterková<br>Pavla Kukletová</div>
+        </div>
+        <div class="teacher-slot">
+          <div class="teacher-role">Asistentka</div>
+          <div class="teacher-names" data-cms="veverky_asistentka">Daniela Štěpánková</div>
+        </div>
+        <a href="tel:777742875" class="teacher-phone">📞 <span data-cms="veverky_telefon">777 742 875</span></a>
       </div>
       <div class="teacher-card t-medvidci">
         <div class="teacher-class-name">Medvíďata</div>
-        <div class="teacher-role">Učitelky</div>
-        <div class="teacher-names">Eva Šmerdová<br>Aneta Kaňovská</div>
-        <div class="teacher-role">Asistentka</div>
-        <div class="teacher-names">Daniela Štěpánková</div>
-        <a href="tel:776630746" class="teacher-phone">📞 776 630 746</a>
+        <div class="teacher-slot">
+          <div class="teacher-role">Učitelky</div>
+          <div class="teacher-names" data-cms="medvidci_ucitelky">Eva Šmerdová<br>Mgr. Aneta Kaňovská</div>
+        </div>
+        <div class="teacher-slot">
+          <div class="teacher-role">Asistentka</div>
+          <div class="teacher-names" data-cms="medvidci_asistentka"></div>
+        </div>
+        <a href="tel:774905672" class="teacher-phone">📞 <span data-cms="medvidci_telefon">774 905 672</span></a>
       </div>
     </div>
 
@@ -2121,7 +2139,7 @@
     <div class="dining-tuition-box">
       <h4>💳 Platba školného</h4>
       <p>
-        Cena školného na rok <strong>2026/2027</strong>: <strong><span data-cms="skolne_castka">1 000 Kč / měsíc</span></strong>.
+        Cena školného na rok <strong><span data-cms="skolne_rok">2026/2027</span></strong>: <strong><span data-cms="skolne_castka">1 000 Kč / měsíc</span></strong>.
         Předškolní děti školné neplatí. Úhrada probíhá <strong><span data-cms="skolne_splatnost">do 15. dne v měsíci</span></strong>,
         a to <strong>pouze převodem</strong> na účet školy.
       </p>
@@ -2166,8 +2184,8 @@
         <div class="contact-card-title">Adresa</div>
         <div class="contact-card-content">
           <strong style="display:block; margin-bottom:6px; color:var(--brown);">Mateřská škola Brno, Bulharská 62,<br>příspěvková organizace</strong>
-          Bulharská 2818/62<br>
-          612 00 Brno — Královo Pole
+          <span data-cms="skola_adresa">Bulharská 2818/62</span><br>
+          <span data-cms="skola_psc_mesto">612 00 Brno — Královo Pole</span>
           <div style="margin-top:14px;">
             <a href="https://maps.google.com/?q=Bulharská+2818/62,+Brno" target="_blank" rel="noopener">Zobrazit na mapě →</a>
           </div>
@@ -2190,8 +2208,8 @@
         <div class="contact-card-icon">🏫</div>
         <div class="contact-card-title">Informace o mateřské škole</div>
         <div class="contact-card-content">
-          <div class="contact-row"><strong>IČ:</strong> 64328244</div>
-          <div class="contact-row"><strong>Dat. schránka:</strong> kp56f3s</div>
+          <div class="contact-row"><strong>IČ:</strong> <span data-cms="skola_ic">64328244</span></div>
+          <div class="contact-row"><strong>Dat. schránka:</strong> <span data-cms="skola_datova_schranka">kp56f3s</span></div>
           <div class="contact-row"><strong>Právní forma:</strong> <span style="font-weight:600;">příspěvková organizace</span></div>
           <div class="contact-row"><strong>Kapacita:</strong> <span style="font-weight:600;" data-cms="skola_kapacita">72 dětí / 3 třídy</span></div>
         </div>
@@ -2240,37 +2258,37 @@
             <tr>
               <td class="staff-name" data-cms="reditelka_jmeno">Bc. Pavla Kukletová</td>
               <td class="staff-role">Ředitelka</td>
-              <td><a href="tel:+420739373717">739 373 717</a></td>
-              <td><a href="mailto:msbulharska@gmail.com">msbulharska@gmail.com</a></td>
+              <td><a href="tel:+420739373717"><span data-cms="reditelka_telefon">739 373 717</span></a></td>
+              <td><a href="mailto:msbulharska@gmail.com"><span data-cms="kontakt_email">msbulharska@gmail.com</span></a></td>
             </tr>
             <tr>
               <td class="staff-name">Vladimíra Křivánková</td>
               <td class="staff-role">Zástupkyně ředitelky</td>
-              <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td><a href="tel:+420608444268">608 444 268</a></td>
               <td>—</td>
             </tr>
             <tr>
               <td class="staff-name">Jaroslava Jonášová</td>
               <td class="staff-role">Nabídky — divadla, projekty, zboží</td>
-              <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td><a href="tel:+420608444268">608 444 268</a></td>
               <td>—</td>
             </tr>
             <tr>
               <td class="staff-name">🐿️ Veverky</td>
               <td class="staff-role">Třída</td>
-              <td><a href="tel:+420776630705">776 630 705</a></td>
+              <td><a href="tel:+420777742875"><span data-cms="veverky_telefon">777 742 875</span></a></td>
               <td><a href="mailto:veverky62@gmail.com">veverky62@gmail.com</a></td>
             </tr>
             <tr>
               <td class="staff-name">🦔 Ježečci</td>
               <td class="staff-role">Třída</td>
-              <td><a href="tel:+420776630728">776 630 728</a></td>
+              <td><a href="tel:+420608444268"><span data-cms="jezecci_telefon">608 444 268</span></a></td>
               <td><a href="mailto:jezecci62@gmail.com">jezecci62@gmail.com</a></td>
             </tr>
             <tr>
               <td class="staff-name">🐻 Medvídci</td>
               <td class="staff-role">Třída</td>
-              <td><a href="tel:+420776630746">776 630 746</a></td>
+              <td><a href="tel:+420774905672"><span data-cms="medvidci_telefon">774 905 672</span></a></td>
               <td><a href="mailto:medvidci62@gmail.com">medvidci62@gmail.com</a></td>
             </tr>
           </tbody>
@@ -2298,9 +2316,9 @@
 
     <div class="footer-quick">
       <div class="footer-title">Rychlý kontakt</div>
-      <div class="footer-contact-line"><strong>tel:</strong> <a href="tel:739373717" style="color:inherit; text-decoration:none;">739 373 717</a></div>
-      <div class="footer-contact-line"><strong>e-mail:</strong> <a href="mailto:msbulharska@gmail.com" style="color:inherit; text-decoration:none;">msbulharska@gmail.com</a></div>
-      <div class="footer-contact-line" style="margin-top:8px; font-size:0.82rem; opacity:0.85;">Bulharská 2818/62, 612 00 Brno — Královo Pole</div>
+      <div class="footer-contact-line"><strong>tel:</strong> <a href="tel:739373717" style="color:inherit; text-decoration:none;"><span data-cms="kontakt_telefon">739 373 717</span></a></div>
+      <div class="footer-contact-line"><strong>e-mail:</strong> <a href="mailto:msbulharska@gmail.com" style="color:inherit; text-decoration:none;"><span data-cms="kontakt_email">msbulharska@gmail.com</span></a></div>
+      <div class="footer-contact-line" style="margin-top:8px; font-size:0.82rem; opacity:0.85;"><span data-cms="skola_adresa">Bulharská 2818/62</span>, <span data-cms="skola_psc_mesto">612 00 Brno — Královo Pole</span></div>
     </div>
 
     <div class="footer-links">
@@ -2364,6 +2382,13 @@
     document.body.classList.add('fonts-loaded');
   }
 
+  // Bloky, které jsou prázdné už v HTML, skryj hned — ať neproblikne
+  // osamocený nadpis „Asistentka" než dorazí data z tabulky.
+  document.querySelectorAll('.teacher-slot').forEach(slot => {
+    const jmena = slot.querySelector('.teacher-names');
+    if (!jmena || jmena.textContent.trim() === '') slot.hidden = true;
+  });
+
   // ── AKTUALITY + NASTAVENÍ — vykreslení dat z Google Tabulek ──────────────
   // Samotné stahování startuje už ve <head> (viz skript nahoře), tady se
   // jen počká na výsledek a vykreslí se. Nic se v prohlížeči neukládá.
@@ -2372,21 +2397,67 @@
   function pouzijNastaveni(data) {
     if (!data || typeof data !== 'object') return;
 
+    // Když je hodnota uvnitř odkazu tel: nebo mailto:, přepiš i samotný
+    // odkaz — jinak by se zobrazovalo nové číslo, ale volalo se na staré.
+    function srovnejOdkaz(el, hodnota) {
+      const odkaz = el.closest('a[href^="tel:"], a[href^="mailto:"]');
+      if (!odkaz) return;
+      const text = String(hodnota).trim();
+      if (odkaz.getAttribute('href').startsWith('mailto:')) {
+        if (text.includes('@')) odkaz.setAttribute('href', 'mailto:' + text);
+        return;
+      }
+      // z čísla nech jen číslice a případné vedoucí +
+      const cislo = text.replace(/(?!^\+)[^0-9]/g, '');
+      if (/^\+?[0-9]{6,}$/.test(cislo)) {
+        const puvodni = odkaz.getAttribute('href').slice(4);
+        // zachovej předvolbu, pokud tam byla a v tabulce není
+        const predvolba = puvodni.startsWith('+420') && !cislo.startsWith('+') ? '+420' : '';
+        odkaz.setAttribute('href', 'tel:' + predvolba + cislo);
+      }
+    }
+
+    // Jména oddělená čárkou → každé na svůj řádek. Text z tabulky se před
+    // vložením ošetří, aby se znaky jako & nebo < nebraly jako HTML.
+    function naRadky(hodnota) {
+      return String(hodnota)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .split(/\s*,\s*/).filter(Boolean).join('<br>');
+    }
+
     document.querySelectorAll('[data-cms]').forEach(el => {
       const klic = el.getAttribute('data-cms');
-      if (data[klic] !== undefined && data[klic] !== '') {
-        if (klic.endsWith('_html')) {
-          el.innerHTML = String(data[klic]).replace(/,\s*/g, '<br>');
-        } else {
-          el.textContent = data[klic];
-        }
+
+      // Klíč se hledá tak, jak je v HTML, a když takový řádek v tabulce
+      // není, zkusí se i varianta s příponou _html a bez ní. Díky tomu
+      // funguje 'veverky_ucitelky' i 'veverky_ucitelky_html'.
+      const varianty = [klic, klic.replace(/_html$/, ''), klic + '_html'];
+      const nalezeny = varianty.find(k => data[k] !== undefined);
+      if (nalezeny === undefined) return;   // řádek v tabulce není → necháme text z HTML
+
+      const hodnota = data[nalezeny];
+      const jeJmeno = el.closest('.teacher-slot') !== null;
+
+      if (String(hodnota).trim() === '') {
+        // Prázdná buňka: u jmen učitelek znamená „smazat", jinde necháme
+        // výchozí text ze stránky, ať kontakt omylem nezmizí.
+        if (jeJmeno) el.textContent = '';
+        return;
+      }
+
+      if (jeJmeno || klic.endsWith('_html') || nalezeny.endsWith('_html')) {
+        el.innerHTML = naRadky(hodnota);
+      } else {
+        el.textContent = hodnota;
+        srovnejOdkaz(el, hodnota);
       }
     });
 
-    if (data['medvidci_ucitelky']) {
-      const el = document.querySelector('[data-cms="medvidci_ucitelky_html"]');
-      if (el) el.innerHTML = data['medvidci_ucitelky'].replace(/,\s*/g, '<br>');
-    }
+    // Blok bez jmen (např. třída bez asistentky) se schová i s nadpisem
+    document.querySelectorAll('.teacher-slot').forEach(slot => {
+      const jmena = slot.querySelector('.teacher-names');
+      slot.hidden = !jmena || jmena.textContent.trim() === '';
+    });
   }
 
   function formatDatum(datumStr) {
